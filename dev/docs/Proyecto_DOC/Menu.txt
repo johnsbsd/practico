@@ -90,14 +90,11 @@ Group: Secciones_de_Apoyo  {
    File: Seccion superior  (/var/www/html/practico/core/marco_arriba_bs.php)
    File: Seccion inferior  (/var/www/html/practico/core/marco_abajo.php)
    File: Seccion Escritorio Administrativo  (/var/www/html/practico/core/marco_admin.php)
-   File: Seccion Escritorio Administrativo  (/var/www/html/practico/core/marco_admin_morris.php)
    File: Marco de configuracion  (no auto-title, /var/www/html/practico/core/marco_conf.php)
    File: Marco de desarrollo  (no auto-title, /var/www/html/practico/core/marco_dev.php)
    File: Marco de exportaciones  (no auto-title, /var/www/html/practico/core/marco_export.php)
-   File: Proveedores OAuth  (no auto-title, /var/www/html/practico/core/marco_param.php)
    File: Formularios comunes  (no auto-title, /var/www/html/practico/core/marco_forms.php)
    File: Contactos de Chat  (no auto-title, /var/www/html/practico/core/marco_chat.php)
-   File: Configuracion WebServices  (no auto-title, /var/www/html/practico/core/marco_wscfg.php)
    }  # Group: Secciones_de_Apoyo
 
 Group: Otros  {
