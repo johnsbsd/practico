@@ -1,11 +1,11 @@
 var indexSectionsWithContent = {
-   "BuildTargets": {
-      "Symbols": true,
+   "Files": {
+      "Symbols": false,
       "Numbers": false,
       "A": false,
       "B": false,
       "C": false,
-      "D": false,
+      "D": true,
       "E": false,
       "F": false,
       "G": false,
@@ -89,13 +89,13 @@ var indexSectionsWithContent = {
       "Y": false,
       "Z": false
       },
-   "Files": {
-      "Symbols": false,
+   "BuildTargets": {
+      "Symbols": true,
       "Numbers": false,
       "A": false,
       "B": false,
       "C": false,
-      "D": true,
+      "D": false,
       "E": false,
       "F": false,
       "G": false,
