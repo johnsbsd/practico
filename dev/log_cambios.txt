@@ -399,138 +399,6 @@ CREATE TABLE core_scripts (
 ALTER TABLE core_scripts ADD INDEX codigo_script (codigo_script);
 INSERT INTO core_scripts (id,codigo_script,titulo,modo_ejecucion,fecha_creacion) VALUES (-1,'PCO-LMQTP01','Script de pruebas internas de lenguaje','system','2023-01-01');
 
-DROP TABLE IF EXISTS core_scripts_lenguajes;
-CREATE TABLE core_scripts_lenguajes (
-  id int(10) AUTO_INCREMENT,
-  nombre varchar(255) default '',
-  extensiones varchar(255),
-  comando_compilacion varchar(255),
-  comando_ejecucion varchar(255),
-  hola_mundo text,
-  PRIMARY KEY  (id)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
-INSERT INTO `core_scripts_lenguajes` (`id`, `nombre`, `extensiones`, `comando_compilacion`, `comando_ejecucion`, `hola_mundo`) VALUES
-(1,	'ABAP',	'abap',	'',	'',	'REPORT zgoodbyeworld.\r\n  WRITE \"Practico Framework! Prueba de lenguaje ABAP generada por el usuario {$PCOSESS_LoginUsuario} {$PCO_FechaOperacionGuiones} {$PCO_HoraOperacionPuntos}\".'),
-(2,	'ActionScript',	'as',	'',	'',	''),
-(3,	'ADA',	'ada|adb|ads',	'',	'',	'with Ada.Text_IO; use Ada.Text_IO;\r\nprocedure Main is\r\nbegin\r\n  Put_Line (\"Practico Framework! Prueba de lenguaje ADA generada por el usuario {$PCOSESS_LoginUsuario} {$PCO_FechaOperacionGuiones} {$PCO_HoraOperacionPuntos}\");\r\nend Main;'),
-(4,	'Apache_Conf',	'htaccess|htgroups|htpasswd|conf|htaccess|htgroups|htpasswd',	'',	'',	''),
-(5,	'AsciiDoc',	'asciidoc|adoc|ans|asc',	'',	'',	''),
-(6,	'Assembly_x86',	'asm',	'',	'',	'DOSSEG\r\n.MODEL TINY\r\n.DATA\r\nTXT DB \"Practico Framework! Prueba de lenguaje ASSEMBLY_x86 generada por el usuario {$PCOSESS_LoginUsuario} {$PCO_FechaOperacionGuiones} {$PCO_HoraOperacionPuntos}$\"\r\n.CODE\r\nSTART:\r\n	MOV ax, @DATA\r\n	MOV ds, ax\r\n	\r\n	MOV ah, 09h		; prepare output function\r\n	MOV dx, OFFSET TXT	; set offset\r\n	INT 21h			; output string TXT\r\n	\r\n	MOV AX, 4C00h 		; go back to DOS\r\n	INT 21h\r\nEND START'),
-(7,	'AutoHotKey',	'ahk',	'',	'',	''),
-(8,	'BatchFile',	'bat|cmd|pif|wsf',	'',	'',	''),
-(9,	'C9Search',	'c9search_results',	'',	'',	''),
-(10,	'C_Cpp',	'c|cpp|cc|cxx|h|hh|hpp|bcp|tcc',	'gcc -o {$PCO_ArchivoScript}.out {$PCO_ArchivoScript}.c',	'./{$PCO_ArchivoScript}.out',	'#include <stdio.h>\r\nint main(void)\r\n{\r\n    printf(\"Practico Framework! Prueba de lenguaje C/CPP generada por el usuario {$PCOSESS_LoginUsuario} {$PCO_FechaOperacionGuiones} {$PCO_HoraOperacionPuntos} {$PCO_FechaOperacionGuiones} {$PCO_HoraOperacionPuntos}\");\r\n}\r\n'),
-(11,	'Cirru',	'cirru|cr',	'',	'',	''),
-(12,	'Clojure',	'clj|cljs',	'',	'',	'(println \"Practico Framework! Prueba de lenguaje CLOJURE generada por el usuario {$PCOSESS_LoginUsuario} {$PCO_FechaOperacionGuiones} {$PCO_HoraOperacionPuntos}\")'),
-(13,	'Cobol',	'CBL|COB',	'',	'',	'	program-id. hello.\r\n	procedure division.\r\n		display \"Practico Framework! Prueba de lenguaje COBOL generada por el usuario {$PCOSESS_LoginUsuario} {$PCO_FechaOperacionGuiones} {$PCO_HoraOperacionPuntos}\".\r\n		stop run.'),
-(14,	'coffee',	'coffee|cf|cson|Cakefile',	'',	'',	'console.log \"Practico Framework! Prueba de lenguaje COFFEE generada por el usuario {$PCOSESS_LoginUsuario} {$PCO_FechaOperacionGuiones} {$PCO_HoraOperacionPuntos}\"'),
-(15,	'ColdFusion',	'cfm',	'',	'',	'<cfoutput>Practico Framework! Prueba de lenguaje COLDFUSION generada por el usuario {$PCOSESS_LoginUsuario} {$PCO_FechaOperacionGuiones} {$PCO_HoraOperacionPuntos}</cfoutput>\r\n'),
-(16,	'CSharp',	'cs|csx',	'',	'',	'namespace HelloWorld\r\n{\r\n    class Program\r\n    {\r\n        static void Main(string[] args)\r\n        {\r\n            System.Console.WriteLine(\"Practico Framework! Prueba de lenguaje CSharp generada por el usuario {$PCOSESS_LoginUsuario} {$PCO_FechaOperacionGuiones} {$PCO_HoraOperacionPuntos}\");\r\n        }\r\n    }\r\n}'),
-(17,	'CSS',	'css',	'',	'',	''),
-(18,	'Curly',	'curly',	'',	'',	''),
-(19,	'D',	'd|di',	'',	'',	'import std.stdio;\r\n\r\nvoid main() {\r\n    writeln(\"Practico Framework! Prueba de lenguaje D generada por el usuario {$PCOSESS_LoginUsuario} {$PCO_FechaOperacionGuiones} {$PCO_HoraOperacionPuntos}\");\r\n}'),
-(20,	'Dart',	'dart',	'',	'',	'main() {\r\n    var bye = \"Practico Framework! Prueba de lenguaje DART generada por el usuario {$PCOSESS_LoginUsuario} {$PCO_FechaOperacionGuiones} {$PCO_HoraOperacionPuntos}\";\r\n    print(\"$bye\");\r\n}'),
-(21,	'Diff',	'diff|patch',	'',	'',	''),
-(22,	'Dockerfile',	'Dockerfile',	'',	'',	''),
-(23,	'Dot',	'dot',	'',	'',	''),
-(24,	'Dummy',	'dummy',	'',	'',	''),
-(25,	'DummySyntax',	'dummy',	'',	'',	''),
-(26,	'Eiffel',	'e',	'',	'',	'class\r\n    HELLO_WORLD\r\ncreate\r\n    make\r\nfeature\r\n    make\r\n        do\r\n            print (\"Practico Framework! Prueba de lenguaje EIFFEL generada por el usuario {$PCOSESS_LoginUsuario} {$PCO_FechaOperacionGuiones} {$PCO_HoraOperacionPuntos}\")\r\n        end\r\nend'),
-(27,	'EJS',	'ejs',	'',	'',	''),
-(28,	'Elixir',	'ex|exs',	'',	'',	'IO.puts \"Practico Framework! Prueba de lenguaje ELIXIR generada por el usuario {$PCOSESS_LoginUsuario} {$PCO_FechaOperacionGuiones} {$PCO_HoraOperacionPuntos}\"'),
-(29,	'Elm',	'elm',	'',	'',	'main = text \"Practico Framework! Prueba de lenguaje ELM generada por el usuario {$PCOSESS_LoginUsuario} {$PCO_FechaOperacionGuiones} {$PCO_HoraOperacionPuntos}\"'),
-(30,	'Erlang',	'erl|hrl',	'',	'',	'io:format(\"Practico Framework! Prueba de lenguaje ERLANG generada por el usuario {$PCOSESS_LoginUsuario} {$PCO_FechaOperacionGuiones} {$PCO_HoraOperacionPuntos}\").'),
-(31,	'Forth',	'frt|fs|ldr|4th|forth',	'',	'',	': goodbye ( -- )   .\" Practico Framework! Prueba de lenguaje FORTH generada por el usuario {$PCOSESS_LoginUsuario} {$PCO_FechaOperacionGuiones} {$PCO_HoraOperacionPuntos}\" CR ;'),
-(32,	'FTL',	'ftl',	'',	'',	''),
-(33,	'Gcode',	'gcode',	'',	'',	''),
-(34,	'Gherkin',	'feature',	'',	'',	''),
-(35,	'Gitignore',	'gitignore|gcloudignore',	'',	'',	''),
-(36,	'Glsl',	'glsl|frag|vert',	'',	'',	''),
-(37,	'golang',	'go',	'',	'go run',	'package main\r\nimport \"fmt\"\r\nfunc main() {\r\n    fmt.Println(\"Practico Framework! Prueba de lenguaje GO generada por el usuario {$PCOSESS_LoginUsuario} {$PCO_FechaOperacionGuiones} {$PCO_HoraOperacionPuntos}\")\r\n}\r\n'),
-(38,	'Groovy',	'groovy',	'',	'',	''),
-(39,	'HAML',	'haml',	'',	'',	''),
-(40,	'Handlebars',	'hbs|handlebars|tpl|mustache',	'',	'',	''),
-(41,	'Haskell',	'hs|has|lhs|lit',	'',	'',	'main = putStrLn \"Practico Framework! Prueba de lenguaje HASKELL generada por el usuario {$PCOSESS_LoginUsuario} {$PCO_FechaOperacionGuiones} {$PCO_HoraOperacionPuntos}\"'),
-(42,	'haXe',	'hx',	'',	'',	'trace(\"Practico Framework! Prueba de lenguaje HAXE generada por el usuario {$PCOSESS_LoginUsuario} {$PCO_FechaOperacionGuiones} {$PCO_HoraOperacionPuntos}\");'),
-(43,	'HTML',	'html|htm|xhtml|asp|aspx',	'',	'',	''),
-(44,	'HTML_Ruby',	'erb|rhtml',	'',	'',	''),
-(45,	'INI',	'ini|cfg|prefs',	'',	'',	''),
-(46,	'Io',	'io',	'',	'',	''),
-(47,	'Jack',	'jack',	'',	'',	'class Main {\r\n  function void main () {\r\n    do Output.printString(\"Practico Framework! Prueba de lenguaje JACK generada por el usuario {$PCOSESS_LoginUsuario} {$PCO_FechaOperacionGuiones} {$PCO_HoraOperacionPuntos}\");\r\n    do Output.println();\r\n    return;\r\n  }\r\n}'),
-(48,	'Jade',	'jade',	'',	'',	''),
-(49,	'Java',	'java',	'javac  {$PCO_ArchivoScript}.java',	'java {$PCO_ArchivoScript}.class',	'public class HelloWorld\r\n{\r\n public static void main(String[] args)\r\n {\r\n  System.out.println(\"Practico Framework! Prueba de lenguaje JAVA generada por el usuario {$PCOSESS_LoginUsuario} {$PCO_FechaOperacionGuiones} {$PCO_HoraOperacionPuntos}\");\r\n }\r\n}'),
-(50,	'JavaScript',	'js|jsm',	'',	'node',	'console.log(\"Practico Framework! Prueba de lenguaje JAVASCRIPT generada por el usuario {$PCOSESS_LoginUsuario} {$PCO_FechaOperacionGuiones} {$PCO_HoraOperacionPuntos}\");'),
-(51,	'JSON',	'json',	'',	'',	''),
-(52,	'JSONiq',	'jq',	'',	'',	''),
-(53,	'JSP',	'jsp',	'',	'',	''),
-(54,	'JSX',	'jsx',	'',	'',	''),
-(55,	'Julia',	'jl',	'',	'',	'println(\"Practico Framework! Prueba de lenguaje JULIA generada por el usuario {$PCOSESS_LoginUsuario} {$PCO_FechaOperacionGuiones} {$PCO_HoraOperacionPuntos}\")'),
-(56,	'LaTeX',	'tex|latex|ltx|bib|sty',	'',	'',	'\\documentclass{minimal}\r\n\\begin{document}\r\nPractico Framework! Prueba de lenguaje LATEX generada por el usuario {$PCOSESS_LoginUsuario} {$PCO_FechaOperacionGuiones} {$PCO_HoraOperacionPuntos}\r\n\\end{document}'),
-(57,	'LESS',	'less',	'',	'',	''),
-(58,	'Liquid',	'liquid',	'',	'',	''),
-(59,	'Lisp',	'lisp|lsp',	'',	'newlisp',	'(println \"Practico Framework! Prueba de lenguaje LISP generada por el usuario {$PCOSESS_LoginUsuario} {$PCO_FechaOperacionGuiones} {$PCO_HoraOperacionPuntos}\")'),
-(60,	'LiveScript',	'ls',	'',	'',	''),
-(61,	'LogiQL',	'logic|lql',	'',	'',	''),
-(62,	'LSL',	'lsl',	'',	'',	''),
-(63,	'Lua',	'lua',	'',	'',	'print \"Practico Framework! Prueba de lenguaje LUA generada por el usuario {$PCOSESS_LoginUsuario} {$PCO_FechaOperacionGuiones} {$PCO_HoraOperacionPuntos}\"'),
-(64,	'LuaPage',	'lp',	'',	'',	''),
-(65,	'Lucene',	'lucene',	'',	'',	''),
-(66,	'Makefile',	'Makefile|GNUmakefile|makefile|OCamlMakefile|make|am',	'',	'',	''),
-(67,	'Markdown',	'md|markdown|markdn',	'',	'',	''),
-(68,	'Mask',	'mask',	'',	'',	''),
-(69,	'MATLAB',	'matlab',	'',	'',	'>> disp(\"Practico Framework! Prueba de lenguaje MATLAB generada por el usuario {$PCOSESS_LoginUsuario} {$PCO_FechaOperacionGuiones} {$PCO_HoraOperacionPuntos}\")'),
-(70,	'MEL',	'mel',	'',	'',	'proc helloWorld () {\r\n   print \"Practico Framework! Prueba de lenguaje MEL generada por el usuario {$PCOSESS_LoginUsuario} {$PCO_FechaOperacionGuiones} {$PCO_HoraOperacionPuntos}\";\r\n}'),
-(71,	'MUSHCode',	'mc|mush',	'',	'',	''),
-(72,	'MySQL',	'mysql',	'',	'',	''),
-(73,	'Nix',	'nix',	'',	'',	'\"Practico Framework! Prueba de lenguaje NIX generada por el usuario {$PCOSESS_LoginUsuario} {$PCO_FechaOperacionGuiones} {$PCO_HoraOperacionPuntos}\"'),
-(74,	'ObjectiveC',	'm|mm',	'',	'',	'#import <Foundation/Foundation.h>\r\n\r\nint main() {\r\n    @autoreleasepool {\r\n        NSLog(@\"Practico Framework! Prueba de lenguaje OBJECTIVE-C generada por el usuario {$PCOSESS_LoginUsuario} {$PCO_FechaOperacionGuiones} {$PCO_HoraOperacionPuntos}\");\r\n    }\r\n}'),
-(75,	'OCaml',	'ml|mli',	'',	'',	'print_endline \"Practico Framework! Prueba de lenguaje OCAML generada por el usuario {$PCOSESS_LoginUsuario} {$PCO_FechaOperacionGuiones} {$PCO_HoraOperacionPuntos}\"'),
-(76,	'Pascal',	'pas|p|dfm',	'',	'',	'program byeworld;\r\nbegin\r\n writeln(\"Practico Framework! Prueba de lenguaje PASCAL generada por el usuario {$PCOSESS_LoginUsuario} {$PCO_FechaOperacionGuiones} {$PCO_HoraOperacionPuntos}\");\r\nend.'),
-(77,	'Perl',	'pl|pm',	'',	'perl',	'print \"Practico Framework! Prueba de lenguaje PERL generada por el usuario {$PCOSESS_LoginUsuario} {$PCO_FechaOperacionGuiones} {$PCO_HoraOperacionPuntos}\"'),
-(78,	'pgSQL',	'pgsql',	'',	'',	''),
-(79,	'PHP',	'php|phtml|inc|ctp|snt',	'',	'php',	'<?php\r\necho \"Practico Framework! Prueba de lenguaje PHP generada por el usuario {$PCOSESS_LoginUsuario} {$PCO_FechaOperacionGuiones} {$PCO_HoraOperacionPuntos}\";\r\n'),
-(80,	'Powershell',	'ps1',	'',	'',	'\"Practico Framework! Prueba de lenguaje POWERSHELL generada por el usuario {$PCOSESS_LoginUsuario} {$PCO_FechaOperacionGuiones} {$PCO_HoraOperacionPuntos}\"'),
-(81,	'Praat',	'praat|praatscript|psc|proc',	'',	'',	''),
-(82,	'Prolog',	'plg|prolog',	'',	'',	':- write(\"Practico Framework! Prueba de lenguaje PROLOG generada por el usuario {$PCOSESS_LoginUsuario} {$PCO_FechaOperacionGuiones} {$PCO_HoraOperacionPuntos}\"), nl.'),
-(83,	'Properties',	'properties',	'',	'',	''),
-(84,	'Protobuf',	'proto',	'',	'',	''),
-(85,	'Python',	'py',	'',	'python3',	'print (\"Practico Framework! Prueba de lenguaje PYTHON generada por el usuario {$PCOSESS_LoginUsuario} {$PCO_FechaOperacionGuiones} {$PCO_HoraOperacionPuntos}\")'),
-(86,	'R',	'r',	'',	'',	'print(\"Practico Framework! Prueba de lenguaje R generada por el usuario {$PCOSESS_LoginUsuario} {$PCO_FechaOperacionGuiones} {$PCO_HoraOperacionPuntos}\")'),
-(87,	'RDoc',	'Rd',	'',	'',	''),
-(88,	'RHTML',	'Rhtml',	'',	'',	''),
-(89,	'Ruby',	'rb|ru|gemspec|rake|Guardfile|Rakefile|Gemfile',	'',	'',	'puts \"Practico Framework! Prueba de lenguaje RUBY generada por el usuario {$PCOSESS_LoginUsuario} {$PCO_FechaOperacionGuiones} {$PCO_HoraOperacionPuntos}\"'),
-(90,	'Rust',	'rs',	'',	'',	'fn main() {\r\n   print!(\"Practico Framework! Prueba de lenguaje RUST generada por el usuario {$PCOSESS_LoginUsuario} {$PCO_FechaOperacionGuiones} {$PCO_HoraOperacionPuntos}\");\r\n}'),
-(91,	'SASS',	'sass',	'',	'',	''),
-(92,	'SCAD',	'scad',	'',	'',	''),
-(93,	'Scala',	'scala',	'',	'',	'println(\"Practico Framework! Prueba de lenguaje SCALA generada por el usuario {$PCOSESS_LoginUsuario} {$PCO_FechaOperacionGuiones} {$PCO_HoraOperacionPuntos}\")'),
-(94,	'Scheme',	'scm|rkt',	'',	'',	'\"Practico Framework! Prueba de lenguaje TCL generada por el usuario {$PCOSESS_LoginUsuario} {$PCO_FechaOperacionGuiones} {$PCO_HoraOperacionPuntos}\"'),
-(95,	'SCSS',	'scss',	'',	'',	''),
-(96,	'SH',	'sh|bash|bashrc|bsh',	'',	'sh',	'#!/bin/sh\r\necho \"Practico Framework! Prueba de lenguaje UnixShell-SH generada por el usuario {$PCOSESS_LoginUsuario} {$PCO_FechaOperacionGuiones} {$PCO_HoraOperacionPuntos}\"'),
-(97,	'SJS',	'sjs',	'',	'',	''),
-(98,	'Smarty',	'smarty|tpl',	'',	'',	''),
-(99,	'snippets',	'snippets',	'',	'',	''),
-(100,	'Soy_Template',	'soy',	'',	'',	''),
-(101,	'Space',	'space',	'',	'',	''),
-(102,	'SQL',	'sql|dblib|dblib_mssql|fbd|ibm|ifmx|mssql|odbc|oracle|sqlite|sqlsrv',	'',	'',	''),
-(103,	'Stylus',	'styl|stylus',	'',	'',	''),
-(104,	'SVG',	'svg',	'',	'',	''),
-(105,	'Tcl',	'tcl',	'',	'tclsh',	'puts stdout {Practico Framework! Prueba de lenguaje TCL generada por el usuario {$PCOSESS_LoginUsuario} {$PCO_FechaOperacionGuiones} {$PCO_HoraOperacionPuntos}}'),
-(106,	'Tex',	'tex',	'',	'',	''),
-(107,	'Text',	'txt|nfo|dat|inf|log|csv|tab|url|1st|fountain|me|now|readme|rft|cst|pl1|pli|plc|src|swift|tk',	'',	'',	''),
-(108,	'Textile',	'textile',	'',	'',	''),
-(109,	'Toml',	'toml',	'',	'',	''),
-(110,	'Twig',	'twig',	'',	'',	''),
-(111,	'Typescript',	'ts|typescript|str',	'',	'',	''),
-(112,	'Vala',	'vala',	'',	'',	'void main(){\r\n	stdout.printf(\"Practico Framework! Prueba de lenguaje VALA generada por el usuario {$PCOSESS_LoginUsuario} {$PCO_FechaOperacionGuiones} {$PCO_HoraOperacionPuntos}\");\r\n}'),
-(113,	'VBScript',	'bas|vbs|vb|b|sb',	'',	'',	'WScript.Echo \"Practico Framework! Prueba de lenguaje VBSCRIPT generada por el usuario {$PCOSESS_LoginUsuario} {$PCO_FechaOperacionGuiones} {$PCO_HoraOperacionPuntos}\"'),
-(114,	'Velocity',	'vm',	'',	'',	''),
-(115,	'Verilog',	'v|vh|sv|svh',	'',	'',	'module main;\r\n  initial begin\r\n      $display(\"Practico Framework! Prueba de lenguaje VERILOG generada por el usuario {$PCOSESS_LoginUsuario} {$PCO_FechaOperacionGuiones} {$PCO_HoraOperacionPuntos}\");\r\n      $finish ;\r\n    end\r\nendmodule'),
-(116,	'VHDL',	'vhd|vhdl',	'',	'',	'LIBRARY std;\r\nUSE std.TEXTIO.all;\r\n\r\nentity test is\r\nend entity test;\r\n\r\narchitecture beh of test is\r\nbegin\r\n  process\r\n    variable line_out : line;\r\n  begin\r\n    write(line_out, string\'(\"Practico Framework! Prueba de lenguaje VHDL generada por el usuario {$PCOSESS_LoginUsuario} {$PCO_FechaOperacionGuiones} {$PCO_HoraOperacionPuntos}\"));\r\n    writeline(OUTPUT, line_out);\r\n    wait; -- needed to stop the execution\r\n  end process;\r\nend architecture beh;'),
-(117,	'XML',	'xml|rdf|rss|wsdl|xsl|xslt|atom|mathml|mml|xul|xbl',	'',	'',	''),
-(118,	'XQuery',	'xq',	'',	'',	''),
-(119,	'YAML',	'yaml|yml',	'',	'',	'');
-
 ALTER TABLE core_chat ADD INDEX recd (recd);
 
 UPDATE core_opcionlista SET identificador_lista='exportaciones_informe_DEPRECATED' WHERE identificador_lista='exportaciones_informe' AND (valor_interno='S' OR valor_interno='A');
@@ -558,13 +426,146 @@ CREATE TABLE core_documentacion (
   formato varchar(255) NOT NULL DEFAULT 'Enriquecido' COMMENT 'Enriquecido,Diagrama',
   documentacion mediumtext NOT NULL,
   visibilidad varchar(255) NOT NULL DEFAULT 'Desarrollo' COMMENT 'Desarrollo,Usuario',
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (id)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 ALTER TABLE core_kanban CHANGE historial historial text COLLATE 'utf8_general_ci' NULL COMMENT 'Guarda categorias en tableros padre';
 
 UPDATE core_opcionlista SET valor_visual = REPLACE(valor_visual, '{ $ ', '{$');
 UPDATE core_opcionlista SET valor_interno = REPLACE(valor_interno, '{ $ ', '{$');
+
+DROP TABLE IF EXISTS core_scripts_lenguajes;
+CREATE TABLE core_scripts_lenguajes (
+  id int(10) AUTO_INCREMENT,
+  nombre varchar(255) default '',
+  extensiones varchar(255),
+  comando_compilacion varchar(255),
+  comando_ejecucion varchar(255),
+  hola_mundo text,
+  PRIMARY KEY  (id)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (1,	'ABAP',	'abap',	'',	'',	'REPORT zgoodbyeworld.\r\n  WRITE \"Practico Framework! Prueba de lenguaje ABAP generada por el usuario {$PCOSESS_LoginUsuario} {$PCO_FechaOperacionGuiones} {$PCO_HoraOperacionPuntos}\".');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (2,	'ActionScript',	'as',	'',	'',	'');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (3,	'ADA',	'ada|adb|ads',	'',	'',	'with Ada.Text_IO; use Ada.Text_IO;\r\nprocedure Main is\r\nbegin\r\n  Put_Line (\"Practico Framework! Prueba de lenguaje ADA generada por el usuario {$PCOSESS_LoginUsuario} {$PCO_FechaOperacionGuiones} {$PCO_HoraOperacionPuntos}\");\r\nend Main;');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (4,	'Apache_Conf',	'htaccess|htgroups|htpasswd|conf|htaccess|htgroups|htpasswd',	'',	'',	'');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (5,	'AsciiDoc',	'asciidoc|adoc|ans|asc',	'',	'',	'');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (6,	'Assembly_x86',	'asm',	'',	'',	'DOSSEG\r\n.MODEL TINY\r\n.DATA\r\nTXT DB \"Practico Framework! Prueba de lenguaje ASSEMBLY_x86 generada por el usuario {$PCOSESS_LoginUsuario} {$PCO_FechaOperacionGuiones} {$PCO_HoraOperacionPuntos}$\"\r\n.CODE\r\nSTART:\r\n	MOV ax, @DATA\r\n	MOV ds, ax\r\n	\r\n	MOV ah, 09h		; prepare output function\r\n	MOV dx, OFFSET TXT	; set offset\r\n	INT 21h			; output string TXT\r\n	\r\n	MOV AX, 4C00h 		; go back to DOS\r\n	INT 21h\r\nEND START');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (7,	'AutoHotKey',	'ahk',	'',	'',	'');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (8,	'BatchFile',	'bat|cmd|pif|wsf',	'',	'',	'');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (9,	'C9Search',	'c9search_results',	'',	'',	'');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (10,	'C_Cpp',	'c|cpp|cc|cxx|h|hh|hpp|bcp|tcc',	'gcc -o {$PCO_ArchivoScript}.out {$PCO_ArchivoScript}.c',	'./{$PCO_ArchivoScript}.out',	'#include <stdio.h>\r\nint main(void)\r\n{\r\n    printf(\"Practico Framework! Prueba de lenguaje C/CPP generada por el usuario {$PCOSESS_LoginUsuario} {$PCO_FechaOperacionGuiones} {$PCO_HoraOperacionPuntos} {$PCO_FechaOperacionGuiones} {$PCO_HoraOperacionPuntos}\");\r\n}\r\n');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (11,	'Cirru',	'cirru|cr',	'',	'',	'');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (12,	'Clojure',	'clj|cljs',	'',	'',	'(println \"Practico Framework! Prueba de lenguaje CLOJURE generada por el usuario {$PCOSESS_LoginUsuario} {$PCO_FechaOperacionGuiones} {$PCO_HoraOperacionPuntos}\")');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (13,	'Cobol',	'CBL|COB',	'',	'',	'	program-id. hello.\r\n	procedure division.\r\n		display \"Practico Framework! Prueba de lenguaje COBOL generada por el usuario {$PCOSESS_LoginUsuario} {$PCO_FechaOperacionGuiones} {$PCO_HoraOperacionPuntos}\".\r\n		stop run.');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (14,	'coffee',	'coffee|cf|cson|Cakefile',	'',	'',	'console.log \"Practico Framework! Prueba de lenguaje COFFEE generada por el usuario {$PCOSESS_LoginUsuario} {$PCO_FechaOperacionGuiones} {$PCO_HoraOperacionPuntos}\"');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (15,	'ColdFusion',	'cfm',	'',	'',	'<cfoutput>Practico Framework! Prueba de lenguaje COLDFUSION generada por el usuario {$PCOSESS_LoginUsuario} {$PCO_FechaOperacionGuiones} {$PCO_HoraOperacionPuntos}</cfoutput>\r\n');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (16,	'CSharp',	'cs|csx',	'',	'',	'namespace HelloWorld\r\n{\r\n    class Program\r\n    {\r\n        static void Main(string[] args)\r\n        {\r\n            System.Console.WriteLine(\"Practico Framework! Prueba de lenguaje CSharp generada por el usuario {$PCOSESS_LoginUsuario} {$PCO_FechaOperacionGuiones} {$PCO_HoraOperacionPuntos}\");\r\n        }\r\n    }\r\n}');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (17,	'CSS',	'css',	'',	'',	'');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (18,	'Curly',	'curly',	'',	'',	'');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (19,	'D',	'd|di',	'',	'',	'import std.stdio;\r\n\r\nvoid main() {\r\n    writeln(\"Practico Framework! Prueba de lenguaje D generada por el usuario {$PCOSESS_LoginUsuario} {$PCO_FechaOperacionGuiones} {$PCO_HoraOperacionPuntos}\");\r\n}');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (20,	'Dart',	'dart',	'',	'',	'main() {\r\n    var bye = \"Practico Framework! Prueba de lenguaje DART generada por el usuario {$PCOSESS_LoginUsuario} {$PCO_FechaOperacionGuiones} {$PCO_HoraOperacionPuntos}\";\r\n    print(\"$bye\");\r\n}');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (21,	'Diff',	'diff|patch',	'',	'',	'');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (22,	'Dockerfile',	'Dockerfile',	'',	'',	'');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (23,	'Dot',	'dot',	'',	'',	'');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (24,	'Dummy',	'dummy',	'',	'',	'');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (25,	'DummySyntax',	'dummy',	'',	'',	'');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (26,	'Eiffel',	'e',	'',	'',	'class\r\n    HELLO_WORLD\r\ncreate\r\n    make\r\nfeature\r\n    make\r\n        do\r\n            print (\"Practico Framework! Prueba de lenguaje EIFFEL generada por el usuario {$PCOSESS_LoginUsuario} {$PCO_FechaOperacionGuiones} {$PCO_HoraOperacionPuntos}\")\r\n        end\r\nend');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (27,	'EJS',	'ejs',	'',	'',	'');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (28,	'Elixir',	'ex|exs',	'',	'',	'IO.puts \"Practico Framework! Prueba de lenguaje ELIXIR generada por el usuario {$PCOSESS_LoginUsuario} {$PCO_FechaOperacionGuiones} {$PCO_HoraOperacionPuntos}\"');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (29,	'Elm',	'elm',	'',	'',	'main = text \"Practico Framework! Prueba de lenguaje ELM generada por el usuario {$PCOSESS_LoginUsuario} {$PCO_FechaOperacionGuiones} {$PCO_HoraOperacionPuntos}\"');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (30,	'Erlang',	'erl|hrl',	'',	'',	'io:format(\"Practico Framework! Prueba de lenguaje ERLANG generada por el usuario {$PCOSESS_LoginUsuario} {$PCO_FechaOperacionGuiones} {$PCO_HoraOperacionPuntos}\").');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (31,	'Forth',	'frt|fs|ldr|4th|forth',	'',	'',	': goodbye ( -- )   .\" Practico Framework! Prueba de lenguaje FORTH generada por el usuario {$PCOSESS_LoginUsuario} {$PCO_FechaOperacionGuiones} {$PCO_HoraOperacionPuntos}\" CR ;');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (32,	'FTL',	'ftl',	'',	'',	'');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (33,	'Gcode',	'gcode',	'',	'',	'');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (34,	'Gherkin',	'feature',	'',	'',	'');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (35,	'Gitignore',	'gitignore|gcloudignore',	'',	'',	'');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (36,	'Glsl',	'glsl|frag|vert',	'',	'',	'');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (37,	'golang',	'go',	'',	'go run',	'package main\r\nimport \"fmt\"\r\nfunc main() {\r\n    fmt.Println(\"Practico Framework! Prueba de lenguaje GO generada por el usuario {$PCOSESS_LoginUsuario} {$PCO_FechaOperacionGuiones} {$PCO_HoraOperacionPuntos}\")\r\n}\r\n');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (38,	'Groovy',	'groovy',	'',	'',	'');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (39,	'HAML',	'haml',	'',	'',	'');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (40,	'Handlebars',	'hbs|handlebars|tpl|mustache',	'',	'',	'');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (41,	'Haskell',	'hs|has|lhs|lit',	'',	'',	'main = putStrLn \"Practico Framework! Prueba de lenguaje HASKELL generada por el usuario {$PCOSESS_LoginUsuario} {$PCO_FechaOperacionGuiones} {$PCO_HoraOperacionPuntos}\"');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (42,	'haXe',	'hx',	'',	'',	'trace(\"Practico Framework! Prueba de lenguaje HAXE generada por el usuario {$PCOSESS_LoginUsuario} {$PCO_FechaOperacionGuiones} {$PCO_HoraOperacionPuntos}\");');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (43,	'HTML',	'html|htm|xhtml|asp|aspx',	'',	'',	'');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (44,	'HTML_Ruby',	'erb|rhtml',	'',	'',	'');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (45,	'INI',	'ini|cfg|prefs',	'',	'',	'');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (46,	'Io',	'io',	'',	'',	'');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (47,	'Jack',	'jack',	'',	'',	'class Main {\r\n  function void main () {\r\n    do Output.printString(\"Practico Framework! Prueba de lenguaje JACK generada por el usuario {$PCOSESS_LoginUsuario} {$PCO_FechaOperacionGuiones} {$PCO_HoraOperacionPuntos}\");\r\n    do Output.println();\r\n    return;\r\n  }\r\n}');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (48,	'Jade',	'jade',	'',	'',	'');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (49,	'Java',	'java',	'javac  {$PCO_ArchivoScript}.java',	'java {$PCO_ArchivoScript}.class',	'public class HelloWorld\r\n{\r\n public static void main(String[] args)\r\n {\r\n  System.out.println(\"Practico Framework! Prueba de lenguaje JAVA generada por el usuario {$PCOSESS_LoginUsuario} {$PCO_FechaOperacionGuiones} {$PCO_HoraOperacionPuntos}\");\r\n }\r\n}');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (50,	'JavaScript',	'js|jsm',	'',	'node',	'console.log(\"Practico Framework! Prueba de lenguaje JAVASCRIPT generada por el usuario {$PCOSESS_LoginUsuario} {$PCO_FechaOperacionGuiones} {$PCO_HoraOperacionPuntos}\");');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (51,	'JSON',	'json',	'',	'',	'');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (52,	'JSONiq',	'jq',	'',	'',	'');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (53,	'JSP',	'jsp',	'',	'',	'');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (54,	'JSX',	'jsx',	'',	'',	'');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (55,	'Julia',	'jl',	'',	'',	'println(\"Practico Framework! Prueba de lenguaje JULIA generada por el usuario {$PCOSESS_LoginUsuario} {$PCO_FechaOperacionGuiones} {$PCO_HoraOperacionPuntos}\")');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (56,	'LaTeX',	'tex|latex|ltx|bib|sty',	'',	'',	'\\documentclass{minimal}\r\n\\begin{document}\r\nPractico Framework! Prueba de lenguaje LATEX generada por el usuario {$PCOSESS_LoginUsuario} {$PCO_FechaOperacionGuiones} {$PCO_HoraOperacionPuntos}\r\n\\end{document}');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (57,	'LESS',	'less',	'',	'',	'');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (58,	'Liquid',	'liquid',	'',	'',	'');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (59,	'Lisp',	'lisp|lsp',	'',	'newlisp',	'(println \"Practico Framework! Prueba de lenguaje LISP generada por el usuario {$PCOSESS_LoginUsuario} {$PCO_FechaOperacionGuiones} {$PCO_HoraOperacionPuntos}\")');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (60,	'LiveScript',	'ls',	'',	'',	'');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (61,	'LogiQL',	'logic|lql',	'',	'',	'');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (62,	'LSL',	'lsl',	'',	'',	'');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (63,	'Lua',	'lua',	'',	'',	'print \"Practico Framework! Prueba de lenguaje LUA generada por el usuario {$PCOSESS_LoginUsuario} {$PCO_FechaOperacionGuiones} {$PCO_HoraOperacionPuntos}\"');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (64,	'LuaPage',	'lp',	'',	'',	'');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (65,	'Lucene',	'lucene',	'',	'',	'');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (66,	'Makefile',	'Makefile|GNUmakefile|makefile|OCamlMakefile|make|am',	'',	'',	'');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (67,	'Markdown',	'md|markdown|markdn',	'',	'',	'');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (68,	'Mask',	'mask',	'',	'',	'');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (69,	'MATLAB',	'matlab',	'',	'',	'>> disp(\"Practico Framework! Prueba de lenguaje MATLAB generada por el usuario {$PCOSESS_LoginUsuario} {$PCO_FechaOperacionGuiones} {$PCO_HoraOperacionPuntos}\")');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (70,	'MEL',	'mel',	'',	'',	'proc helloWorld () {\r\n   print \"Practico Framework! Prueba de lenguaje MEL generada por el usuario {$PCOSESS_LoginUsuario} {$PCO_FechaOperacionGuiones} {$PCO_HoraOperacionPuntos}\";\r\n}');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (71,	'MUSHCode',	'mc|mush',	'',	'',	'');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (72,	'MySQL',	'mysql',	'',	'',	'');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (73,	'Nix',	'nix',	'',	'',	'\"Practico Framework! Prueba de lenguaje NIX generada por el usuario {$PCOSESS_LoginUsuario} {$PCO_FechaOperacionGuiones} {$PCO_HoraOperacionPuntos}\"');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (74,	'ObjectiveC',	'm|mm',	'',	'',	'#import <Foundation/Foundation.h>\r\n\r\nint main() {\r\n    @autoreleasepool {\r\n        NSLog(@\"Practico Framework! Prueba de lenguaje OBJECTIVE-C generada por el usuario {$PCOSESS_LoginUsuario} {$PCO_FechaOperacionGuiones} {$PCO_HoraOperacionPuntos}\");\r\n    }\r\n}');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (75,	'OCaml',	'ml|mli',	'',	'',	'print_endline \"Practico Framework! Prueba de lenguaje OCAML generada por el usuario {$PCOSESS_LoginUsuario} {$PCO_FechaOperacionGuiones} {$PCO_HoraOperacionPuntos}\"');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (76,	'Pascal',	'pas|p|dfm',	'',	'',	'program byeworld;\r\nbegin\r\n writeln(\"Practico Framework! Prueba de lenguaje PASCAL generada por el usuario {$PCOSESS_LoginUsuario} {$PCO_FechaOperacionGuiones} {$PCO_HoraOperacionPuntos}\");\r\nend.');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (77,	'Perl',	'pl|pm',	'',	'perl',	'print \"Practico Framework! Prueba de lenguaje PERL generada por el usuario {$PCOSESS_LoginUsuario} {$PCO_FechaOperacionGuiones} {$PCO_HoraOperacionPuntos}\"');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (78,	'pgSQL',	'pgsql',	'',	'',	'');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (79,	'PHP',	'php|phtml|inc|ctp|snt',	'',	'php',	'<?php\r\necho \"Practico Framework! Prueba de lenguaje PHP generada por el usuario {$PCOSESS_LoginUsuario} {$PCO_FechaOperacionGuiones} {$PCO_HoraOperacionPuntos}\";\r\n');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (80,	'Powershell',	'ps1',	'',	'',	'\"Practico Framework! Prueba de lenguaje POWERSHELL generada por el usuario {$PCOSESS_LoginUsuario} {$PCO_FechaOperacionGuiones} {$PCO_HoraOperacionPuntos}\"');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (81,	'Praat',	'praat|praatscript|psc|proc',	'',	'',	'');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (82,	'Prolog',	'plg|prolog',	'',	'',	':- write(\"Practico Framework! Prueba de lenguaje PROLOG generada por el usuario {$PCOSESS_LoginUsuario} {$PCO_FechaOperacionGuiones} {$PCO_HoraOperacionPuntos}\"), nl.');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (83,	'Properties',	'properties',	'',	'',	'');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (84,	'Protobuf',	'proto',	'',	'',	'');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (85,	'Python',	'py',	'',	'python3',	'print (\"Practico Framework! Prueba de lenguaje PYTHON generada por el usuario {$PCOSESS_LoginUsuario} {$PCO_FechaOperacionGuiones} {$PCO_HoraOperacionPuntos}\")');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (86,	'R',	'r',	'',	'',	'print(\"Practico Framework! Prueba de lenguaje R generada por el usuario {$PCOSESS_LoginUsuario} {$PCO_FechaOperacionGuiones} {$PCO_HoraOperacionPuntos}\")');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (87,	'RDoc',	'Rd',	'',	'',	'');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (88,	'RHTML',	'Rhtml',	'',	'',	'');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (89,	'Ruby',	'rb|ru|gemspec|rake|Guardfile|Rakefile|Gemfile',	'',	'',	'puts \"Practico Framework! Prueba de lenguaje RUBY generada por el usuario {$PCOSESS_LoginUsuario} {$PCO_FechaOperacionGuiones} {$PCO_HoraOperacionPuntos}\"');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (90,	'Rust',	'rs',	'',	'',	'fn main() {\r\n   print!(\"Practico Framework! Prueba de lenguaje RUST generada por el usuario {$PCOSESS_LoginUsuario} {$PCO_FechaOperacionGuiones} {$PCO_HoraOperacionPuntos}\");\r\n}');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (91,	'SASS',	'sass',	'',	'',	'');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (92,	'SCAD',	'scad',	'',	'',	'');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (93,	'Scala',	'scala',	'',	'',	'println(\"Practico Framework! Prueba de lenguaje SCALA generada por el usuario {$PCOSESS_LoginUsuario} {$PCO_FechaOperacionGuiones} {$PCO_HoraOperacionPuntos}\")');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (94,	'Scheme',	'scm|rkt',	'',	'',	'\"Practico Framework! Prueba de lenguaje TCL generada por el usuario {$PCOSESS_LoginUsuario} {$PCO_FechaOperacionGuiones} {$PCO_HoraOperacionPuntos}\"');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (95,	'SCSS',	'scss',	'',	'',	'');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (96,	'SH',	'sh|bash|bashrc|bsh',	'',	'sh',	'#!/bin/sh\r\necho \"Practico Framework! Prueba de lenguaje UnixShell-SH generada por el usuario {$PCOSESS_LoginUsuario} {$PCO_FechaOperacionGuiones} {$PCO_HoraOperacionPuntos}\"');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (97,	'SJS',	'sjs',	'',	'',	'');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (98,	'Smarty',	'smarty|tpl',	'',	'',	'');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (99,	'snippets',	'snippets',	'',	'',	'');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (100,	'Soy_Template',	'soy',	'',	'',	'');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (101,	'Space',	'space',	'',	'',	'');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (102,	'SQL',	'sql|dblib|dblib_mssql|fbd|ibm|ifmx|mssql|odbc|oracle|sqlite|sqlsrv',	'',	'',	'');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (103,	'Stylus',	'styl|stylus',	'',	'',	'');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (104,	'SVG',	'svg',	'',	'',	'');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (105,	'Tcl',	'tcl',	'',	'tclsh',	'puts stdout {Practico Framework! Prueba de lenguaje TCL generada por el usuario {$PCOSESS_LoginUsuario} {$PCO_FechaOperacionGuiones} {$PCO_HoraOperacionPuntos}}');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (106,	'Tex',	'tex',	'',	'',	'');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (107,	'Text',	'txt|nfo|dat|inf|log|csv|tab|url|1st|fountain|me|now|readme|rft|cst|pl1|pli|plc|src|swift|tk',	'',	'',	'');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (108,	'Textile',	'textile',	'',	'',	'');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (109,	'Toml',	'toml',	'',	'',	'');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (110,	'Twig',	'twig',	'',	'',	'');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (111,	'Typescript',	'ts|typescript|str',	'',	'',	'');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (112,	'Vala',	'vala',	'',	'',	'void main(){\r\n	stdout.printf(\"Practico Framework! Prueba de lenguaje VALA generada por el usuario {$PCOSESS_LoginUsuario} {$PCO_FechaOperacionGuiones} {$PCO_HoraOperacionPuntos}\");\r\n}');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (113,	'VBScript',	'bas|vbs|vb|b|sb',	'',	'',	'WScript.Echo \"Practico Framework! Prueba de lenguaje VBSCRIPT generada por el usuario {$PCOSESS_LoginUsuario} {$PCO_FechaOperacionGuiones} {$PCO_HoraOperacionPuntos}\"');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (114,	'Velocity',	'vm',	'',	'',	'');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (115,	'Verilog',	'v|vh|sv|svh',	'',	'',	'module main;\r\n  initial begin\r\n      $display(\"Practico Framework! Prueba de lenguaje VERILOG generada por el usuario {$PCOSESS_LoginUsuario} {$PCO_FechaOperacionGuiones} {$PCO_HoraOperacionPuntos}\");\r\n      $finish ;\r\n    end\r\nendmodule');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (116,	'VHDL',	'vhd|vhdl',	'',	'',	'LIBRARY std;\r\nUSE std.TEXTIO.all;\r\n\r\nentity test is\r\nend entity test;\r\n\r\narchitecture beh of test is\r\nbegin\r\n  process\r\n    variable line_out : line;\r\n  begin\r\n    write(line_out, string\'(\"Practico Framework! Prueba de lenguaje VHDL generada por el usuario {$PCOSESS_LoginUsuario} {$PCO_FechaOperacionGuiones} {$PCO_HoraOperacionPuntos}\"));\r\n    writeline(OUTPUT, line_out);\r\n    wait; -- needed to stop the execution\r\n  end process;\r\nend architecture beh;');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (117,	'XML',	'xml|rdf|rss|wsdl|xsl|xslt|atom|mathml|mml|xul|xbl',	'',	'',	'');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (118,	'XQuery',	'xq',	'',	'',	'');
+INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (119,	'YAML',	'yaml|yml',	'',	'',	'');
+
+
 "
 
 ########################################################################
