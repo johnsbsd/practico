@@ -1,12 +1,12 @@
 #[VersionCompatible]
 #Utilice vacios para crear parches compatibles con cualquier version: Usado para tmp/par_compat.txt
-VersionCompatibleAno="22"
-VersionCompatibleMes="9"
+VersionCompatibleAno=""
+VersionCompatibleMes=""
 
 #[VersionFinal]
 #Utilice vacios para crear parches compatibles con cualquier version: Usado para inc/version_actual.txt
-VersionFinalAno="23"
-VersionFinalMes="6"
+VersionFinalAno=""
+VersionFinalMes=""
 
 #[Archivo de version]
 #Predeterminado: " inc/version_actual.txt "  DEJAR EN BLANCO para parches compatibles con cualquier version. Pero hay error de no reconocimiento.  Validar en actualizacion.php
@@ -16,38 +16,7 @@ ArchivoVersion=" inc/version_actual.txt "
 ListaArchivos="
 index.php
 core/comunes.php
-core/estado.php
-core/codigobarras.php
-core/conexiones.php
-core/marco_abajo.php
-core/marco_arriba.php
-core/marco_nav.php
-core/marco_navizq.php
-core/marco_admin.php
-core/mantenimiento.php
-core/menus.php
-core/formularios.php
-core/informes.php
-core/sesion.php
-core/usuarios.php
-core/tablas.php
-core/formularios_post.php
-core/kanban.php
-core/marco_abajo.php
-core/marco_dev.php
-core/doc_api.php
-inc/jquery/jquery/*
-inc/jquery/migrate/*
-inc/jquery/migrate-devel/*
-inc/jbdemonte/*
-inc/d3js/*
-inc/facebook/*
-inc/mxgraph/javascript/scripts/grapheditor/www/index.php
-ins/core/marco_abajo.php
-mod/fileman/cargas/practico_biometria
-core/marco_arriba_bs.php
-inc/face-detect/*
-tmp/practico_scripts/index.html
+
 
 xml/*
 inc/autoload.php
@@ -66,94 +35,7 @@ ArchivosFijos=" tmp/par_cambios.txt tmp/par_sql.txt tmp/par_compat.txt tmp/leame
 #TOMAR CONTENIDO DESDE EL README
 #Agregar un texto para parches sin version que al menos recomiende la minima:  SE RECOMIENDA APLICAR A UNA VERSION MINIMA DE xx.xx
 LogCambios="
-* Added [CORE]: Capacidad de multilenguaje.  Ahora el Framweork permite interactuar con múltiples lenguajes de programación, configurables por sus parámetros y mediante los cuales se podría tener una aplicación desarrollada en múltiples lenguajes a la vez, donde todos convergen al mismo punto.   La sintaxis de variables en notacion PHP y su reemplazo dinámico sobre cada script permite además que variables de PHP sean pasadas de manera transparente a cualquier otro lenguaje de programción disponible del lado del servidor.
-* Added [CORE]: Nueva función PCOJS_ValidarExistenciaURL permite validar si una URL existe o no.  Util para procesar solicitudes AJAX o similares revisando primero que el destino exista.
-* Added [CORE]: Formulario de parámetros incluye acceso a nueva sección para definir proveedores genéricos para posibles API de integración, permitiendo definir su nombre, llave, secretos, URL base de consumo y scripts.  Esta información podría ser usada directamente desde cualquier script de Práctico teniendo así un sitio para almacenar llaves sin quedar expuestas por código.
-* Added [CORE]: Módulo complementario para despacho de correos electrónicos mediante API de Twilio Sendgrid se encuentra disponible sobre la carpeta complementaria.  Quien lo desee habilitar puede mover la carpeta a su carpeta de módulos de la instalación y pegar el código del servicio web asociado o crear su propio código.
-* Added [CORE]: Nuevo parámetros de aplicación permite almacenar llaves de API para consumos de GoogleAI.  Por ahora no se contempla su consumo directo, sólo el almacenamiento.
-* Added [CORE]: Nuevas estructuras para definición y parametrización de servicios web como una segunda capa a la existente que no dejará de operar por compatibilidad.  En adelante cuando se llame al motor de servicios web primero será revisada la capa nueva y usada con sus parametrizaciones y en caso de no existir el método o estar vacío en su código la evaluación se hará mediante capa de compatibilidad hacia atráss.  Se recomienda generar todo servicio nuevo mediante la nueva capa y migrar aquellos existentes de ser posible.
-* Added [CORE]: Nueva opcion para definición de Endpoints asociados a webservices disponible en el menu de configuración.  La opción no sólo permite crear servicios web definidos por base de datos sino también parametrizar comportamientos, parámetros y generar exploradores automatizados de APIs de aplicación.
-* Added [CORE]: Nuevas funciones PCO_Base64UrlEncode() y PCO_Base64UrlDecode() permiten realizar conversiones en base 64 más consistentes cuando la información debe ser transferida mediante URLs donde la cadena final tenga caracteres no permitidos como + y / así como cualquier caracter de igual (=) al final de la cadena.
-* Added [CORE]: Llaves de consumo de servicios web / APIs cuentan con estadísticas de conteo sobre su uso general.  Puede ser visualizado a través del panel de analítica de aplicación.
-* Added [CORE]: Panel de analítica cuenta con estadísticas generales de consumo de APIs en los últimos 15 días.
-* Added [CORE]: Nueva URL pública sobre coer/doc_api.php puede ser llamada directamente para presentar documentación de las API expuestas y creadas en el backend por el framework, sus parámetros, ejemplos de uso y demás información útil en procesos de integración.
-* Added [CORE]: Agregadas tablas de documentacion de sistema.  A través de estas se podrá almacenar toda la documentación interna asociada a procesos de desarrollo y documentación visible para usuarios finales bajo diferentes tipos de formato.  Por ahora se deja disponible en formularios pero su funcionalidad es extensible al resto de módulos del Framework.   Un botón de documentación será presentado automáticamente al usuario final cuando se cargue un formulario que contenga documentos asociados y visibles a usuario final.
-* Added [CORE]: Nuevo parámetros de aplicación permite almacenar llave de API para consumos de OpenAI desde las diferentes funciones del Framework.  Esto incluye funciones extendidas de I.A. hacia el editor {P}Coder como código predictivo, análsis de vulnerabilidades, documentación automatizadas, entre otros.  Nueva función PCO_OpenAI_CODEX se encuentra disponible también para llamados independientes por el desarrollador.
-* Added [FORMS]: Controles tipo lista de seleccion reemplazan variables dinámicas PHP en aquellos tags tipo OPTGROUP
-* Added [FORMS]: Controles tipo lista de seleccion permiten la insercion de TAGS extra en cada opción (esto incluye a los tipos de etiqueta OPTION y OPTGROUP).  Util para indicar cosas como data-icon para especificar imágenes en cada opción, data-lang, data-cualquiercosa que usted necesite.  Esto se logra mediante la inclusión automática del valor de un campo llamado tags_extra que si se encuentra disponible en la tabla o vista desde la cual se carga la lista será usado para tomar su valor e inyectarlo como TAGS adicionales al option.
-* Added [FORMS]: Controles tipo check soportan textos de ayuda.  Serán presentados como icono al lado derecho del texto que acompaña al check.
-* Added [FORMS]: Eliminadas sobre código acciones de adicion de controles a formularios.  Ahora son realizadas directamente por el formulario interno -36
-* Added [FORMS]: Edición de eventos sobre controles de formulario es realizada sobre nuevo editor de PCoder, permitiendo heredar funcionalidades clave como backups automáticos, visor de diferencias, entre otros.
-* Added [FORMS]: @foag Creada nueva palabra clave sobre controles de texto libre que permite transformarlos en contenedores de Tags separados por coma automáticamente.  Para esto simplemente agregar la palabra clave PCO_Tags en la personalización del control.
-* Added [FORMS]: Edición de eventos de controles de formulario se hace ahora mediante el nuevo {P}Coder
-* Added [FORMS]: Informes básicos de analítica de aplicación son reemplazados por objetos internos en lugar de código.  Se agregan además los informes de usos sobre edición de código.
-* Added [FORMS]: Campos de tipo texto largo presentan (ya permitían) el establecimiento de su variable de valor predeterminado durante el diseño del campo.
-* Added [FORMS]: Los controles de formulario tipo adjunto cuentan con un identificador único extra cuando se está recuperando información y que direcciona al archivo como tal asociado al registro.  Esto permite revisar valores asociados al adjunto precio que se haya podido tener.  El identificador es PCO_EnlaceAdjunto_SUIDHTML de manera que puede ser accesado mediante $("#PCO_EnlaceAdjunto_SUIDHTML")[0].href
-* Added [INFORMES]: @jaimeaba3 La lista de informes disponibles presenta ahora la descripción debajo de su título, de manera que se facilite localizar un informe en sistemas cuya cantidad de informes diseñados es alta.
-* Added [KANBAN]: Formulario de parámetros permite especificar usuarios que son administradores de tableros Kanban, los cuales tendrán acceso a la herramienta con la posibilidad de crear tableros aún sin ser administradores generales o desarrolladores.
-* Added [KANBAN]: Editor de diagramas Kanban detecta si el usuario tiene acceso a la tarea en modo de edición y le permite su edición de diagrama asociado.
-* Added [KANBAN]: Tableros kanban cuentan con filtro adicional en la parte superior que permite visualizar sobre el tablero sólo aquellas tareas que cumplan con los criterios deseados.
-* Added [KANBAN]: Tableros Kanban permiten crear categorias personalizadas para la clasificación y filtrado posterior de tareas.
-* Added [KANBAN]: Auditoría de eliminación en tableros Kanban completos y tareas individuales incluyen su titulo.  En el caso de tableros se incluye además la cantidad de tareas asociadas.
-* Added [USUARIOS]: @foag Creado nuevo campo llamado vectores_faciales para escenarios de autenticacion por biometria (Reconocimiento facial).  Su aplicación se da inicialmente sobre la ficha de usuarios siempre y cuando se habilite el módulo a través de la parametrización del framework.   Esto deja la puerta abierta para que el módulo pueda ser aplicado a formularios propios en cualquier contexto.
-* Added [MODULOS]: Para informes y formularios registrados bajo un módulo se presentan sólo aquellos a los cuales el usuario desarrollador tiene acceso.  Aquellos elementos no asociados a ningún módulo (huérfanos) serán siempre presentados.  Esto permite la segmentación de funciones entre desarrolladores de una misma aplicación.  Usuario admin siempre verá el 100% de los elementos para evitar ocultamientos por error.
-* Added [PCODER]: Funciones experimentales de IA para búsqueda de bugs de seguridad, optimización y documentación de código.  Operan inicialmente sobre selecciones cortas de código.
-
-* Enhan [DEV]: Las funciones automáticas de regeneración de elementos desde los XML y ejecución de scripts no son llamadas en entornos de desarrollo del framework.  Esto permitirá trazabilidad sobre archivos específicos.
-* Enhan [COMP]: Actualizado Guzzle a 7.4.5 en componente de auto-trading-bot. (CVE-2022-27776,CVE-2022-29248,CVE-2022-31043,CVE-2022-31042,CVE-2022-31090,CVE-2022-31091) (RFC9110 Section 15.4, RFC6265 Section 5.3, RFC9110 Section 15.4)* Enhan [FORMS]: Actualizados algunos de los campos internos de la tabla de core_formulario para evitar colisiones con nombres de campo de usuario.  En caso que se tengan programaciones manuales o referencias a dichos campos se deben actualizar a su nombre nuevo.  Cambios que han cambiado:  columna->PCOBD_Columna, peso->PCOBD_Peso.  Esta tarea estará en progreso sobre los diferentes campos.
-* Enhan [CHAT]: Agregado índice a campo que indica si un chat ha sido leído o no por el destinatario.
-* Enhan [KANBAN]: Reporte de tareas archivadas por tablero es ahora exportable en excel.
-* Enhan [KANBAN]: Se agrega nuevo boton con reporte de tareas activas en el tablero con posibilidad de descarga.
-* Enhan [KANBAN]: Agregados campos de historial y fecha de inicio a informes exportables de tareas activas y archivadas por tablero.
-* Enhan [KANBAN]: Ajustado informe interno de tareas archivadas (-3) para generarse a través de consulta directa y no de elementos individuales.
-* Enhan [KANBAN]: @jaimeaba3 Imágen de encabezado de informe es independiente de URL externa.
-* Enhan [KANBAN]: @jaimeaba3 Issue #21.  Permisos de archivado de tareas sobre tableros de otro propietario.
-* Enhan [KANBAN]: Nuevos índices por fechas en tablas para actividades Kanban.
-* Enhan [CORE]: Agregada variable de PCOSESS_LoginUsuario al scope cuando se establecen conexiones al motor de manera que este disponible como una variable más de SQL.
-* Enhan [CORE]: @rafaelposadaf PR#24: mejoras estéticas css pmydb 3c773f0521112170e584ae40001b287373e9ad9e
-* Enhan [CORE]: @rafaelposadaf PR#30: optimizaciones marco_abajo https://github.com/unix4you2/practico/pull/30
-* Enhan [CORE]: @rafaelposadaf PR#32: optimizaciones marco_arriba https://github.com/unix4you2/practico/pull/32
-* Enhan [CORE]: Reemplazado archivo de core/marco_wscfg.php por objetos internos ahorrando 13kb de peso.
-* Enhan [CORE]: Conteo de opciones de menú al inicio del framework excluye aquellas cuya sección sea diferente de PCO_NoVisible para así evitar las que son usadas internamente por el framework.
-* Enhan [CORE]: @rafaelposadaf PR#30 a PR#43: optimizaciones generales de código
-* Enhan [CORE]: Inclusion de Composer sobre el nucleo de desarrollo
-* Enhan [CORE]: Adicion y actualizacion de jquery/jquery version 3.6.0 a 3.6.1 como dependencia de composer y no como libreria independiente.  Cualquier llamado manual a la ubicacion anterior deberia ser actualizada al nuevo path.
-* Enhan [CORE]: Adicion de jbdemonte/barcode como dependencia de composer y no como libreria independiente.  Cualquier llamado manual a la ubicacion anterior deberia ser actualizada al nuevo path.
-* Enhan [CORE]: Adicion de D3JS como dependencia de composer y no como libreria independiente.  Cualquier llamado manual a la ubicacion anterior deberia ser actualizada al nuevo path.
-* Enhan [CORE]: Adicion y actualizacion de jquery/migrate version 3.3.2 a 3.4.0 como dependencia de composer y no como libreria independiente.  Cualquier llamado manual a la ubicacion anterior deberia ser actualizada al nuevo path.
-* Enhan [CORE]: Eliminacion dependencia innecesaria JQuery-UI 1.8.  Cualquier uso manual de la misma continúa con compatibilidad en versiones actualizadas, versiones nuevas no la traerán por defecto.
-* Enhan [CORE]: Adicion y actualizacion de facebook/react version 17.0.2 a 18.2.0 como dependencia de composer y no como libreria independiente.  Cualquier llamado manual a la ubicacion anterior deberia ser actualizada al nuevo path.
-* Enhan [CORE]: Incluido script que retorna estado general del sistema en JSON, conectividad, motor de base de datos, etc. todo basado en una sesion particular.
-* Enhan [CORE]: Agregada alerta sobre no existencia o instalacion de las funciones POSIX de PHP sobre el servidor que corre el Framework.
-* Enhan [CORE]: Agregados entornos adicionales al archivo de despliegue de Vagrant
-* Enhan [CORE]: Nombres de campo aleatorios en formulario de login.  Esto permite evitar ataques automatizados de fuerza bruta cuando el atacante conoce los nombres de los campos y la acción del formulario.
-* Enhan [CORE]: @oscarcaldering Mejora a editor de código, explorador de archivos y funciones internas de evaluación de código.  Se permite que en hostings compartidos que bloquean o deshabilitan algunas funciones Posix y de creación de archivos temporales se evite el uso de dichas funciones para que la operatividad del Framework continúe.
-* Enhan [CORE]: Nueva funcion PCO_GenerarArchivoTemporal() permite crear punteros de manera dinámica hacia archivos temporales según su tipo de instalación.
-* Enhan [CORE]: Actualizados enlaces en navegación hacia foros de desarrolladores (Github/Discuccions)
-* Enhan [CORE]: Adevertencia desplegada para instalaciones sin soporte a funciones PHP tmpfile y que requieren hacer uso de PMyDB/Adminer deben usar el modulo de versiones 22.3 o inferiores que no requieren dicha funcion.  Simplemente se sobreescribe el contenido del index del módulo.
-* Enhan [CORE]: Parametros de aplicacion son ahora gestionados desde objeto interno FRM -39.  Se elimina todo el código asociado equivalente a 560K
-* Enhan [CORE]: Nuevos parámetros de aplicación contienen los créditos del autor o empresa, el texto de licencia asociado a la aplicación y un campo para indicar si los usuarios en su primer ingreso tienen que aceptar la licencia o no.
-* Enhan [CORE]: Sobre motores MySQL/MariaDB El framework agrega como comentario a todos los queries enviados de manera que se pueda visualizar por logs del motor qué usuario envía cada consulta.
-* Enhan [CORE]: La funcion PCO_FileGetContents_CURL puede recibir ademas de la URL otros parámetros en JSON con la lista de opciones que serán utilizadas para inicializar el objeto cURL.  De esta manera cada llamada puede ser personalizada por el desarrollador cuando consuma orígenes o servicios externos.  Los parámetros extra considerados son: OpcionesJSON para establecer los curl_setopt, CabecerasJSON que establecen el arreglo de CURLOPT_HTTPHEADER y PostJSON que establece los valores de CURLOPT_POSTFIELDS cuando aplique.   Cualquier llamado previo a dicha funcion deberá incluir los parámetros nuevos, aún cuando sean vacíos.
-* Enhan [CORE]: Actualizado D3JS de 7.3.0 a 7.6.1  (CWE-400: Uncontrolled Resource Consumption)
-* Enhan [CORE]: Compatibilidad PHP 8+ Actualizada sintaxis en generacion de cadenas aleatorias en notacion de arreglos
-* Enhan [CORE]: Compatibilidad PHP 8+ Ajustada sintaxis obsoleta de funcion PCO_BackupObtenerDatosTabla, parámetro vacío de PCO_NombreTabla
-* Enhan [CORE]: Compatibilidad PHP 8+ Ajustada sintaxis obsoleta de funcion PCO_BackupObtenerTablasBD, parámetro vacío de PCO_ListaTablas
-* Enhan [CORE]: Compatibilidad PHP 8+ Ajustada sintaxis obsoleta de funcion PCO_BackupObtenerTablasBD, parámetro vacío de TipoDeCopia
-* Enhan [CORE]: Compatibilidad PHP 8+ Ajustada sintaxis obsoleta de funcion PCO_BuscarActualizaciones, parámetro vacío de PCOSESS_LoginUsuario
-* Enhan [CORE]: Compatibilidad PHP 8+ Ajustada sintaxis obsoleta de funcion PCO_Mensaje, parámetro vacío de DEPRECATED_ancho
-* Enhan [CORE]: Compatibilidad PHP 8+ Ajustada sintaxis obsoleta de funcion PCO_GenerarEtiquetasConsulta, parámetro vacío de ConsultaSQL
-* Enhan [CORE]: Compatibilidad PHP 8+ Ajustada sintaxis obsoleta de variable no definida NombreRAD
-* Enhan [CORE]: Compatibilidad PHP 8+ Retirado el uso de funciones get_loaded_extensions(), ini_get_all(), debug_backtrace(), getallheaders() usadas en la funcion de reporte de Bugs PCO_CargarReportarBugs()
-
-* Fixed [CORE]: Compatibilidad PHP 8+ Eliminados errores de sintaxis incompatible en definición de arreglos asociativos mediante constantes
-* Fixed [CORE]: Compatibilidad PHP 8+ Eliminados errores de sintaxis incompatible para funciones in_array que obligan a que su segundo parametro sea un dato tipo arreglo.
-* Fixed [CORE]: Compatibilidad PHP 8+ Compatibilidad entre operaciones aritméticas de tipos string e integer
-* Fixed [CORE]: Compatibilidad PHP 8+ Arreglos con llaves constantes en lugar de cadenas para editor PCoder
-* Fixed [CORE]: @foag Validacion de escenarios de despliegue a entornos vagabundos
-* Fixed [CORE]: @foag Bug#23 https://github.com/unix4you2/practico/issues/23
-* Fixed [USUARIOS]: @jaimeaba3 Correccion en ficha de usuarios que no recuperaba correctamente la plantilla asignada en procesos de actualizacion.
-* Fixed [PCODER]: @jaimeaba3 Al intentar almacenar valores vacíos en scripts PRE,POS y JS se obtiene mensaje de error de BD al no recibir valor para almacenar.
+* Added [CORE]: Parametrizacion de aplicacion permite definir los tipos de escapado de cadenas cuando se recuperan campos tipo texto corto o contraseña desde el servidor.
 
 "
 
@@ -162,412 +44,40 @@ LogCambios="
 #[ScriptBasedatos] Usado para tmp/par_sql.txt
 ScriptBasedatos="
 
-ALTER TABLE core_usuario ADD vectores_faciales text NULL;
+ALTER TABLE core_parametros ADD htmlentities_flags varchar(255) NULL DEFAULT 'ENT_QUOTES';
+ALTER TABLE core_parametros ADD htmlentities_charsets varchar(255) NULL DEFAULT '';
 
-ALTER TABLE core_opcionlista ADD tags_extra varchar(255) NULL;
+DELETE FROM core_opcionlista WHERE identificador_lista='htmlentities_flags';
+DELETE FROM core_opcionlista WHERE identificador_lista='htmlentities_charsets';
 
-DELETE FROM core_opcionlista WHERE identificador_lista='tipos_controles';
-DELETE FROM core_opcionlista WHERE identificador_lista='tipos_validacion_datos';
-DELETE FROM core_opcionlista WHERE identificador_lista='formato_salida_etiquetas';
+INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('htmlentities_flags', 'ENT_COMPAT', 'ENT_COMPAT: Convierte comillas dobles y deja solo las simples.', '1');
+INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('htmlentities_flags', 'ENT_QUOTES', 'ENT_QUOTES: Convierte tanto comillas dobles como simples.', '2');
+INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('htmlentities_flags', 'ENT_NOQUOTES', 'ENT_NOQUOTES: Deja comillas dobles y simples sin convertir.', '3');
+INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('htmlentities_flags', 'ENT_IGNORE', 'ENT_IGNORE: Descartar silenciosamente no validas en lugar de devolver un string vacio. Uso desaconsejado por seguridad.', '4');
+INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('htmlentities_flags', 'ENT_SUBSTITUTE', 'ENT_SUBSTITUTE: Reemplazar codigo invalido con Unicode U+FFFD (UTF-8) o &#FFFD; (no UTF-8)', '5');
+INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('htmlentities_flags', 'ENT_DISALLOWED', 'ENT_DISALLOWED: Reemplazar codigo no valido con Unicode U+FFFD (UTF-8) o &#FFFD; (no UTF-8). Util en XML con contenido externo incrustado.', '6');
+INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('htmlentities_flags', 'ENT_HTML401', 'ENT_HTML401: Manejar el codigo como HTML 4.01.', '7');
+INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('htmlentities_flags', 'ENT_XML1', 'ENT_XML1: Manejar el codigo como XML 1.', '8');
+INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('htmlentities_flags', 'ENT_XHTML', 'ENT_XHTML: Manejar el codigo como XHTML.', '9');
+INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('htmlentities_flags', 'ENT_HTML5', 'ENT_HTML5: Manejar el codigo como HTML 5.', '10');
 
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento,tags_extra) VALUES ('tipos_controles', '_OPTGROUP_|{ $ MULTILANG_FrmTipoTit1}', '', '2','');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento,tags_extra) VALUES ('tipos_controles', 'texto_corto', '{ $ MULTILANG_FrmTipo1}', '3','data-icon=glyphicon-log-in');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento,tags_extra) VALUES ('tipos_controles', 'texto_clave', '{ $ MULTILANG_FrmTipo10}', '4','data-icon=\'fa fa-eye-slash\'');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento,tags_extra) VALUES ('tipos_controles', 'texto_largo', '{ $ MULTILANG_FrmTipo2}', '5','data-icon=glyphicon-text-width');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento,tags_extra) VALUES ('tipos_controles', 'texto_formato', '{ $ MULTILANG_FrmTipo3}', '6','data-icon=glyphicon-font');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento,tags_extra) VALUES ('tipos_controles', 'area_responsive', '{ $ MULTILANG_FrmTipo17}', '7','data-icon=glyphicon-edit');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento,tags_extra) VALUES ('tipos_controles', 'lista_seleccion', '{ $ MULTILANG_FrmTipo4}', '8','data-icon=glyphicon-indent-right');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento,tags_extra) VALUES ('tipos_controles', 'lista_radio', '{ $ MULTILANG_FrmTipo5}', '9','data-icon=glyphicon-record');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento,tags_extra) VALUES ('tipos_controles', 'casilla_check', '{ $ MULTILANG_FrmTipo18}', '10','data-icon=glyphicon-check');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento,tags_extra) VALUES ('tipos_controles', 'deslizador', '{ $ MULTILANG_FrmTipo9}', '11','data-icon=glyphicon-resize-horizontal');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento,tags_extra) VALUES ('tipos_controles', 'campo_etiqueta', '{ $ MULTILANG_FrmTipo11}', '12','data-icon=glyphicon-tags');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento,tags_extra) VALUES ('tipos_controles', '_OPTGROUP_', '', '13','');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento,tags_extra) VALUES ('tipos_controles', '_OPTGROUP_|{ $ MULTILANG_FrmTipoTit4}', '', '14','');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento,tags_extra) VALUES ('tipos_controles', 'archivo_adjunto', '{ $ MULTILANG_FrmTipo12}', '15','data-icon=glyphicon-file');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento,tags_extra) VALUES ('tipos_controles', 'objeto_canvas', '{ $ MULTILANG_FrmTipo13}', '16','data-icon=glyphicon-picture');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento,tags_extra) VALUES ('tipos_controles', 'objeto_camara', '{ $ MULTILANG_FrmTipo14}', '17','data-icon=glyphicon-facetime-video');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento,tags_extra) VALUES ('tipos_controles', '_OPTGROUP_', '', '18','');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento,tags_extra) VALUES ('tipos_controles', '_OPTGROUP_|{ $ MULTILANG_FrmTipoTit2}', '', '19','');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento,tags_extra) VALUES ('tipos_controles', 'etiqueta', '{ $ MULTILANG_FrmTipo6}', '20','data-icon=glyphicon-pencil');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento,tags_extra) VALUES ('tipos_controles', 'url_iframe', '{ $ MULTILANG_FrmTipo7}', '21','data-icon=glyphicon-globe');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento,tags_extra) VALUES ('tipos_controles', '_OPTGROUP_', '', '22','');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento,tags_extra) VALUES ('tipos_controles', '_OPTGROUP_|{ $ MULTILANG_FrmTipoTit3}', '', '23','');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento,tags_extra) VALUES ('tipos_controles', 'informe', '{ $ MULTILANG_FrmTipo8}', '24','data-icon=glyphicon-list-alt');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento,tags_extra) VALUES ('tipos_controles', 'form_consulta', '{ $ MULTILANG_FrmTipo15}', '25','data-icon=glyphicon-search');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento,tags_extra) VALUES ('tipos_controles', 'boton_comando', '{ $ MULTILANG_FrmTipo16}', '26','data-icon=glyphicon-flash');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento,tags_extra) VALUES ('tipos_controles', '_OPTGROUP_', '', '27','');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('tipos_validacion_datos', '', '{ $ MULTILANG_Ninguno}', '1');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('tipos_validacion_datos', 'numerico', '{ $ MULTILANG_FrmValida1}', '2');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('tipos_validacion_datos', 'numerico_entero', '{ $ MULTILANG_FrmValida9}', '3');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('tipos_validacion_datos', 'alfabetico', '{ $ MULTILANG_FrmValida2}', '4');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('tipos_validacion_datos', 'alfanumerico', '{ $ MULTILANG_FrmValida3}', '5');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('tipos_validacion_datos', 'personalizado', '{ $ MULTILANG_FrmValida10}', '6');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('tipos_validacion_datos', '_OPTGROUP_|{ $ MULTILANG_AplicaPara} { $ MULTILANG_FrmTipo1}', '', '7');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('tipos_validacion_datos', 'fecha', '{ $ MULTILANG_FrmValida4}', '8');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('tipos_validacion_datos', 'fechaxanos', '{ $ MULTILANG_FrmValida7}', '9');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('tipos_validacion_datos', 'hora', '{ $ MULTILANG_FrmValida5}', '10');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('tipos_validacion_datos', 'fechahora', '{ $ MULTILANG_FrmValida6}', '11');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('tipos_validacion_datos', 'fechahorafull', '{ $ MULTILANG_FrmValida8}', '12');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('tipos_validacion_datos', '_OPTGROUP_', '', '13');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('dicotomico_readonly_nosi', '', '{ $ MULTILANG_No}', '1');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('dicotomico_readonly_nosi', 'READONLY', '{ $ MULTILANG_Si}', '2');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('formato_salida_etiquetas', '', '{ $ MULTILANG_MnuTexto}', '1');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento,tags_extra) VALUES ('formato_salida_etiquetas', '_OPTGROUP_|{ $ MULTILANG_CodigoBarras}', '', '2','data-icon=\'fa fa-barcode\'');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('formato_salida_etiquetas', 'std25', 'Standard 2 of 5 (industrial, Numerio Sin limite)', '3');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('formato_salida_etiquetas', 'int25', 'Interleaved 2 of 5', '4');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('formato_salida_etiquetas', 'ean8', 'EAN 8 (Numerico 7 caracteres)', '5');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('formato_salida_etiquetas', 'ean13', 'EAN 13 (Numerico 12 caracteres)', '6');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('formato_salida_etiquetas', 'upc', 'UPC', '7');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('formato_salida_etiquetas', 'code11', 'Code 11', '8');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('formato_salida_etiquetas', 'code39', 'Code 39', '9');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('formato_salida_etiquetas', 'code93', 'Code 93', '10');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('formato_salida_etiquetas', 'code128', 'Code 128', '11');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('formato_salida_etiquetas', 'codabar', 'CodaBar', '12');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('formato_salida_etiquetas', 'msi', 'MSI', '13');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('formato_salida_etiquetas', '_OPTGROUP_', '', '14');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento,tags_extra) VALUES ('formato_salida_etiquetas', '_OPTGROUP_|{ $ MULTILANG_Matriz}', '', '15','data-icon=\'fa fa-qrcode\'');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('formato_salida_etiquetas', 'datamatrix', 'Datamatrix (ASCII+extended)', '16');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('formato_salida_etiquetas', 'qrcode', 'QR-Code', '17');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('formato_salida_etiquetas', '_OPTGROUP_', '', '18');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('pesos_archivo_adjunto', '50', '50 KB', '0');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('pesos_archivo_adjunto', '100', '100 KB', '1');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('pesos_archivo_adjunto', '150', '150 KB', '2');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('pesos_archivo_adjunto', '250', '250 KB', '3');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('pesos_archivo_adjunto', '500', '500 KB', '4');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('pesos_archivo_adjunto', '750', '750 KB', '5');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('pesos_archivo_adjunto', '1000', '1 MB', '6');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('pesos_archivo_adjunto', '1500', '1.5 MB', '7');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('pesos_archivo_adjunto', '2000', '2 MB', '8');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('pesos_archivo_adjunto', '4000', '4 MB', '9');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('pesos_archivo_adjunto', '8000', '8 MB', '10');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('pesos_archivo_adjunto', '16000', '16 MB', '11');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('tipos_accion_botones', '', '{ $ MULTILANG_SeleccioneUno}', '1');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('tipos_accion_botones', '_OPTGROUP_|{ $ MULTILANG_FrmAccionT1}', '', '2');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('tipos_accion_botones', 'interna_guardar', '{ $ MULTILANG_FrmAccionGuardar}', '3');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('tipos_accion_botones', 'interna_actualizar', '{ $ MULTILANG_FrmAccionActualizar}', '4');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('tipos_accion_botones', 'interna_eliminar', '{ $ MULTILANG_FrmAccionEliminar}', '5');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('tipos_accion_botones', 'interna_escritorio', '{ $ MULTILANG_FrmAccionRegresar}', '6');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('tipos_accion_botones', 'interna_cargar', '{ $ MULTILANG_FrmAccionCargar}', '7');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('tipos_accion_botones', 'interna_limpiar', '{ $ MULTILANG_FrmAccionLimpiar}', '8');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('tipos_accion_botones', '_OPTGROUP_', '', '9');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('tipos_accion_botones', '_OPTGROUP_|{ $ MULTILANG_FrmAccionT2}', '______', '10');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('tipos_accion_botones', 'externa_formulario', '{ $ MULTILANG_FrmAccionExterna}', '11');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('tipos_accion_botones', 'externa_postcode', 'Ejecutar s&oacute;lo el c&oacute;digo POST del propio formulario', '12');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('tipos_accion_botones', 'externa_javascript', '{ $ MULTILANG_FrmAccionJS}', '13');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('tipos_accion_botones', '_OPTGROUP_', '', '14');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('tipos_barra_editores', '_OPTGROUP_|{ $ MULTILANG_FrmBarraCKEditor}', '', '1');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('tipos_barra_editores', '0', '{ $ MULTILANG_FrmBarraTipo1}', '2');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('tipos_barra_editores', '1', '{ $ MULTILANG_FrmBarraTipo2}', '3');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('tipos_barra_editores', '2', '{ $ MULTILANG_FrmBarraTipo3}', '4');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('tipos_barra_editores', '3', '{ $ MULTILANG_FrmBarraTipo4}', '5');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('tipos_barra_editores', '4', '{ $ MULTILANG_FrmBarraTipo5}', '6');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('tipos_barra_editores', '_OPTGROUP_', '', '7');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('tipos_barra_editores', '_OPTGROUP_|{ $ MULTILANG_FrmBarraSummer}', '', '8');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('tipos_barra_editores', '5', '{ $ MULTILANG_FrmBarraTipo1Summer}', '9');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('tipos_barra_editores', '6', '{ $ MULTILANG_FrmBarraTipo2Summer}', '10');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('tipos_barra_editores', '7', '{ $ MULTILANG_FrmBarraTipo3Summer}', '11');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('tipos_barra_editores', '8', '{ $ MULTILANG_FrmBarraTipo4Summer}', '12');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('tipos_barra_editores', '9', '{ $ MULTILANG_FrmBarraTipo5Summer}', '13');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('tipos_barra_editores', '_OPTGROUP_', '', '14');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('estilos_boton', '', '{ $ MULTILANG_Ninguno}', '1');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('estilos_boton', ' btn ', '{ $ MULTILANG_BtnEstiloSimple}', '2');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('estilos_boton', ' btn btn-default ', '{ $ MULTILANG_BtnEstiloPredeterminado}', '3');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('estilos_boton', ' btn btn-primary ', '{ $ MULTILANG_BtnEstiloPrimario}', '4');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('estilos_boton', ' btn btn-success ', '{ $ MULTILANG_BtnEstiloFinalizado}', '5');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('estilos_boton', ' btn btn-info ', '{ $ MULTILANG_BtnEstiloInformacion}', '6');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('estilos_boton', ' btn btn-warning ', '{ $ MULTILANG_BtnEstiloAdvertencia}', '7');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('estilos_boton', ' btn btn-danger ', '{ $ MULTILANG_BtnEstiloPeligro}', '8');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('tamanos_boton', '', '{ $ MULTILANG_Predeterminado}', '1');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('tamanos_boton', ' btn-xs ', '{ $ MULTILANG_Pequeno}', '1');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('tamanos_boton', ' btn-sm ', '{ $ MULTILANG_Mediano}', '1');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('tamanos_boton', ' btn-lg ', '{ $ MULTILANG_Grande}', '1');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('algoritmos_cifrado', 'plano', 'Texto plano/Plain text', '1');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('algoritmos_cifrado', 'md5', 'MD5', '2');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('algoritmos_cifrado', 'md4', 'MD4', '3');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('algoritmos_cifrado', 'md2', 'MD2', '4');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('algoritmos_cifrado', 'sha1', 'SHA 1', '5');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('algoritmos_cifrado', 'sha256', 'SHA 256', '6');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('algoritmos_cifrado', 'sha384', 'SHA 384', '7');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('algoritmos_cifrado', 'sha512', 'SHA 512', '8');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('algoritmos_cifrado', 'crc32', 'CRC 32', '9');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('algoritmos_cifrado', 'crc32b', 'CRC 32B', '10');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('algoritmos_cifrado', 'adler32', 'Adler 32', '11');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('algoritmos_cifrado', 'gost', 'Gost', '12');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('algoritmos_cifrado', 'whirlpool', 'Whirlpool', '13');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('algoritmos_cifrado', 'snefru', 'Snefru', '14');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('algoritmos_cifrado', 'ripemd128', 'Ripemd 128', '15');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('algoritmos_cifrado', 'ripemd160', 'Ripemd 160', '16');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('algoritmos_cifrado', 'ripemd256', 'Ripemd 256', '17');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('algoritmos_cifrado', 'ripemd320', 'Ripemd 320', '18');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('algoritmos_cifrado', 'tiger128,3', 'Tiger 128,3', '19');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('algoritmos_cifrado', 'tiger128,4', 'Tiger 128,4', '20');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('algoritmos_cifrado', 'tiger160,3', 'Tiger 160,3', '21');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('algoritmos_cifrado', 'tiger160,4', 'Tiger 160,4', '22');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('algoritmos_cifrado', 'tiger192,3', 'Tiger 192,3', '23');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('algoritmos_cifrado', 'tiger192,4', 'Tiger 192,4', '24');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('algoritmos_cifrado', 'haval128,3', 'Haval 128,3', '25');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('algoritmos_cifrado', 'haval128,4', 'Haval 128,4', '26');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('algoritmos_cifrado', 'haval128,5', 'Haval 128,5', '27');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('algoritmos_cifrado', 'haval160,3', 'Haval 160,3', '28');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('algoritmos_cifrado', 'haval160,4', 'Haval 160,4', '29');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('algoritmos_cifrado', 'haval160,5', 'Haval 160,5', '30');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('algoritmos_cifrado', 'haval192,3', 'Haval 192,3', '31');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('algoritmos_cifrado', 'haval192,4', 'Haval 192,4', '32');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('algoritmos_cifrado', 'haval192,5', 'Haval 192,5', '33');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('algoritmos_cifrado', 'haval224,3', 'Haval 224,3', '34');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('algoritmos_cifrado', 'haval224,4', 'Haval 224,4', '35');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('algoritmos_cifrado', 'haval224,5', 'Haval 224,5', '36');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('algoritmos_cifrado', 'haval256,3', 'Haval 256,3', '37');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('algoritmos_cifrado', 'haval256,4', 'Haval 256,4', '38');
-INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('algoritmos_cifrado', 'haval256,5', 'Haval 256,5', '39');
-
-ALTER TABLE core_parametros ADD requiere_aceptar_licencia int(1) NULL DEFAULT '0';
-ALTER TABLE core_parametros ADD api_openai varchar(255) NULL DEFAULT '';
-ALTER TABLE core_parametros ADD url_openai varchar(255) NULL DEFAULT 'https://api.openai.com/v1';
-
-ALTER TABLE core_parametros ADD usuarios_desarroladores varchar(1024) NULL DEFAULT 'admin';
-ALTER TABLE core_parametros ADD usuarios_admin_kanban varchar(1024) NULL DEFAULT 'admin';
-
-ALTER TABLE core_parametros ADD api_googleai varchar(255) NULL DEFAULT '';
-ALTER TABLE core_parametros ADD url_googleai varchar(255) NULL DEFAULT 'https://';
-
-ALTER TABLE core_parametros ADD facialrec_habilitar char(1) DEFAULT 'N';
-ALTER TABLE core_parametros ADD facialrec_nromuestras int(10) DEFAULT '1';
-ALTER TABLE core_parametros ADD facialrec_anchocam int(10) DEFAULT '320';
-ALTER TABLE core_parametros ADD facialrec_altocam int(10) DEFAULT '240';
-ALTER TABLE core_parametros ADD facialrec_tiempomuestreo int(10) DEFAULT '3';
-ALTER TABLE core_parametros ADD facialrec_precision DECIMAL(2,1) DEFAULT '0.5';
-
-ALTER TABLE core_llaves_api ADD total_ejecuciones int(11) NOT NULL DEFAULT '0';
-ALTER TABLE core_llaves_api ADD cifrado_openssl varchar(20) NOT NULL DEFAULT '';
-
-CREATE TABLE core_llaves_api_externas (
-  id int(10) NOT NULL AUTO_INCREMENT,
-  nombre varchar(50) NOT NULL,
-  api_key varchar(150) NOT NULL,
-  api_secret varchar(150) NOT NULL,
-  url_consumo varchar(255) NOT NULL,
-  url_redireccion varchar(255) NOT NULL,
-  script mediumtext,
-  PRIMARY KEY (id)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
-DROP TABLE IF EXISTS core_llaves_metodo;
-CREATE TABLE core_llaves_metodo (
-  id int(10) NOT NULL AUTO_INCREMENT,
-  nombre varchar(250) NOT NULL,
-  descripcion varchar(250) NOT NULL,
-  tipo_ejecucion varchar(50) NOT NULL DEFAULT 'LIBRE',  # LIBRE,GET,POST,PUT,DELETE,PATCH
-  metodo_recepcion varchar(15) NOT NULL DEFAULT 'GET+POST',  # GET,POST,GET+JWT,POST+JWT,GET+POST,GET+POST+JWT
-  formato varchar(50) NOT NULL DEFAULT 'TXT', # TXT,HTML,XML,JSON,RAW,BINARY
-  script mediumtext,
-  ejemplo_salida mediumtext, # Suministra ejemplos para salidas codigos 200, 4XX, 5XX, etc.
-  total_ejecuciones int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (id)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
-DROP TABLE IF EXISTS core_llaves_metodoparametro;
-CREATE TABLE core_llaves_metodoparametro (
-  id int(10) NOT NULL AUTO_INCREMENT,
-  metodo int(10) NOT NULL,
-  nombre varchar(50) NOT NULL,
-  descripcion varchar(250) NOT NULL,
-  tipo_dato varchar(50) NOT NULL,
-  longitud int(11),
-  obligatorio char(1), # S/N
-  observaciones text,
-  ejemplo_entrada mediumtext, # Suministra ejemplos de entrada para la variable
-  PRIMARY KEY (id)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
-DROP TABLE IF EXISTS core_scripts;
-CREATE TABLE core_scripts (
-  id int(10) AUTO_INCREMENT,
-  titulo varchar(255) default '',
-  codigo_script varchar(255),
-  fecha_creacion date NOT NULL,
-  descripcion varchar(255) default '',
-  creado_por varchar(255) default '',
-  lenguaje varchar(20) default '',
-  cuerpo mediumtext,
-  es_snippet int(1) DEFAULT '0',
-  moduloapp int(11),
-  ejecuciones int(11) DEFAULT '0',
-  modo_ejecucion varchar(20) default 'system',
-  PRIMARY KEY  (id)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-ALTER TABLE core_scripts ADD INDEX codigo_script (codigo_script);
-INSERT INTO core_scripts (id,codigo_script,titulo,modo_ejecucion,fecha_creacion) VALUES (-1,'PCO-LMQTP01','Script de pruebas internas de lenguaje','system','2023-01-01');
-
-ALTER TABLE core_chat ADD INDEX recd (recd);
-
-UPDATE core_opcionlista SET identificador_lista='exportaciones_informe_DEPRECATED' WHERE identificador_lista='exportaciones_informe' AND (valor_interno='S' OR valor_interno='A');
-
-ALTER TABLE core_formulario_objeto CHANGE columna PCOBD_Columna int(1) NULL DEFAULT '1';
-ALTER TABLE core_formulario_objeto CHANGE peso PCOBD_Peso int(1) NULL DEFAULT '1';
-
-ALTER TABLE core_kanban
-ADD INDEX fecha (fecha),
-ADD INDEX fecha_inicio (fecha_inicio);
-ALTER TABLE core_kanban ADD INDEX categoria(categoria);
-
-ALTER TABLE core_kanban CHANGE categoria categoria varchar(255) COLLATE 'utf8_general_ci' DEFAULT '';
-
-DROP TABLE IF EXISTS core_documentacion;
-CREATE TABLE core_documentacion (
-  id int(11) NOT NULL AUTO_INCREMENT,
-  hash_unico varchar(255) NOT NULL,
-  titulo varchar(255) NOT NULL,
-  estructura_tipo varchar(10) NOT NULL COMMENT 'Seccion,Menu,Funcion',
-  estructura_seccion varchar(255) NOT NULL,
-  estructura_funcion varchar(255) NOT NULL,
-  origen varchar(10) NOT NULL COMMENT 'Archivo,Formulario,Informe',
-  detalle_origen varchar(255) NOT NULL COMMENT 'IdObjeto,Path',
-  formato varchar(255) NOT NULL DEFAULT 'Enriquecido' COMMENT 'Enriquecido,Diagrama',
-  documentacion mediumtext NOT NULL,
-  visibilidad varchar(255) NOT NULL DEFAULT 'Desarrollo' COMMENT 'Desarrollo,Usuario',
-  PRIMARY KEY (id)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
-ALTER TABLE core_kanban CHANGE historial historial text COLLATE 'utf8_general_ci' NULL COMMENT 'Guarda categorias en tableros padre';
+INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('htmlentities_charsets', 'ISO8859-1', 'ISO8859-1: Europeo occidental, Latin-1.', '1');
+INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('htmlentities_charsets', 'ISO8859-5', 'ISO8859-5: Juego de caracteres cirilicos poco usado (Latin/Cyrillic).', '2');
+INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('htmlentities_charsets', 'ISO8859-15', 'ISO8859-15: Europeo occidental, Latin-9', '3');
+INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('htmlentities_charsets', 'UTF-8', 'UTF-8: Unicode de 8 bit multibyte compatible con ASCII', '4');
+INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('htmlentities_charsets', 'cp866', 'cp866: (ibm866, 866)	Juego de caracteres cirilico especifico de DOS.', '5');
+INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('htmlentities_charsets', 'cp1251', 'cp1251 (Windows-1251, win-1251, 1251) Juego de caracteres cirilico especifico de Windows.', '6');
+INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('htmlentities_charsets', 'cp1252', 'cp1252 (Windows-1252, 1252) Juego de caracteres especifico de Windows para Europa occidental', '7');
+INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('htmlentities_charsets', 'KOI8-R', 'KOI8-R (koi8-ru, koi8r) Ruso.', '8');
+INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('htmlentities_charsets', 'BIG5', 'BIG5 (950) Chino tradicional, usado principalmente en Taiwan', '9');
+INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('htmlentities_charsets', 'GB2312', 'GB2312 (936) Chino simplificado, juego de caracteres estandar nacional.', '10');
+INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('htmlentities_charsets', 'BIG5-HKSCS', 'BIG5-HKSCS Big5 con extensiones de Hong Kong, chino tradicional.', '11');
+INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('htmlentities_charsets', 'Shift_JIS', 'Shift_JIS (SJIS, SJIS-win, cp932, 932) Japones', '12');
+INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('htmlentities_charsets', 'EUC-JP', 'EUC-JP (EUCJP, eucJP-win) Japones', '13');
+INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('htmlentities_charsets', 'MacRoman', 'MacRoman: Juego de caracteres que fue utilizado por Mac OS.', '14');
 
 UPDATE core_opcionlista SET valor_visual = REPLACE(valor_visual, '{ $ ', '{$');
 UPDATE core_opcionlista SET valor_interno = REPLACE(valor_interno, '{ $ ', '{$');
-
-DROP TABLE IF EXISTS core_scripts_lenguajes;
-CREATE TABLE core_scripts_lenguajes (
-  id int(10) AUTO_INCREMENT,
-  nombre varchar(255) default '',
-  extensiones varchar(255),
-  comando_compilacion varchar(255),
-  comando_ejecucion varchar(255),
-  hola_mundo text,
-  PRIMARY KEY  (id)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (1,	'ABAP',	'abap',	'',	'',	'REPORT zgoodbyeworld.\r\n  WRITE \"Practico Framework! Prueba de lenguaje ABAP generada por el usuario { $ PCOSESS_LoginUsuario} { $ PCO_FechaOperacionGuiones} { $ PCO_HoraOperacionPuntos}\".');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (2,	'ActionScript',	'as',	'',	'',	'');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (3,	'ADA',	'ada|adb|ads',	'',	'',	'with Ada.Text_IO; use Ada.Text_IO;\r\nprocedure Main is\r\nbegin\r\n  Put_Line (\"Practico Framework! Prueba de lenguaje ADA generada por el usuario { $ PCOSESS_LoginUsuario} { $ PCO_FechaOperacionGuiones} { $ PCO_HoraOperacionPuntos}\");\r\nend Main;');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (4,	'Apache_Conf',	'htaccess|htgroups|htpasswd|conf|htaccess|htgroups|htpasswd',	'',	'',	'');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (5,	'AsciiDoc',	'asciidoc|adoc|ans|asc',	'',	'',	'');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (6,	'Assembly_x86',	'asm',	'',	'',	'DOSSEG\r\n.MODEL TINY\r\n.DATA\r\nTXT DB \"Practico Framework! Prueba de lenguaje ASSEMBLY_x86 generada por el usuario { $ PCOSESS_LoginUsuario} { $ PCO_FechaOperacionGuiones} { $ PCO_HoraOperacionPuntos}$\"\r\n.CODE\r\nSTART:\r\n	MOV ax, @DATA\r\n	MOV ds, ax\r\n	\r\n	MOV ah, 09h		; prepare output function\r\n	MOV dx, OFFSET TXT	; set offset\r\n	INT 21h			; output string TXT\r\n	\r\n	MOV AX, 4C00h 		; go back to DOS\r\n	INT 21h\r\nEND START');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (7,	'AutoHotKey',	'ahk',	'',	'',	'');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (8,	'BatchFile',	'bat|cmd|pif|wsf',	'',	'',	'');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (9,	'C9Search',	'c9search_results',	'',	'',	'');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (10,	'C_Cpp',	'c|cpp|cc|cxx|h|hh|hpp|bcp|tcc',	'gcc -o { $ PCO_ArchivoScript}.out { $ PCO_ArchivoScript}.c',	'./{ $ PCO_ArchivoScript}.out',	'#include <stdio.h>\r\nint main(void)\r\n{\r\n    printf(\"Practico Framework! Prueba de lenguaje C/CPP generada por el usuario { $ PCOSESS_LoginUsuario} { $ PCO_FechaOperacionGuiones} { $ PCO_HoraOperacionPuntos} { $ PCO_FechaOperacionGuiones} { $ PCO_HoraOperacionPuntos}\");\r\n}\r\n');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (11,	'Cirru',	'cirru|cr',	'',	'',	'');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (12,	'Clojure',	'clj|cljs',	'',	'',	'(println \"Practico Framework! Prueba de lenguaje CLOJURE generada por el usuario { $ PCOSESS_LoginUsuario} { $ PCO_FechaOperacionGuiones} { $ PCO_HoraOperacionPuntos}\")');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (13,	'Cobol',	'CBL|COB',	'',	'',	'	program-id. hello.\r\n	procedure division.\r\n		display \"Practico Framework! Prueba de lenguaje COBOL generada por el usuario { $ PCOSESS_LoginUsuario} { $ PCO_FechaOperacionGuiones} { $ PCO_HoraOperacionPuntos}\".\r\n		stop run.');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (14,	'coffee',	'coffee|cf|cson|Cakefile',	'',	'',	'console.log \"Practico Framework! Prueba de lenguaje COFFEE generada por el usuario { $ PCOSESS_LoginUsuario} { $ PCO_FechaOperacionGuiones} { $ PCO_HoraOperacionPuntos}\"');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (15,	'ColdFusion',	'cfm',	'',	'',	'<cfoutput>Practico Framework! Prueba de lenguaje COLDFUSION generada por el usuario { $ PCOSESS_LoginUsuario} { $ PCO_FechaOperacionGuiones} { $ PCO_HoraOperacionPuntos}</cfoutput>\r\n');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (16,	'CSharp',	'cs|csx',	'',	'',	'namespace HelloWorld\r\n{\r\n    class Program\r\n    {\r\n        static void Main(string[] args)\r\n        {\r\n            System.Console.WriteLine(\"Practico Framework! Prueba de lenguaje CSharp generada por el usuario { $ PCOSESS_LoginUsuario} { $ PCO_FechaOperacionGuiones} { $ PCO_HoraOperacionPuntos}\");\r\n        }\r\n    }\r\n}');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (17,	'CSS',	'css',	'',	'',	'');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (18,	'Curly',	'curly',	'',	'',	'');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (19,	'D',	'd|di',	'',	'',	'import std.stdio;\r\n\r\nvoid main() {\r\n    writeln(\"Practico Framework! Prueba de lenguaje D generada por el usuario { $ PCOSESS_LoginUsuario} { $ PCO_FechaOperacionGuiones} { $ PCO_HoraOperacionPuntos}\");\r\n}');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (20,	'Dart',	'dart',	'',	'',	'main() {\r\n    var bye = \"Practico Framework! Prueba de lenguaje DART generada por el usuario { $ PCOSESS_LoginUsuario} { $ PCO_FechaOperacionGuiones} { $ PCO_HoraOperacionPuntos}\";\r\n    print(\"$bye\");\r\n}');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (21,	'Diff',	'diff|patch',	'',	'',	'');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (22,	'Dockerfile',	'Dockerfile',	'',	'',	'');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (23,	'Dot',	'dot',	'',	'',	'');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (24,	'Dummy',	'dummy',	'',	'',	'');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (25,	'DummySyntax',	'dummy',	'',	'',	'');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (26,	'Eiffel',	'e',	'',	'',	'class\r\n    HELLO_WORLD\r\ncreate\r\n    make\r\nfeature\r\n    make\r\n        do\r\n            print (\"Practico Framework! Prueba de lenguaje EIFFEL generada por el usuario { $ PCOSESS_LoginUsuario} { $ PCO_FechaOperacionGuiones} { $ PCO_HoraOperacionPuntos}\")\r\n        end\r\nend');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (27,	'EJS',	'ejs',	'',	'',	'');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (28,	'Elixir',	'ex|exs',	'',	'',	'IO.puts \"Practico Framework! Prueba de lenguaje ELIXIR generada por el usuario { $ PCOSESS_LoginUsuario} { $ PCO_FechaOperacionGuiones} { $ PCO_HoraOperacionPuntos}\"');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (29,	'Elm',	'elm',	'',	'',	'main = text \"Practico Framework! Prueba de lenguaje ELM generada por el usuario { $ PCOSESS_LoginUsuario} { $ PCO_FechaOperacionGuiones} { $ PCO_HoraOperacionPuntos}\"');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (30,	'Erlang',	'erl|hrl',	'',	'',	'io:format(\"Practico Framework! Prueba de lenguaje ERLANG generada por el usuario { $ PCOSESS_LoginUsuario} { $ PCO_FechaOperacionGuiones} { $ PCO_HoraOperacionPuntos}\").');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (31,	'Forth',	'frt|fs|ldr|4th|forth',	'',	'',	': goodbye ( -- )   .\" Practico Framework! Prueba de lenguaje FORTH generada por el usuario { $ PCOSESS_LoginUsuario} { $ PCO_FechaOperacionGuiones} { $ PCO_HoraOperacionPuntos}\" CR ;');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (32,	'FTL',	'ftl',	'',	'',	'');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (33,	'Gcode',	'gcode',	'',	'',	'');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (34,	'Gherkin',	'feature',	'',	'',	'');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (35,	'Gitignore',	'gitignore|gcloudignore',	'',	'',	'');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (36,	'Glsl',	'glsl|frag|vert',	'',	'',	'');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (37,	'golang',	'go',	'',	'go run',	'package main\r\nimport \"fmt\"\r\nfunc main() {\r\n    fmt.Println(\"Practico Framework! Prueba de lenguaje GO generada por el usuario { $ PCOSESS_LoginUsuario} { $ PCO_FechaOperacionGuiones} { $ PCO_HoraOperacionPuntos}\")\r\n}\r\n');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (38,	'Groovy',	'groovy',	'',	'',	'');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (39,	'HAML',	'haml',	'',	'',	'');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (40,	'Handlebars',	'hbs|handlebars|tpl|mustache',	'',	'',	'');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (41,	'Haskell',	'hs|has|lhs|lit',	'',	'',	'main = putStrLn \"Practico Framework! Prueba de lenguaje HASKELL generada por el usuario { $ PCOSESS_LoginUsuario} { $ PCO_FechaOperacionGuiones} { $ PCO_HoraOperacionPuntos}\"');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (42,	'haXe',	'hx',	'',	'',	'trace(\"Practico Framework! Prueba de lenguaje HAXE generada por el usuario { $ PCOSESS_LoginUsuario} { $ PCO_FechaOperacionGuiones} { $ PCO_HoraOperacionPuntos}\");');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (43,	'HTML',	'html|htm|xhtml|asp|aspx',	'',	'',	'');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (44,	'HTML_Ruby',	'erb|rhtml',	'',	'',	'');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (45,	'INI',	'ini|cfg|prefs',	'',	'',	'');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (46,	'Io',	'io',	'',	'',	'');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (47,	'Jack',	'jack',	'',	'',	'class Main {\r\n  function void main () {\r\n    do Output.printString(\"Practico Framework! Prueba de lenguaje JACK generada por el usuario { $ PCOSESS_LoginUsuario} { $ PCO_FechaOperacionGuiones} { $ PCO_HoraOperacionPuntos}\");\r\n    do Output.println();\r\n    return;\r\n  }\r\n}');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (48,	'Jade',	'jade',	'',	'',	'');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (49,	'Java',	'java',	'javac  { $ PCO_ArchivoScript}.java',	'java { $ PCO_ArchivoScript}.class',	'public class HelloWorld\r\n{\r\n public static void main(String[] args)\r\n {\r\n  System.out.println(\"Practico Framework! Prueba de lenguaje JAVA generada por el usuario { $ PCOSESS_LoginUsuario} { $ PCO_FechaOperacionGuiones} { $ PCO_HoraOperacionPuntos}\");\r\n }\r\n}');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (50,	'JavaScript',	'js|jsm',	'',	'node',	'console.log(\"Practico Framework! Prueba de lenguaje JAVASCRIPT generada por el usuario { $ PCOSESS_LoginUsuario} { $ PCO_FechaOperacionGuiones} { $ PCO_HoraOperacionPuntos}\");');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (51,	'JSON',	'json',	'',	'',	'');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (52,	'JSONiq',	'jq',	'',	'',	'');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (53,	'JSP',	'jsp',	'',	'',	'');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (54,	'JSX',	'jsx',	'',	'',	'');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (55,	'Julia',	'jl',	'',	'',	'println(\"Practico Framework! Prueba de lenguaje JULIA generada por el usuario { $ PCOSESS_LoginUsuario} { $ PCO_FechaOperacionGuiones} { $ PCO_HoraOperacionPuntos}\")');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (56,	'LaTeX',	'tex|latex|ltx|bib|sty',	'',	'',	'\\documentclass{minimal}\r\n\\begin{document}\r\nPractico Framework! Prueba de lenguaje LATEX generada por el usuario { $ PCOSESS_LoginUsuario} { $ PCO_FechaOperacionGuiones} { $ PCO_HoraOperacionPuntos}\r\n\\end{document}');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (57,	'LESS',	'less',	'',	'',	'');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (58,	'Liquid',	'liquid',	'',	'',	'');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (59,	'Lisp',	'lisp|lsp',	'',	'newlisp',	'(println \"Practico Framework! Prueba de lenguaje LISP generada por el usuario { $ PCOSESS_LoginUsuario} { $ PCO_FechaOperacionGuiones} { $ PCO_HoraOperacionPuntos}\")');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (60,	'LiveScript',	'ls',	'',	'',	'');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (61,	'LogiQL',	'logic|lql',	'',	'',	'');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (62,	'LSL',	'lsl',	'',	'',	'');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (63,	'Lua',	'lua',	'',	'',	'print \"Practico Framework! Prueba de lenguaje LUA generada por el usuario { $ PCOSESS_LoginUsuario} { $ PCO_FechaOperacionGuiones} { $ PCO_HoraOperacionPuntos}\"');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (64,	'LuaPage',	'lp',	'',	'',	'');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (65,	'Lucene',	'lucene',	'',	'',	'');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (66,	'Makefile',	'Makefile|GNUmakefile|makefile|OCamlMakefile|make|am',	'',	'',	'');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (67,	'Markdown',	'md|markdown|markdn',	'',	'',	'');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (68,	'Mask',	'mask',	'',	'',	'');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (69,	'MATLAB',	'matlab',	'',	'',	'>> disp(\"Practico Framework! Prueba de lenguaje MATLAB generada por el usuario { $ PCOSESS_LoginUsuario} { $ PCO_FechaOperacionGuiones} { $ PCO_HoraOperacionPuntos}\")');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (70,	'MEL',	'mel',	'',	'',	'proc helloWorld () {\r\n   print \"Practico Framework! Prueba de lenguaje MEL generada por el usuario { $ PCOSESS_LoginUsuario} { $ PCO_FechaOperacionGuiones} { $ PCO_HoraOperacionPuntos}\";\r\n}');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (71,	'MUSHCode',	'mc|mush',	'',	'',	'');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (72,	'MySQL',	'mysql',	'',	'',	'');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (73,	'Nix',	'nix',	'',	'',	'\"Practico Framework! Prueba de lenguaje NIX generada por el usuario { $ PCOSESS_LoginUsuario} { $ PCO_FechaOperacionGuiones} { $ PCO_HoraOperacionPuntos}\"');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (74,	'ObjectiveC',	'm|mm',	'',	'',	'#import <Foundation/Foundation.h>\r\n\r\nint main() {\r\n    @autoreleasepool {\r\n        NSLog(@\"Practico Framework! Prueba de lenguaje OBJECTIVE-C generada por el usuario { $ PCOSESS_LoginUsuario} { $ PCO_FechaOperacionGuiones} { $ PCO_HoraOperacionPuntos}\");\r\n    }\r\n}');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (75,	'OCaml',	'ml|mli',	'',	'',	'print_endline \"Practico Framework! Prueba de lenguaje OCAML generada por el usuario { $ PCOSESS_LoginUsuario} { $ PCO_FechaOperacionGuiones} { $ PCO_HoraOperacionPuntos}\"');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (76,	'Pascal',	'pas|p|dfm',	'',	'',	'program byeworld;\r\nbegin\r\n writeln(\"Practico Framework! Prueba de lenguaje PASCAL generada por el usuario { $ PCOSESS_LoginUsuario} { $ PCO_FechaOperacionGuiones} { $ PCO_HoraOperacionPuntos}\");\r\nend.');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (77,	'Perl',	'pl|pm',	'',	'perl',	'print \"Practico Framework! Prueba de lenguaje PERL generada por el usuario { $ PCOSESS_LoginUsuario} { $ PCO_FechaOperacionGuiones} { $ PCO_HoraOperacionPuntos}\"');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (78,	'pgSQL',	'pgsql',	'',	'',	'');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (79,	'PHP',	'php|phtml|inc|ctp|snt',	'',	'php',	'<?php\r\necho \"Practico Framework! Prueba de lenguaje PHP generada por el usuario { $ PCOSESS_LoginUsuario} { $ PCO_FechaOperacionGuiones} { $ PCO_HoraOperacionPuntos}\";\r\n');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (80,	'Powershell',	'ps1',	'',	'',	'\"Practico Framework! Prueba de lenguaje POWERSHELL generada por el usuario { $ PCOSESS_LoginUsuario} { $ PCO_FechaOperacionGuiones} { $ PCO_HoraOperacionPuntos}\"');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (81,	'Praat',	'praat|praatscript|psc|proc',	'',	'',	'');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (82,	'Prolog',	'plg|prolog',	'',	'',	':- write(\"Practico Framework! Prueba de lenguaje PROLOG generada por el usuario { $ PCOSESS_LoginUsuario} { $ PCO_FechaOperacionGuiones} { $ PCO_HoraOperacionPuntos}\"), nl.');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (83,	'Properties',	'properties',	'',	'',	'');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (84,	'Protobuf',	'proto',	'',	'',	'');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (85,	'Python',	'py',	'',	'python3',	'print (\"Practico Framework! Prueba de lenguaje PYTHON generada por el usuario { $ PCOSESS_LoginUsuario} { $ PCO_FechaOperacionGuiones} { $ PCO_HoraOperacionPuntos}\")');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (86,	'R',	'r',	'',	'',	'print(\"Practico Framework! Prueba de lenguaje R generada por el usuario { $ PCOSESS_LoginUsuario} { $ PCO_FechaOperacionGuiones} { $ PCO_HoraOperacionPuntos}\")');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (87,	'RDoc',	'Rd',	'',	'',	'');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (88,	'RHTML',	'Rhtml',	'',	'',	'');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (89,	'Ruby',	'rb|ru|gemspec|rake|Guardfile|Rakefile|Gemfile',	'',	'',	'puts \"Practico Framework! Prueba de lenguaje RUBY generada por el usuario { $ PCOSESS_LoginUsuario} { $ PCO_FechaOperacionGuiones} { $ PCO_HoraOperacionPuntos}\"');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (90,	'Rust',	'rs',	'',	'',	'fn main() {\r\n   print!(\"Practico Framework! Prueba de lenguaje RUST generada por el usuario { $ PCOSESS_LoginUsuario} { $ PCO_FechaOperacionGuiones} { $ PCO_HoraOperacionPuntos}\");\r\n}');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (91,	'SASS',	'sass',	'',	'',	'');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (92,	'SCAD',	'scad',	'',	'',	'');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (93,	'Scala',	'scala',	'',	'',	'println(\"Practico Framework! Prueba de lenguaje SCALA generada por el usuario { $ PCOSESS_LoginUsuario} { $ PCO_FechaOperacionGuiones} { $ PCO_HoraOperacionPuntos}\")');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (94,	'Scheme',	'scm|rkt',	'',	'',	'\"Practico Framework! Prueba de lenguaje TCL generada por el usuario { $ PCOSESS_LoginUsuario} { $ PCO_FechaOperacionGuiones} { $ PCO_HoraOperacionPuntos}\"');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (95,	'SCSS',	'scss',	'',	'',	'');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (96,	'SH',	'sh|bash|bashrc|bsh',	'',	'sh',	'#!/bin/sh\r\necho \"Practico Framework! Prueba de lenguaje UnixShell-SH generada por el usuario { $ PCOSESS_LoginUsuario} { $ PCO_FechaOperacionGuiones} { $ PCO_HoraOperacionPuntos}\"');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (97,	'SJS',	'sjs',	'',	'',	'');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (98,	'Smarty',	'smarty|tpl',	'',	'',	'');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (99,	'snippets',	'snippets',	'',	'',	'');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (100,	'Soy_Template',	'soy',	'',	'',	'');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (101,	'Space',	'space',	'',	'',	'');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (102,	'SQL',	'sql|dblib|dblib_mssql|fbd|ibm|ifmx|mssql|odbc|oracle|sqlite|sqlsrv',	'',	'',	'');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (103,	'Stylus',	'styl|stylus',	'',	'',	'');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (104,	'SVG',	'svg',	'',	'',	'');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (105,	'Tcl',	'tcl',	'',	'tclsh',	'puts stdout {Practico Framework! Prueba de lenguaje TCL generada por el usuario { $ PCOSESS_LoginUsuario} { $ PCO_FechaOperacionGuiones} { $ PCO_HoraOperacionPuntos}}');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (106,	'Tex',	'tex',	'',	'',	'');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (107,	'Text',	'txt|nfo|dat|inf|log|csv|tab|url|1st|fountain|me|now|readme|rft|cst|pl1|pli|plc|src|swift|tk',	'',	'',	'');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (108,	'Textile',	'textile',	'',	'',	'');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (109,	'Toml',	'toml',	'',	'',	'');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (110,	'Twig',	'twig',	'',	'',	'');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (111,	'Typescript',	'ts|typescript|str',	'',	'',	'');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (112,	'Vala',	'vala',	'',	'',	'void main(){\r\n	stdout.printf(\"Practico Framework! Prueba de lenguaje VALA generada por el usuario { $ PCOSESS_LoginUsuario} { $ PCO_FechaOperacionGuiones} { $ PCO_HoraOperacionPuntos}\");\r\n}');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (113,	'VBScript',	'bas|vbs|vb|b|sb',	'',	'',	'WScript.Echo \"Practico Framework! Prueba de lenguaje VBSCRIPT generada por el usuario { $ PCOSESS_LoginUsuario} { $ PCO_FechaOperacionGuiones} { $ PCO_HoraOperacionPuntos}\"');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (114,	'Velocity',	'vm',	'',	'',	'');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (115,	'Verilog',	'v|vh|sv|svh',	'',	'',	'module main;\r\n  initial begin\r\n      $display(\"Practico Framework! Prueba de lenguaje VERILOG generada por el usuario { $ PCOSESS_LoginUsuario} { $ PCO_FechaOperacionGuiones} { $ PCO_HoraOperacionPuntos}\");\r\n      $finish ;\r\n    end\r\nendmodule');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (116,	'VHDL',	'vhd|vhdl',	'',	'',	'LIBRARY std;\r\nUSE std.TEXTIO.all;\r\n\r\nentity test is\r\nend entity test;\r\n\r\narchitecture beh of test is\r\nbegin\r\n  process\r\n    variable line_out : line;\r\n  begin\r\n    write(line_out, string\'(\"Practico Framework! Prueba de lenguaje VHDL generada por el usuario { $ PCOSESS_LoginUsuario} { $ PCO_FechaOperacionGuiones} { $ PCO_HoraOperacionPuntos}\"));\r\n    writeline(OUTPUT, line_out);\r\n    wait; -- needed to stop the execution\r\n  end process;\r\nend architecture beh;');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (117,	'XML',	'xml|rdf|rss|wsdl|xsl|xslt|atom|mathml|mml|xul|xbl',	'',	'',	'');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (118,	'XQuery',	'xq',	'',	'',	'');
-INSERT INTO core_scripts_lenguajes (id, nombre, extensiones, comando_compilacion, comando_ejecucion, hola_mundo) VALUES (119,	'YAML',	'yaml|yml',	'',	'',	'');
-
-UPDATE core_scripts_lenguajes SET comando_compilacion = REPLACE(comando_compilacion, '{ $ ', '{$');
-UPDATE core_scripts_lenguajes SET comando_ejecucion = REPLACE(comando_ejecucion, '{ $ ', '{$');
-UPDATE core_scripts_lenguajes SET hola_mundo = REPLACE(hola_mundo, '{ $ ', '{$');
 "
 
 ########################################################################

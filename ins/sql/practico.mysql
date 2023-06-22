@@ -32,6 +32,8 @@ CREATE TABLE core_parametros (
   facialrec_altocam int(10) DEFAULT '240',
   facialrec_tiempomuestreo int(10) DEFAULT '3',
   facialrec_precision DECIMAL(2,1) DEFAULT '0.5',
+  htmlentities_flags varchar(255) NULL DEFAULT 'ENT_QUOTES',
+  htmlentities_charsets varchar(255) NULL DEFAULT '',
   PRIMARY KEY  (id)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
@@ -898,7 +900,30 @@ INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ord
 INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('algoritmos_cifrado', 'haval256,3', 'Haval 256,3', '37');
 INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('algoritmos_cifrado', 'haval256,4', 'Haval 256,4', '38');
 INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('algoritmos_cifrado', 'haval256,5', 'Haval 256,5', '39');
-
+INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('htmlentities_flags', 'ENT_COMPAT', 'ENT_COMPAT: Convierte comillas dobles y deja solo las simples.', '1');
+INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('htmlentities_flags', 'ENT_QUOTES', 'ENT_QUOTES: Convierte tanto comillas dobles como simples.', '2');
+INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('htmlentities_flags', 'ENT_NOQUOTES', 'ENT_NOQUOTES: Deja comillas dobles y simples sin convertir.', '3');
+INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('htmlentities_flags', 'ENT_IGNORE', 'ENT_IGNORE: Descartar silenciosamente no validas en lugar de devolver un string vacio. Uso desaconsejado por seguridad.', '4');
+INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('htmlentities_flags', 'ENT_SUBSTITUTE', 'ENT_SUBSTITUTE: Reemplazar codigo invalido con Unicode U+FFFD (UTF-8) o &#FFFD; (no UTF-8)', '5');
+INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('htmlentities_flags', 'ENT_DISALLOWED', 'ENT_DISALLOWED: Reemplazar codigo no valido con Unicode U+FFFD (UTF-8) o &#FFFD; (no UTF-8). Util en XML con contenido externo incrustado.', '6');
+INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('htmlentities_flags', 'ENT_HTML401', 'ENT_HTML401: Manejar el codigo como HTML 4.01.', '7');
+INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('htmlentities_flags', 'ENT_XML1', 'ENT_XML1: Manejar el codigo como XML 1.', '8');
+INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('htmlentities_flags', 'ENT_XHTML', 'ENT_XHTML: Manejar el codigo como XHTML.', '9');
+INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('htmlentities_flags', 'ENT_HTML5', 'ENT_HTML5: Manejar el codigo como HTML 5.', '10');
+INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('htmlentities_charsets', 'ISO8859-1', 'ISO8859-1: Europeo occidental, Latin-1.', '1');
+INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('htmlentities_charsets', 'ISO8859-5', 'ISO8859-5: Juego de caracteres cirilicos poco usado (Latin/Cyrillic).', '2');
+INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('htmlentities_charsets', 'ISO8859-15', 'ISO8859-15: Europeo occidental, Latin-9', '3');
+INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('htmlentities_charsets', 'UTF-8', 'UTF-8: Unicode de 8 bit multibyte compatible con ASCII', '4');
+INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('htmlentities_charsets', 'cp866', 'cp866: (ibm866, 866)	Juego de caracteres cirilico especifico de DOS.', '5');
+INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('htmlentities_charsets', 'cp1251', 'cp1251 (Windows-1251, win-1251, 1251) Juego de caracteres cirilico especifico de Windows.', '6');
+INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('htmlentities_charsets', 'cp1252', 'cp1252 (Windows-1252, 1252) Juego de caracteres especifico de Windows para Europa occidental', '7');
+INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('htmlentities_charsets', 'KOI8-R', 'KOI8-R (koi8-ru, koi8r) Ruso.', '8');
+INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('htmlentities_charsets', 'BIG5', 'BIG5 (950) Chino tradicional, usado principalmente en Taiwan', '9');
+INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('htmlentities_charsets', 'GB2312', 'GB2312 (936) Chino simplificado, juego de caracteres estandar nacional.', '10');
+INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('htmlentities_charsets', 'BIG5-HKSCS', 'BIG5-HKSCS Big5 con extensiones de Hong Kong, chino tradicional.', '11');
+INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('htmlentities_charsets', 'Shift_JIS', 'Shift_JIS (SJIS, SJIS-win, cp932, 932) Japones', '12');
+INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('htmlentities_charsets', 'EUC-JP', 'EUC-JP (EUCJP, eucJP-win) Japones', '13');
+INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('htmlentities_charsets', 'MacRoman', 'MacRoman: Juego de caracteres que fue utilizado por Mac OS.', '14');
 
 UPDATE core_opcionlista SET valor_visual = REPLACE(valor_visual, '{ $ ', '{$');
 UPDATE core_opcionlista SET valor_interno = REPLACE(valor_interno, '{ $ ', '{$');
