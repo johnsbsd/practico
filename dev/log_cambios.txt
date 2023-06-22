@@ -35,7 +35,7 @@ ArchivosFijos=" tmp/par_cambios.txt tmp/par_sql.txt tmp/par_compat.txt tmp/leame
 #TOMAR CONTENIDO DESDE EL README
 #Agregar un texto para parches sin version que al menos recomiende la minima:  SE RECOMIENDA APLICAR A UNA VERSION MINIMA DE xx.xx
 LogCambios="
-* Added [CORE]: Parametrizacion de aplicacion permite definir los tipos de escapado de cadenas cuando se recuperan campos tipo texto corto o contraseña desde el servidor.
+* Added [CORE]: Parametrizacion de aplicacion permite definir los tipos de escapado de cadenas cuando se recuperan campos tipo texto corto, valores manuales de listas de selección y contraseñas desde el servidor.  Esto aumenta compatibilidad con sets de caracteres adicionales soportados por sistemas operativos anteriores.
 
 "
 

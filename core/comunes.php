@@ -6171,13 +6171,48 @@ function PCO_CargarObjetoTextoCorto($registro_campos,$registro_datos_formulario,
     			$valor_variable_escapada=$registro_datos_formulario["$nombre_campo"];
     			//$valor_variable_escapada=addslashes ( '"'.$valor_variable_escapada.'"' );
     			//$valor_variable_escapada=urlencode($valor_variable_escapada);
-    			
-    			
-    			//Agregado 23.4
-    			$valor_variable_escapada=htmlentities($valor_variable_escapada,ENT_QUOTES); //Presenta la cadena como caracteres especiales HTML para ayudar a presentar correctamente tildes, comillas y barras
     			//Metodo Opcional: Determinar si la cadena tiene comilla doble y encerrar en comilla simple.  Determinar si tiene comilla simple y encerrar en dobles.
-    			
-    			
+
+    			//Valida los parametros de aplicacion para saber si se aplica alguna conversion de cartacteres
+    			//Presenta la cadena como caracteres especiales HTML para ayudar a presentar correctamente tildes, comillas y barras
+    			$RegistroParamAplicacion=PCO_EjecutarSQL("SELECT * FROM core_parametros WHERE 1=1 LIMIT 0,1")->fetch();
+    			if ($RegistroParamAplicacion["htmlentities_flags"]!="" || $RegistroParamAplicacion["htmlentities_charsets"]!="")
+    			    {
+                        switch ($RegistroParamAplicacion["htmlentities_flags"]) {
+                            case "ENT_COMPAT":
+                                $valor_variable_escapada=htmlentities($valor_variable_escapada,ENT_COMPAT,$RegistroParamAplicacion["htmlentities_charsets"]);
+                                break;
+                            case "ENT_QUOTES":
+                                $valor_variable_escapada=htmlentities($valor_variable_escapada,ENT_QUOTES,$RegistroParamAplicacion["htmlentities_charsets"]);
+                                break;
+                            case "ENT_NOQUOTES":
+                                $valor_variable_escapada=htmlentities($valor_variable_escapada,ENT_NOQUOTES,$RegistroParamAplicacion["htmlentities_charsets"]);
+                                break;
+                            case "ENT_IGNORE":
+                                $valor_variable_escapada=htmlentities($valor_variable_escapada,ENT_IGNORE,$RegistroParamAplicacion["htmlentities_charsets"]);
+                                break;
+                            case "ENT_SUBSTITUTE":
+                                $valor_variable_escapada=htmlentities($valor_variable_escapada,ENT_SUBSTITUTE,$RegistroParamAplicacion["htmlentities_charsets"]);
+                                break;
+                            case "ENT_DISALLOWED":
+                                $valor_variable_escapada=htmlentities($valor_variable_escapada,ENT_DISALLOWED,$RegistroParamAplicacion["htmlentities_charsets"]);
+                                break;
+                            case "ENT_HTML401":
+                                $valor_variable_escapada=htmlentities($valor_variable_escapada,ENT_HTML401,$RegistroParamAplicacion["htmlentities_charsets"]);
+                                break;
+                            case "ENT_XML1":
+                                $valor_variable_escapada=htmlentities($valor_variable_escapada,ENT_XML1,$RegistroParamAplicacion["htmlentities_charsets"]);
+                                break;
+                            case "ENT_XHTML":
+                                $valor_variable_escapada=htmlentities($valor_variable_escapada,ENT_XHTML,$RegistroParamAplicacion["htmlentities_charsets"]);
+                                break;
+                            case "ENT_HTML5":
+                                $valor_variable_escapada=htmlentities($valor_variable_escapada,ENT_HTML5,$RegistroParamAplicacion["htmlentities_charsets"]);
+                                break;
+                            default:
+                               $valor_variable_escapada=htmlentities($valor_variable_escapada,ENT_QUOTES);
+                        }
+    			    }
     			if ($PCO_CampoBusquedaBD!="" && $PCO_ValorBusquedaBD!="") $cadena_valor=' value="'.$valor_variable_escapada.'" ';
     	    }
 
