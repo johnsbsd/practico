@@ -7,8 +7,8 @@
 		<sistema_origen></sistema_origen>
 		<version></version>
 		<usuario_generador></usuario_generador>
-		<fecha_exportacion>2023-06-16</fecha_exportacion>
-		<hora_exportacion>09:00</hora_exportacion>
+		<fecha_exportacion>2023-06-22</fecha_exportacion>
+		<hora_exportacion>06:47</hora_exportacion>
 	</descripcion>
 	<core_formulario>
 	<id>LTM5</id>
@@ -139,6 +139,64 @@
 	<valor_placeholder></valor_placeholder>
 	<ocultar_etiqueta>MA==</ocultar_etiqueta>
 	<id_html>bGJsX2FwaV9nZW5lcmljYXM=</id_html>
+	<validacion_extras></validacion_extras>
+	<clase_contenedor>Y29sLXhzLTEyIGNvbC1zbS0xMiBjb2wtbWQtMTIgY29sLWxnLTEy</clase_contenedor>
+	<ajax_busqueda_dinamica>MA==</ajax_busqueda_dinamica>
+	<etiqueta_colapsable></etiqueta_colapsable>
+	</core_formulario_objeto>
+	<core_formulario_objeto>
+	<id>MTQ4MzI=</id>
+	<tipo>bGlzdGFfc2VsZWNjaW9u</tipo>
+	<titulo>QmFuZGVyYXM=</titulo>
+	<campo>aHRtbGVudGl0aWVzX2ZsYWdz</campo>
+	<ayuda_titulo></ayuda_titulo>
+	<ayuda_texto></ayuda_texto>
+	<formulario>LTM5</formulario>
+	<PCOBD_Peso>MQ==</PCOBD_Peso>
+	<PCOBD_Columna>MQ==</PCOBD_Columna>
+	<obligatorio>MA==</obligatorio>
+	<visible>MQ==</visible>
+	<valor_predeterminado></valor_predeterminado>
+	<validacion_datos></validacion_datos>
+	<etiqueta_busqueda></etiqueta_busqueda>
+	<ajax_busqueda>MA==</ajax_busqueda>
+	<valor_unico>MA==</valor_unico>
+	<solo_lectura></solo_lectura>
+	<ancho>MA==</ancho>
+	<alto>MA==</alto>
+	<barra_herramientas>MA==</barra_herramientas>
+	<fila_unica>MA==</fila_unica>
+	<lista_opciones>LA==</lista_opciones>
+	<origen_lista_opciones>Y29yZV9vcGNpb25saXN0YS52YWxvcl92aXN1YWw=</origen_lista_opciones>
+	<origen_lista_valores>Y29yZV9vcGNpb25saXN0YS52YWxvcl9pbnRlcm5v</origen_lista_valores>
+	<valor_etiqueta></valor_etiqueta>
+	<url_iframe></url_iframe>
+	<objeto_en_ventana>MA==</objeto_en_ventana>
+	<informe_vinculado>MA==</informe_vinculado>
+	<maxima_longitud>MA==</maxima_longitud>
+	<valor_minimo>MA==</valor_minimo>
+	<valor_maximo>MA==</valor_maximo>
+	<valor_salto>MA==</valor_salto>
+	<formato_salida></formato_salida>
+	<plantilla_archivo></plantilla_archivo>
+	<peso_archivo>NTA=</peso_archivo>
+	<tamano_pincel>MQ==</tamano_pincel>
+	<color_trazo>IzAwMDAwMA==</color_trazo>
+	<formulario_vinculado>MA==</formulario_vinculado>
+	<formulario_campo_vinculo></formulario_campo_vinculo>
+	<formulario_campo_foraneo></formulario_campo_foraneo>
+	<condicion_filtrado_listas>IGlkZW50aWZpY2Fkb3JfbGlzdGE9Imh0bWxlbnRpdGllc19mbGFncyIgT1JERVIgQlkgb3JkZW5hbWllbnRv</condicion_filtrado_listas>
+	<pestana_objeto>U2V0cyBkZSBjYXJhY3RlcmVz</pestana_objeto>
+	<personalizacion_tag></personalizacion_tag>
+	<modo_inline>MA==</modo_inline>
+	<imagen></imagen>
+	<tipo_accion></tipo_accion>
+	<accion_usuario></accion_usuario>
+	<valor_check_activo></valor_check_activo>
+	<valor_check_inactivo></valor_check_inactivo>
+	<valor_placeholder></valor_placeholder>
+	<ocultar_etiqueta>MA==</ocultar_etiqueta>
+	<id_html>aHRtbGVudGl0aWVzX2ZsYWdz</id_html>
 	<validacion_extras></validacion_extras>
 	<clase_contenedor>Y29sLXhzLTEyIGNvbC1zbS0xMiBjb2wtbWQtMTIgY29sLWxnLTEy</clase_contenedor>
 	<ajax_busqueda_dinamica>MA==</ajax_busqueda_dinamica>
@@ -2232,7 +2290,7 @@
 	<ajax_busqueda_dinamica>MA==</ajax_busqueda_dinamica>
 	<etiqueta_colapsable></etiqueta_colapsable>
 	</core_formulario_objeto>
-	<total_core_formulario_objeto><cantidad_objetos>38</cantidad_objetos></total_core_formulario_objeto>
+	<total_core_formulario_objeto><cantidad_objetos>39</cantidad_objetos></total_core_formulario_objeto>
 	<total_core_evento_objeto><cantidad_objetos>0</cantidad_objetos></total_core_evento_objeto>
 	<core_formulario_boton>
 	<id>NDc3</id>
