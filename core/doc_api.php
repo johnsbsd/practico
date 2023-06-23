@@ -167,6 +167,43 @@
         else
             echo '<i class="fa fa-info-circle fa-fw"></i>  Total Endpoints y/o Servicios publicados en este sistema: <div class="btn btn-success"><b>'.$TotalMetodos.'</b></div>';
         echo '</div>';
+        
+        
+        //Determina si recibio APIKey y APISecret de pruebas y son validas, sino las borra
+        $MensajeVerificacionAPI="";
+        $ResultadoConsultaAPI=PCO_EjecutarSQL("SELECT * FROM core_llaves_api WHERE llave=? AND secreto=? ","$APIKeyUsuario$_SeparadorCampos_$APISecretUsuario")->fetch();
+        if ($ResultadoConsultaAPI["id"]=="")
+            {
+                $APIKeyUsuario="";
+                $APISecretUsuario="";
+                $MensajeVerificacionAPI="<font color=red><b>Las llaves suministradas no son v&aacute;lidas.  Verifique e intente nuevamente</b></font><br>";
+            }
+
+        //Agrega campos para pruebas directas de la API
+        echo '
+            <form name="CargarLlaves" id="CargarLlaves" target="_self" method="POST">
+                <div class="well alert alert-primary" role="alert alert-dimisible">
+                    <div class="row">
+                        <div class="col col-xs-12 col-sm-12 col-md-1 col-lg-1">
+                            <i class="fa fa-key fa-fw fa-3x"></i> 
+                        </div>
+                        <div class="col col-xs-12 col-sm-12 col-md-11 col-lg-11">
+                            <i class="fa fa-info-circle fa-fw"></i> Si usted cuenta con llaves de acceso puede ingresarlas aqu&iacute; y se activar&aacute;n campos adicionales en cada servicio para que pueda probarlo en linea.<br> 
+                            '.$MensajeVerificacionAPI.'
+                            <font color=green><b>API Key = <input type="text" name="APIKeyUsuario" value="'.$APIKeyUsuario.'"> &nbsp;&nbsp;API Secret = <input type="text" name="APISecretUsuario" value="'.$APISecretUsuario.'"></font> &nbsp;<button class="btn btn-success btn-sm" type="submit"><i class="fa fa-rocket fa-fw"></i> Recargar usando estas llaves</button></b>
+                        </div>
+                    </div>
+                </div>
+            </form>';
+        
+    //Calcula ejemplo de URL de llamado
+    if(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on')
+         $URLBaseSistema = "https://";
+    else
+         $URLBaseSistema = "http://";
+    $URLBaseSistema.= $_SERVER['HTTP_HOST'];
+    $URLBaseSistema.= $_SERVER['REQUEST_URI'];
+    $URLBaseSistema = explode("/core/",$URLBaseSistema);
 
     $ResultadoServicios=PCO_EjecutarSQL("SELECT * FROM core_llaves_metodo WHERE 1=1 ORDER BY nombre");
     while ($RegistroServicios=$ResultadoServicios->fetch())
@@ -195,8 +232,20 @@
                                 </div>
                             </div>
                         </div>
-                    </summary>
+                    </summary>';
+
+
+
+            //Abre formulario de pruebas si hay llaves validas
+            if ($MensajeVerificacionAPI=="")
+                echo '<form target="_blank" action="'.$URLBaseSistema[0].'">
+                        <input type="hidden" name="PCO_WSOn" value="1">
+                        <input type="hidden" name="PCO_WSKey" value="'.$APIKeyUsuario.'">
+                        <input type="hidden" name="PCO_WSSecret" value="'.$APISecretUsuario.'">
+                        <input type="hidden" name="PCO_WSId" value="'.$RegistroServicios["nombre"].'">
+                ';
                     
+            echo '        
                     <div class="well well-sm" style="margin-left:40px; margin-top:15px;">
                         <div class=""><i class="fa fa-book fa-fw"></i> <i>'.$RegistroServicios["descripcion"].'</i></div>
                         <div class=""><i class="fa fa-send fa-fw"></i> M&eacute;todo de recepci&oacute;n: <i><b>'.$RegistroServicios["metodo_recepcion"].'</b></i></div>
@@ -243,7 +292,14 @@
                                             if ($RegistroParametros["obligatorio"]=="S") $EstiloObligatorio="danger";
                                             echo '
                                                 <tr style="font-size:11px;">
-                                                    <td style="color:navy;"><b>'.$RegistroParametros["nombre"].'</b></td>
+                                                    <td style="color:navy;" nowrap><b>'.$RegistroParametros["nombre"].'</b>';
+                                                    
+                                                    //Si las llaves estan OK (sin errores) agrega campo para pruebas
+                                                    if ($MensajeVerificacionAPI=="")
+                                                        echo '<br><input style="margin-left:10px;" placeholder="Valor de prueba" type="text" name="'.$RegistroParametros["nombre"].'">';
+                                                    
+                                            echo '
+                                                    </td>
                                                     <td>'.$RegistroParametros["tipo_dato"].'</td>
                                                     <td>'.$RegistroParametros["longitud"].'</td>
                                                     <td><div class="btn btn-'.$EstiloObligatorio.' btn-xs">'.$RegistroParametros["obligatorio"].'</div></td>
@@ -253,7 +309,7 @@
                                                 </tr>';
                                         }
                                     while ($RegistroParametros=$ResultadoParametros->fetch());
-                                    
+
                                 echo '
                                         </tbody>
                                     </table>
@@ -261,21 +317,21 @@
                                 echo '</div>';
                             }
 
-                    //Presenta ejemplo de URL de llamado
-                    if(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on')
-                         $URLBaseSistema = "https://";
-                    else
-                         $URLBaseSistema = "http://";
-                    $URLBaseSistema.= $_SERVER['HTTP_HOST'];
-                    $URLBaseSistema.= $_SERVER['REQUEST_URI'];
-                    $URLBaseSistema = explode("/core/",$URLBaseSistema);
-                    $URLBaseSistema = $URLBaseSistema[0]."/?PCO_WSOn=1&PCO_WSKey=XXXXXXXX&PCO_WSSecret=YYYYYYY&PCO_WSId=".$RegistroServicios["nombre"];
+                    //Si cuenta con llaves activas agrega boton para lanzar prueba del servicio
+                    if ($MensajeVerificacionAPI=="")
+                        echo '<table style="margin-left:40px;"><tr><td><button class="btn btn-success btn-sm" type="submit"><i class="fa fa-cog fa-fw fa-spin"></i> Lanzar prueba de servicio!</button></td></tr></table>';
+                                    
 
+                    $URLBaseSistemaEjemplo = $URLBaseSistema[0]."/?PCO_WSOn=1&PCO_WSKey=XXXXXXXX&PCO_WSSecret=YYYYYYY&PCO_WSId=".$RegistroServicios["nombre"];
                     echo '
                         <div class="well well-sm" style="margin-left:40px; margin-top:15px;">
                             <i class="fa fa-globe fa-fw"></i>  <b>Ejemplo URL de llamado:</b> <font size=1><i>(complete con sus par&aacute;metros cuando aplique)</i></font>
-                            <br><font size=1><a href="'.$URLBaseSistema.'" target="_blank">'.$URLBaseSistema.'</a></font>
+                            <br><font size=1><a href="'.$URLBaseSistemaEjemplo.'" target="_blank">'.$URLBaseSistemaEjemplo.'</a></font>
                         </div>';
+                
+                //Cierra formulario de pruebas cuando hay llaves activas
+                if ($MensajeVerificacionAPI=="")
+                    echo '</form>';
 
             //Cierra el div asociado al Endpoint
             echo '
