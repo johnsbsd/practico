@@ -16,6 +16,7 @@ ArchivoVersion=" inc/version_actual.txt "
 ListaArchivos="
 index.php
 core/comunes.php
+core/doc_api.php
 
 
 xml/*
@@ -36,6 +37,10 @@ ArchivosFijos=" tmp/par_cambios.txt tmp/par_sql.txt tmp/par_compat.txt tmp/leame
 #Agregar un texto para parches sin version que al menos recomiende la minima:  SE RECOMIENDA APLICAR A UNA VERSION MINIMA DE xx.xx
 LogCambios="
 * Added [CORE]: Parametrizacion de aplicacion permite definir los tipos de escapado de cadenas cuando se recuperan campos tipo texto corto, valores manuales de listas de selección y contraseñas desde el servidor.  Esto aumenta compatibilidad con sets de caracteres adicionales soportados por sistemas operativos anteriores.
+* Added [CORE]: Documentador de APIs y servicios web agrega la posibilidad de ingresar una API Key y API Secret para realizar pruebas en línea de los servicios autorizados.
+* Fixed [CORE]: Ajustes de visibilidad y permisos para elementos internos que sólo deben ser permitidos a usuarios administradores evitando llamados manuales.
+
+NOTA: Es normal que en la aplicacion incremetal de este parche de actualización o de su siguiente versión de framework usted vea errores de SQL asociados a creación de campos que ya existen.
 
 -creacion combos con valores manuales no almacena el valor
 

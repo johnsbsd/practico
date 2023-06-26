@@ -168,15 +168,18 @@
             echo '<i class="fa fa-info-circle fa-fw"></i>  Total Endpoints y/o Servicios publicados en este sistema: <div class="btn btn-success"><b>'.$TotalMetodos.'</b></div>';
         echo '</div>';
         
-        
         //Determina si recibio APIKey y APISecret de pruebas y son validas, sino las borra
-        $MensajeVerificacionAPI="";
-        $ResultadoConsultaAPI=PCO_EjecutarSQL("SELECT * FROM core_llaves_api WHERE llave=? AND secreto=? ","$APIKeyUsuario$_SeparadorCampos_$APISecretUsuario")->fetch();
-        if ($ResultadoConsultaAPI["id"]=="")
+        $MensajeVerificacionAPI=">";
+        if ($APIKeyUsuario!="" && $APISecretUsuario!="")
             {
-                $APIKeyUsuario="";
-                $APISecretUsuario="";
-                $MensajeVerificacionAPI="<font color=red><b>Las llaves suministradas no son v&aacute;lidas.  Verifique e intente nuevamente</b></font><br>";
+                $MensajeVerificacionAPI="";
+                $ResultadoConsultaAPI=PCO_EjecutarSQL("SELECT * FROM core_llaves_api WHERE llave=? AND secreto=? ","$APIKeyUsuario$_SeparadorCampos_$APISecretUsuario")->fetch();
+                if ($ResultadoConsultaAPI["id"]=="")
+                    {
+                        $APIKeyUsuario="";
+                        $APISecretUsuario="";
+                        $MensajeVerificacionAPI="<font color=red><b>Las llaves suministradas no son v&aacute;lidas.  Verifique e intente nuevamente</b></font><br>";
+                    }
             }
 
         //Agrega campos para pruebas directas de la API
