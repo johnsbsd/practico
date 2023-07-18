@@ -37,9 +37,11 @@ ArchivosFijos=" tmp/par_cambios.txt tmp/par_sql.txt tmp/par_compat.txt tmp/leame
 #Agregar un texto para parches sin version que al menos recomiende la minima:  SE RECOMIENDA APLICAR A UNA VERSION MINIMA DE xx.xx
 LogCambios="
 * Added [CORE]: Parametrizacion de aplicacion permite definir los tipos de escapado de cadenas cuando se recuperan campos tipo texto corto, valores manuales de listas de selección y contraseñas desde el servidor.  Esto aumenta compatibilidad con sets de caracteres adicionales soportados por sistemas operativos anteriores.
+* Enhan [CORE]: Ejecución de scripts personalizados tipo PHP no se hace mediante la salida al sistema operativo, sino directamente sobre el script en tiempo de ejecución para permitir el uso del framework en todas sus funciones y contextos.
 * Added [CORE]: Documentador de APIs y servicios web agrega la posibilidad de ingresar una API Key y API Secret para realizar pruebas en línea de los servicios autorizados.
 * Fixed [CORE]: Ajustes de visibilidad y permisos para elementos internos que sólo deben ser permitidos a usuarios administradores evitando llamados manuales.
 * Enhan [PCODER]: Agregados indices a tablas de historiales para recuperación rápida de versiones previas de archivos.
+* Enhan [CORE]: Generado nuevo alias de usuario SQLog:scripts que permite hacer seguimiento y analítica a la ejecución de los diferentes scripts personalizados sobre el sistema.
 
 NOTA: Es normal que en la aplicacion incremetal de este parche de actualización o de su siguiente versión de framework usted vea errores de SQL asociados a creación de campos que ya existen.
 
@@ -88,6 +90,8 @@ INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ord
 INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('htmlentities_charsets', 'Shift_JIS', 'Shift_JIS (SJIS, SJIS-win, cp932, 932) Japones', '12');
 INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('htmlentities_charsets', 'EUC-JP', 'EUC-JP (EUCJP, eucJP-win) Japones', '13');
 INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('htmlentities_charsets', 'MacRoman', 'MacRoman: Juego de caracteres que fue utilizado por Mac OS.', '14');
+
+UPDATE core_scripts SET ejecuciones=0 WHERE ejecuciones=NULL;
 
 UPDATE core_opcionlista SET valor_visual = REPLACE(valor_visual, '{ $ ', '{$');
 UPDATE core_opcionlista SET valor_interno = REPLACE(valor_interno, '{ $ ', '{$');

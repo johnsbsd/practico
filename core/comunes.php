@@ -107,7 +107,7 @@ function PCO_Base64UrlDecode($CadenaEnBase64URL)
 */
 function PCO_EvaluarCodigoExterno($CodigoUnicoScript,$Silenciar)
     {
-        global $PCO_ArchivoScript;
+        global $PCO_ArchivoScript,$PCOSESS_LoginUsuario;
         
         //Determina si debe o no silenciar la salida de la ejecucion.  Cualquier valor silencia la salida
         $SilenciarSalida="No";
@@ -147,100 +147,111 @@ function PCO_EvaluarCodigoExterno($CodigoUnicoScript,$Silenciar)
                 //Valida que el lenguaje si este configurado para ejecutarse en el entorno actual
                 if ($Lenguaje_CMD_EJECUCION!="")
                     {
-                        //Crea un archivo temporal con el contenido del script
-                    	$ArchivoInclusionTemporal=PCO_GenerarArchivoTemporal();
-                    	$MetadatosArchivoCreado = stream_get_meta_data ( $ArchivoInclusionTemporal );
-                    	$RutaArchivoTemporal = $MetadatosArchivoCreado ['uri'];
-
-                        fwrite ( $ArchivoInclusionTemporal, $Script_CUERPO );
-
-                        //Hace una copia del archivo temporal sobre la carpeta temporal del framework que se garantiza escritura para proceso de compilacion
-                        $ArchivoAleatorio="PCOScript_".PCO_TextoAleatorio(20);
-                        $RutaArchivoFuente = "tmp/practico_scripts/".$ArchivoAleatorio.".".$Lenguaje_PRIMERAEXTENSION;
-                        @copy($RutaArchivoTemporal, $RutaArchivoFuente);
-
-                        //Si el lenguaje esta configurado para ser compilado entonces hace proceso de compilacion
-                        //TODO
-                        if (trim($Lenguaje_CMD_COMPILACION)!="")
+                        //Si el lenguaje es PHP no usa el metodo externo, se redirecciona al interno para tomar todos los contextos y funciones del framework
+                        if($Script_LENGUAJE=="PHP")
                             {
-                                echo "Scripts externos compilados no disponibles en este sistema.";
-                                /*
-                                //Ejecuta reemplazo de variable PCO_ArchivoScript dentro de los compandos en caso que se requiera
-                                $PCO_ArchivoScript=$RutaArchivoFuente; //Asigna ruta generada temporal a la variable para que sea reemplazada en el comando
-                                $Lenguaje_CMD_COMPILACION=PCO_ReemplazarVariablesPHPEnCadena($Lenguaje_CMD_COMPILACION);
-
-                                //Su ubica en el path de instalacion del Framework para correr desde alli los comandos de compilacion
-                                chdir(getcwd()."/tmp/practico_scripts");
-                                //echo system("cd ".getcwd()."/tmp"."; ".$Lenguaje_CMD_COMPILACION." ".$RutaArchivoFuente);
-                                
-                                //system("gcc -o {$ArchivoAleatorio}.out {$ArchivoAleatorio}.c ");
-                                //system("./{$ArchivoAleatorio}.out");
-
-
-                                $ResultadoCompilacion=system($Lenguaje_CMD_COMPILACION." ".$RutaArchivoFuente);
-
-// echo "Temp=".$RutaArchivoTemporal;
-// echo "Comp=".$RutaArchivoFuente;
-// echo "CMD=".$Lenguaje_CMD_COMPILACION." ".$RutaArchivoFuente;
-                                // $RutaArchivoTemporal=$RutaArchivoTemporal.".out";
-                                // $Lenguaje_CMD_EJECUCION="./";
-                                // $ResultadoEvaluacionScript=system($Lenguaje_CMD_EJECUCION." ".$RutaArchivoTemporal);
-
-                                //Elimina archivo fuente copiado para compilacio
-                                @unlink ($RutaArchivoFuente);
-                                */
+                                PCO_Auditar("Usuario={$PCOSESS_LoginUsuario} EjecutaScript={$CodigoUnicoScript} Lenguaje={$Script_LENGUAJE}","SQLog:scripts");
+                                PCO_EvaluarCodigo($Script_CUERPO);
                             }
-
-                    
-                        //Ejecuta el script
-                        try
+                        else
                             {
-                                //Ejecuta reemplazo de variable PCO_ArchivoScript dentro de los compandos en caso que se requiera
-                                $PCO_ArchivoScript=$RutaArchivoTemporal; //Asigna ruta generada temporal a la variable para que sea reemplazada en el comando
-                                $Lenguaje_CMD_EJECUCION=PCO_ReemplazarVariablesPHPEnCadena($Lenguaje_CMD_EJECUCION);
-
-                                //TODO OPCIONAL: intentar la ejecucion del comando base para determinar su codigo de salida y posible error previamente
-
-                                //Por ahora asume comando solo de ejecucion (lenguajes interpretados)
-                                PCO_Auditar("{$PCOSESS_LoginUsuario} Ejecuta Script={$CodigoUnicoScript} Lenguaje={$Script_LENGUAJE} Modo={$Script_MODOEJECUCION} Comando={$Lenguaje_CMD_EJECUCION} Archivo={$RutaArchivoTemporal}","SQLog:admin");
-                                if ($Script_MODOEJECUCION=="shell_exec")
+                                //Crea un archivo temporal con el contenido del script
+                            	$ArchivoInclusionTemporal=PCO_GenerarArchivoTemporal();
+                            	$MetadatosArchivoCreado = stream_get_meta_data ( $ArchivoInclusionTemporal );
+                            	$RutaArchivoTemporal = $MetadatosArchivoCreado ['uri'];
+        
+                                fwrite ( $ArchivoInclusionTemporal, $Script_CUERPO );
+        
+                                //Hace una copia del archivo temporal sobre la carpeta temporal del framework que se garantiza escritura para proceso de compilacion
+                                $ArchivoAleatorio="PCOScript_".PCO_TextoAleatorio(20);
+                                $RutaArchivoFuente = "tmp/practico_scripts/".$ArchivoAleatorio.".".$Lenguaje_PRIMERAEXTENSION;
+                                @copy($RutaArchivoTemporal, $RutaArchivoFuente);
+        
+                                //Si el lenguaje esta configurado para ser compilado entonces hace proceso de compilacion
+                                //TODO
+                                if (trim($Lenguaje_CMD_COMPILACION)!="")
                                     {
-                                    	if (function_exists('shell_exec'))
-                                            $ResultadoEvaluacionScript=shell_exec($Lenguaje_CMD_EJECUCION." ".$RutaArchivoTemporal);
-                                        else
-                                            echo "Su instalacion de PHP en el servidor no tiene soporte para la funcion shell_exec";
+                                        echo "Scripts externos compilados no disponibles en este sistema.";
+                                        /*
+                                        //Ejecuta reemplazo de variable PCO_ArchivoScript dentro de los compandos en caso que se requiera
+                                        $PCO_ArchivoScript=$RutaArchivoFuente; //Asigna ruta generada temporal a la variable para que sea reemplazada en el comando
+                                        $Lenguaje_CMD_COMPILACION=PCO_ReemplazarVariablesPHPEnCadena($Lenguaje_CMD_COMPILACION);
+        
+                                        //Su ubica en el path de instalacion del Framework para correr desde alli los comandos de compilacion
+                                        chdir(getcwd()."/tmp/practico_scripts");
+                                        //echo system("cd ".getcwd()."/tmp"."; ".$Lenguaje_CMD_COMPILACION." ".$RutaArchivoFuente);
+                                        
+                                        //system("gcc -o {$ArchivoAleatorio}.out {$ArchivoAleatorio}.c ");
+                                        //system("./{$ArchivoAleatorio}.out");
+        
+        
+                                        $ResultadoCompilacion=system($Lenguaje_CMD_COMPILACION." ".$RutaArchivoFuente);
+        
+        // echo "Temp=".$RutaArchivoTemporal;
+        // echo "Comp=".$RutaArchivoFuente;
+        // echo "CMD=".$Lenguaje_CMD_COMPILACION." ".$RutaArchivoFuente;
+                                        // $RutaArchivoTemporal=$RutaArchivoTemporal.".out";
+                                        // $Lenguaje_CMD_EJECUCION="./";
+                                        // $ResultadoEvaluacionScript=system($Lenguaje_CMD_EJECUCION." ".$RutaArchivoTemporal);
+        
+                                        //Elimina archivo fuente copiado para compilacio
+                                        @unlink ($RutaArchivoFuente);
+                                        */
                                     }
-                                if ($Script_MODOEJECUCION=="exec")
+        
+                            
+                                //Ejecuta el script
+                                try
                                     {
-                                        if (function_exists('exec'))
-                                            $ResultadoEvaluacionScript=exec($Lenguaje_CMD_EJECUCION." ".$RutaArchivoTemporal);
-                                        else
-                                            echo "Su instalacion de PHP en el servidor no tiene soporte para la funcion exec";
+                                        //Ejecuta reemplazo de variable PCO_ArchivoScript dentro de los compandos en caso que se requiera
+                                        $PCO_ArchivoScript=$RutaArchivoTemporal; //Asigna ruta generada temporal a la variable para que sea reemplazada en el comando
+                                        $Lenguaje_CMD_EJECUCION=PCO_ReemplazarVariablesPHPEnCadena($Lenguaje_CMD_EJECUCION);
+        
+                                        //TODO OPCIONAL: intentar la ejecucion del comando base para determinar su codigo de salida y posible error previamente
+        
+                                        //Por ahora asume comando solo de ejecucion (lenguajes interpretados)
+                                        PCO_Auditar("Usuario={$PCOSESS_LoginUsuario} EjecutaScript={$CodigoUnicoScript} Lenguaje={$Script_LENGUAJE} Modo={$Script_MODOEJECUCION} Comando={$Lenguaje_CMD_EJECUCION} Archivo={$ArchivoAleatorio}","SQLog:scripts");
+        
+        
+                                                if ($Script_MODOEJECUCION=="shell_exec")
+                                                    {
+                                                    	if (function_exists('shell_exec'))
+                                                            $ResultadoEvaluacionScript=shell_exec($Lenguaje_CMD_EJECUCION." ".$RutaArchivoTemporal);
+                                                        else
+                                                            echo "Su instalacion de PHP en el servidor no tiene soporte para la funcion shell_exec";
+                                                    }
+                                                if ($Script_MODOEJECUCION=="exec")
+                                                    {
+                                                        if (function_exists('exec'))
+                                                            $ResultadoEvaluacionScript=exec($Lenguaje_CMD_EJECUCION." ".$RutaArchivoTemporal);
+                                                        else
+                                                            echo "Su instalacion de PHP en el servidor no tiene soporte para la funcion exec";
+                                                    }
+                                                if ($Script_MODOEJECUCION=="system")
+                                                    {
+                                                        if (function_exists('system'))
+                                                            $ResultadoEvaluacionScript=system($Lenguaje_CMD_EJECUCION." ".$RutaArchivoTemporal);
+                                                        else
+                                                            echo "Su instalacion de PHP en el servidor no tiene soporte para la funcion system";
+                                                    }
+                                                if ($Script_MODOEJECUCION=="passthru")
+                                                    {
+                                                        if (function_exists('passthru'))
+                                                            $ResultadoEvaluacionScript=passthru($Lenguaje_CMD_EJECUCION." ".$RutaArchivoTemporal);
+                                                        else
+                                                            echo "Su instalacion de PHP en el servidor no tiene soporte para la funcion passthru";
+                                                    }
                                     }
-                                if ($Script_MODOEJECUCION=="system")
+                                catch (Exception $e)
                                     {
-                                        if (function_exists('system'))
-                                            $ResultadoEvaluacionScript=system($Lenguaje_CMD_EJECUCION." ".$RutaArchivoTemporal);
-                                        else
-                                            echo "Su instalacion de PHP en el servidor no tiene soporte para la funcion system";
+                                        $MensajeErrorEjecucion="Usuario={$PCOSESS_LoginUsuario} ErrorDeScript={$CodigoUnicoScript} Lenguaje={$Script_LENGUAJE} Archivo={$ArchivoAleatorio}: ".$e->getMessage();
+                                        echo $MensajeErrorEjecucion;
+                                        PCO_Auditar($MensajeErrorEjecucion,"SECLog:event");
                                     }
-                                if ($Script_MODOEJECUCION=="passthru")
-                                    {
-                                        if (function_exists('passthru'))
-                                            $ResultadoEvaluacionScript=passthru($Lenguaje_CMD_EJECUCION." ".$RutaArchivoTemporal);
-                                        else
-                                            echo "Su instalacion de PHP en el servidor no tiene soporte para la funcion passthru";
-                                    }
-                            }
-                        catch (Exception $e)
-                            {
-                                $MensajeErrorEjecucion="{$PCOSESS_LoginUsuario} Error de ejecucion Script={$CodigoUnicoScript} Lenguaje={$Script_LENGUAJE} Archivo={$RutaArchivoTemporal}: ".$e->getMessage();
-                                echo $MensajeErrorEjecucion;
-                                PCO_Auditar($MensajeErrorEjecucion,"SECLog:event");
-                            }
-                    
-                        //Cierra el archivo de script y ademas lo elimina
-                        fclose ( $ArchivoInclusionTemporal );
+                            
+                                //Cierra el archivo de script y ademas lo elimina
+                                fclose ( $ArchivoInclusionTemporal );
+                            } //Fin Si no es PHP
                     }
                 else
                     {
