@@ -1601,12 +1601,23 @@ function PCO_ExportarDefinicionesXML($TipoElementos,$ListaElementos,$tipo_copia_
                         //Exporta elementos tipo formulario
                         if ($TipoElementos=="Frm")
                             {
-                                //Verifica primero que si exista el ID de informe asociado antes de proceder
+                                //Verifica primero que si exista el ID de formulario asociado antes de proceder
                                 $RegistroElemento=@PCO_EjecutarSQL("SELECT id FROM ".$TablasCore."formulario WHERE id = '$ElementoExportar' ")->fetch();
                                 if ($RegistroElemento["id"]!="")
                                     {
                                         $PCO_NombreArchivoXML=$PrefijoPath."FormID_".$ElementoExportar.$InfijoPath.".xml";
                                         PCO_ExportarXMLFormulario($ElementoExportar,$tipo_copia_objeto,$PCO_NombreArchivoXML);
+                                    }
+                            }
+                        //Exporta elementos tipo script personalizado
+                        if ($TipoElementos=="Scr")
+                            {
+                                //Verifica primero que si exista el codigo de script asociado antes de proceder
+                                $RegistroElemento=@PCO_EjecutarSQL("SELECT codigo FROM ".$TablasCore."scripts WHERE codigo = '$ElementoExportar' ")->fetch();
+                                if ($RegistroElemento["codigo"]!="")
+                                    {
+                                        $PCO_NombreArchivoXML=$PrefijoPath."ScriptID_".$ElementoExportar.$InfijoPath.".xml";
+                                        PCO_ExportarXMLScript($ElementoExportar,$PCO_NombreArchivoXML);
                                     }
                             }
                     }
@@ -2151,6 +2162,90 @@ function PCO_ExportarXMLFormulario($formulario,$tipo_copia_objeto,$PCO_NombreArc
 				{
 					echo '<form name="cancelar" action="'.$ArchivoCORE.'" method="POST">
 						<input type="Hidden" name="PCO_Accion" value="PCO_AdministrarFormularios">
+						<input type="Hidden" name="PCO_ErrorTitulo" value="'.$MULTILANG_ErrorDatos.'">
+						<input type="Hidden" name="PCO_ErrorDescripcion" value="'.$mensaje_error.'">
+						</form>
+						<script type="" language="JavaScript"> document.cancelar.submit();  </script>';
+				}
+    }
+
+
+########################################################################
+########################################################################
+/*
+	Function: PCO_ExportarXMLScript
+	Exporta las especificaciones de un script personalizado a una cadena XML valida dentro de un archivo especificado
+
+	Variables de entrada:
+
+		codigo - Identificador unico del script personalizado que se desea exportar
+
+	Salida:
+
+		Archivo con el elemento exportado
+*/
+function PCO_ExportarXMLScript($codigo,$PCO_NombreArchivoXML="")
+    {
+        global $ArchivoCORE,$_SeparadorCampos_,$TablasCore,$ListaCamposSinID_scripts,$ConexionPDO;
+        global $MULTILANG_ErrorDatos,$MULTILANG_ErrorTiempoEjecucion,$MULTILANG_Descargar;
+        global $PCO_VersionActual,$Nombre_Aplicacion,$Version_Aplicacion,$PCOSESS_LoginUsuario,$PCO_FechaOperacionGuiones,$PCO_HoraOperacionPuntos,$PCO_FechaOperacion,$PCO_HoraOperacion;
+
+			$mensaje_error="";
+			if ($codigo=="")
+				$mensaje_error=$MULTILANG_ErrorTiempoEjecucion.".  No ingreso ID de Script personalizado / Custom Script ID not entered";
+			$tipo_copia_objeto=="XML_IdEstatico";
+
+			$Contenido_XML="";
+
+			if ($mensaje_error=="")
+				{
+							// Inicia el archivo XML
+							$Contenido_XML.="<?xml version=\"1.0\" encoding=\"utf-8\" ?>
+<objetos_practicos>
+	<descripcion>
+		<tipo_objeto>Script</tipo_objeto>
+		<version_practico>$PCO_VersionActual</version_practico>
+		<tipo_exportacion>$tipo_copia_objeto</tipo_exportacion>
+		<sistema_origen>$Nombre_Aplicacion</sistema_origen>
+		<version>$Version_Aplicacion</version>
+		<usuario_generador>$PCOSESS_LoginUsuario</usuario_generador>
+		<fecha_exportacion>$PCO_FechaOperacionGuiones</fecha_exportacion>
+		<hora_exportacion>$PCO_HoraOperacionPuntos</hora_exportacion>
+	</descripcion>";
+							// Exporta tabla core_scripts
+							$Contenido_XML .= "
+	<core_scripts>";
+							// Busca datos y genera XML de cada registro
+							$consulta=PCO_EjecutarSQL("SELECT id,$ListaCamposSinID_scripts FROM ".$TablasCore."scripts WHERE codigo=?","$codigo");
+							$registro = $consulta->fetch();
+							$Contenido_XML .=PCO_ConvertirRegistroXML($registro,"id,".$ListaCamposSinID_scripts);
+							$Contenido_XML .= "
+	</core_scripts>";
+							// Finaliza el archivo XML
+							$Contenido_XML .= "
+</objetos_practicos>";
+
+							PCO_Auditar("Crea copia $tipo_copia_objeto de script personalizado $codigo");
+
+							//Guarda la cadena generada en el archivo XML
+							if ($PCO_NombreArchivoXML=="")
+        						$PCO_NombreArchivoXML="tmp/ScriptID_".$codigo."_".$PCO_FechaOperacion."_".$PCO_HoraOperacion.".xml";
+							$PCO_PunteroArchivo = fopen($PCO_NombreArchivoXML, "w");
+							if($PCO_PunteroArchivo==false)
+								die("No se puede abrir el archivo de exportacion");
+							fputs ($PCO_PunteroArchivo, $Contenido_XML);
+							fclose ($PCO_PunteroArchivo);
+
+							//Presenta la ventana con informacion y enlace de descarga
+							?>
+								<a class="btn btn-success btn-block" href="<?php echo $PCO_NombreArchivoXML; ?>" target="_BLANK" download><i class="fa fa-floppy-o"></i> <?php echo $MULTILANG_Descargar." ".$PCO_NombreArchivoXML; ?></a>
+							<?php
+				}
+			else
+				{
+					echo '<form name="cancelar" action="'.$ArchivoCORE.'" method="POST">
+						<input type="Hidden" name="PCO_Accion" value="PCO_CargarObjeto">
+						<input type="Hidden" name="PCO_Objeto" value="frm:-38:1">
 						<input type="Hidden" name="PCO_ErrorTitulo" value="'.$MULTILANG_ErrorDatos.'">
 						<input type="Hidden" name="PCO_ErrorDescripcion" value="'.$mensaje_error.'">
 						</form>

@@ -70,3 +70,4 @@
 	$ListaCamposSinID_tareascron='titulo,fecha_creacion,codigo_tarea,script_php,habilitado,historial_ejecucion';
 	$ListaCamposSinID_acortadorurls='url_larga,url_corta,usuario,fecha_creacion,hora_creacion,contador_uso';
 	$ListaCamposSinID_modulos_app='nombre,descripcion,desarrolladores';
+	$ListaCamposSinID_scripts='titulo,codigo,fecha_creacion,descripcion,creado_por,lenguaje,cuerpo,es_snippet,moduloapp,ejecuciones,modo_ejecucion';

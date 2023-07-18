@@ -1046,7 +1046,7 @@ $salida=sprintf("<?php
 
 				Variables de entrada:
 
-					TipoElementos - Indica el tipo de elementos que deben ser exportados:  Inf o Frm
+					TipoElementos - Indica el tipo de elementos que deben ser exportados:  Inf, Frm o Scr
 					ListaElementos - Una lista de los elementos de ese tipo que deben ser exportados en un formato similar a la impresion  EJ: 1,2,5-6,8,12-30
 					tipo_copia_objeto - Indica si los objetos seran generados con ID estatico o dinamico: XML_IdEstatico | XML_IdDinamico
 
@@ -1060,7 +1060,7 @@ $salida=sprintf("<?php
 
 			$mensaje_error="";
 			//Verifica todas las variables obligatorias
-			if ($TipoElementos!="Frm" && $TipoElementos!="Inf")  $mensaje_error="Tipo de elementos a exportar incorrectos";
+			if ($TipoElementos!="Frm" && $TipoElementos!="Inf" && $TipoElementos!="Scr")  $mensaje_error="Tipo de elementos a exportar incorrectos";
 			if ($ListaElementos=="")  $mensaje_error="No se ha provisto una lista de elementos a exportar valida";
 
 			if ($mensaje_error=="")
