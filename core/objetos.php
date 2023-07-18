@@ -115,7 +115,6 @@
                                     PCO_SelectorIconosAwesome();
                                     PCO_SelectorObjetosMenu();
                                 }
-
 							PCO_CargarFormulario($partes_objeto[1],@$en_ventana,@$PCO_CampoBusquedaBD,@$PCO_ValorBusquedaBD);
 						}
 					//Si es un informe lo llama con sus parámetros

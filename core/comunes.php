@@ -117,11 +117,11 @@ function PCO_EvaluarCodigoExterno($CodigoUnicoScript,$Silenciar)
         $ResultadoEvaluacionScript="";
         
         //Recupera detalles del script 
-        $RegistroScript=PCO_EjecutarSQL("SELECT * FROM core_scripts WHERE codigo_script='$CodigoUnicoScript'")->fetch();
+        $RegistroScript=PCO_EjecutarSQL("SELECT * FROM core_scripts WHERE codigo='$CodigoUnicoScript'")->fetch();
         if ($RegistroScript["id"]!="")
             {
                 //Lleva estadística de ejecuciones 
-                PCO_EjecutarSQLUnaria("UPDATE core_scripts SET ejecuciones=ejecuciones+1 WHERE codigo_script='$CodigoUnicoScript'");
+                PCO_EjecutarSQLUnaria("UPDATE core_scripts SET ejecuciones=ejecuciones+1 WHERE codigo='$CodigoUnicoScript'");
     
                 //Sin importar el lenguaje, reemplaza cualquier variable en notacion PHP sobre el script deseado dando asi compatibilidad al transporte de variables entre lenguajes
                 $Script_CUERPO=PCO_ReemplazarVariablesPHPEnCadena($RegistroScript["cuerpo"]);
