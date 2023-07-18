@@ -7,8 +7,8 @@
 		<sistema_origen></sistema_origen>
 		<version></version>
 		<usuario_generador></usuario_generador>
-		<fecha_exportacion>2023-06-26</fecha_exportacion>
-		<hora_exportacion>10:32</hora_exportacion>
+		<fecha_exportacion>2023-07-17</fecha_exportacion>
+		<hora_exportacion>20:12</hora_exportacion>
 	</descripcion>
 	<core_formulario>
 	<id>LTc=</id>
@@ -166,7 +166,7 @@
 	<alto>MA==</alto>
 	<barra_herramientas>MA==</barra_herramientas>
 	<fila_unica>MA==</fila_unica>
-	<lista_opciones>LF9PUFRHUk9VUF98TG9ncyBJbnRlcm5vcy9JbnRlcm5hbCBMb2dzLEFQSS5QcmFjdGljbyxTUUxvZzphZG1pbixTUUxvZzplcnJvcixTRUNMb2c6ZXZlbnQsUENPLkNyb24sX09QVEdST1VQXyxfT1BUR1JPVVBffFVzdWFyaW9zIC8gVXNlcnMs</lista_opciones>
+	<lista_opciones>LF9PUFRHUk9VUF98TG9ncyBJbnRlcm5vcy9JbnRlcm5hbCBMb2dzLEFQSS5QcmFjdGljbyxTUUxvZzphZG1pbixTUUxvZzpzY3JpcHRzLFNRTG9nOmVycm9yLFNFQ0xvZzpldmVudCxQQ08uQ3JvbixfT1BUR1JPVVBfLF9PUFRHUk9VUF98VXN1YXJpb3MgLyBVc2Vycyw=</lista_opciones>
 	<origen_lista_opciones>Y29yZV91c3VhcmlvLm5vbWJyZQ==</origen_lista_opciones>
 	<origen_lista_valores>Y29yZV91c3VhcmlvLmxvZ2lu</origen_lista_valores>
 	<valor_etiqueta></valor_etiqueta>
