@@ -1704,7 +1704,7 @@ function PCO_ParsearListasElementos($ListaElementos)
                 else
                     {
                         //Revisa que el rango si sea un numero antero antes de seguir
-                        if (is_numeric($Rango))
+                        //if (is_numeric($Rango))   //Previo a exportacion de scripts validaba elementos individuales para ver si eran numeros ID de elementos.  En scripts son cadenas.
                             $ArregloElementos[]=$Rango;
                     }
             }
