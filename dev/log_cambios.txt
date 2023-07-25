@@ -41,6 +41,7 @@ LogCambios="
 * Added [CORE]: Parametrizacion de aplicacion permite definir los tipos de escapado de cadenas cuando se recuperan campos tipo texto corto, valores manuales de listas de selección y contraseñas desde el servidor.  Esto aumenta compatibilidad con sets de caracteres adicionales soportados por sistemas operativos anteriores.
 * Enhan [CORE]: Ejecución de scripts personalizados tipo PHP no se hace mediante la salida al sistema operativo, sino directamente sobre el script en tiempo de ejecución para permitir el uso del framework en todas sus funciones y contextos.
 * Added [CORE]: Documentador de APIs y servicios web agrega la posibilidad de ingresar una API Key y API Secret para realizar pruebas en línea de los servicios autorizados.
+* Added [CORE]: Opción de conexiones extra y replicación permite ahora la definición de operaciones y tags para clusterización.
 * Fixed [CORE]: Ajustes de visibilidad y permisos para elementos internos que sólo deben ser permitidos a usuarios administradores evitando llamados manuales.
 * Enhan [PCODER]: Agregados indices a tablas de historiales para recuperación rápida de versiones previas de archivos.
 * Enhan [CORE]: Generado nuevo alias de usuario SQLog:scripts que permite hacer seguimiento y analítica a la ejecución de los diferentes scripts personalizados sobre el sistema.
@@ -57,6 +58,10 @@ NOTA: Es normal que en la aplicacion incremetal de este parche de actualización
 ########################################################################
 #[ScriptBasedatos] Usado para tmp/par_sql.txt
 ScriptBasedatos="
+
+ALTER TABLE core_replicasbd ADD operaciones_cluster varchar(255) NOT NULL DEFAULT '';
+ALTER TABLE core_replicasbd ADD verificar_siempre int(1) NOT NULL DEFAULT '1';
+ALTER TABLE core_replicasbd ADD identificador varchar(5) NOT NULL DEFAULT '';
 
 INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('tipos_operacion_cluster', 'A', '', '1');
 INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('tipos_operacion_cluster', 'B', '', '2');

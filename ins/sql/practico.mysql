@@ -577,6 +577,9 @@ CREATE TABLE core_replicasbd (
   motorbd VARCHAR(255) NOT NULL DEFAULT '',
   puertobd VARCHAR(255) NOT NULL DEFAULT '',
   tipo_replica INTEGER(1) NOT NULL DEFAULT 0,
+  operaciones_cluster varchar(255) NOT NULL DEFAULT '',
+  verificar_siempre int(1) NOT NULL DEFAULT '1',
+  identificador varchar(5) NOT NULL DEFAULT '',
   PRIMARY KEY (id)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
