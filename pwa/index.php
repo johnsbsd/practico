@@ -51,6 +51,9 @@
 
 	+++ Marco de redireccion para aplicaciones con PWA Activado
 */
+    //Se redirige a la raiz de aplicacion
+    header('Location: ../index.php');
+    die();
 ?>
 <!DOCTYPE html>
 <html>

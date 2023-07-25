@@ -184,7 +184,7 @@
 					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
 						<i class="fa fa-cog fa-fw text-danger"></i> <i class="fa fa-caret-down text-danger"></i>
 					</a>
-					<ul class="dropdown-menu dropdown-alerts">
+					<ul class="dropdown-menu dropdown-alerts" >
                         <h6 class="dropdown-header"><?php echo ($MULTILANG_Configuracion); ?>:</h6>
 						<li>
 							<a data-toggle="modal" href="#myModalCONFIGURACION">

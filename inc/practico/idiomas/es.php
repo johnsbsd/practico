@@ -1294,7 +1294,7 @@
 	$MULTILANG_ChatDevel='Chat para desarrolladores';
 
 	//Modulo de replicas
-	$MULTILANG_ReplicaTitulo='Conexiones extra y Replicaci&oacute;n';
+	$MULTILANG_ReplicaTitulo='Conexiones extra, clusterizaci&oacute;n y Replicaci&oacute;n';
 	$MULTILANG_ReplicaDefinidos='Servidores de replicaci&oacute;n autom&aacute;tica definidos';
 	$MULTILANG_AgregarReplica='Agregar nueva conexion';
 	$MULTILANG_ReplicaTodo='Usar como replica espejo';

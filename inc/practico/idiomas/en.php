@@ -1294,7 +1294,7 @@
 	$MULTILANG_ChatDevel='Developers chat';
 
 	//Modulo de replicas
-	$MULTILANG_ReplicaTitulo='Extra Connections and Replication';
+	$MULTILANG_ReplicaTitulo='Extra Connections, clusters and Replication';
 	$MULTILANG_ReplicaDefinidos='Automatic replication servers defined';
 	$MULTILANG_AgregarReplica='Add a new connection';
 	$MULTILANG_ReplicaTodo='Use it as a mirror';
