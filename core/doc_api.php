@@ -259,7 +259,7 @@
                     echo '
                         <div class="well well-sm" style="margin-left:40px; margin-top:15px;">
                             <i class="fa fa-desktop fa-fw"></i>  <b>Ejemplo de salida:</b>
-                            <pre style="border-radius:10px; background-color:#2F2F47; color:white; margin-top:5px; height:200px;">'.$RegistroServicios["ejemplo_salida"].'</pre>
+                            <textarea readonly style="font-size:11px; font-family: terminal,console,monospace; width:100%; border-radius:10px; background-color:#2F2F47; color:white; margin-top:5px; height:150px;">'.$RegistroServicios["ejemplo_salida"].'</textarea>
                         </div>';
     
                         //Busca posibles parametros

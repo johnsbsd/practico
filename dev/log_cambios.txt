@@ -48,6 +48,7 @@ LogCambios="
 * Enhan [KANBAN]: Nuevos filtros disponibles por tablero para tareas por usuario que acepta las pruebas funcionales y usuario que acepta pruebas no funcionales.
 * Enhan [CORE]: Cambiado el nombre de campo interno con el codigo de los scripts personalizados de codigo_script a simplemente codigo para evitar problemas de filtro WAF en nombres de campo.
 * Enhan [CORE]: Controlada carga de archivos de perfil.  Unicamente se aceptan archivos en formato PNG y durante su carga el sistema renombrará de manera obligatoria la extensión de archivo para coincidir con tal formato.
+* Enhan [CORE]: Mejorada visualizacion de ejemplos de salida en APIs
 
 NOTA: Es normal que en la aplicacion incremetal de este parche de actualización o de su siguiente versión de framework usted vea errores de SQL asociados a creación de campos que ya existen.
 
