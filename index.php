@@ -194,7 +194,7 @@
         $tiempo_inicio_script = PCO_ObtenerMicrotime();
 
     // Importa autmaticamente definiciones de elementos internos en XML cuando encuentra alguna dentro de xml/
-    if(PCO_EsAdministrador(@$PCOSESS_LoginUsuario))
+    if(PCO_EsAdministrador(@$PCOSESS_LoginUsuario) || PCO_EsDesplegador(@$PCOSESS_LoginUsuario))
         { PCO_ImportarDefinicionesXML(0);  PCO_ImportarScriptsPHP(0); }
 
     // Incluye configuraciones OAuth

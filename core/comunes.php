@@ -3113,6 +3113,36 @@ function PCO_EsAdministrador($Usuario)
 ########################################################################
 ########################################################################
 /*
+	// Function: PCO_EsDesplegador
+	Determina si un login de usuario es desplegador (deployer) de plataforma o no
+
+	Variables de entrada:
+
+		Usuario - Login de usuario a verificar
+
+	Salida:
+		Cero (0) o uno (1) segun la pertenencia o no del usuario al grupo de deployers
+*/
+function PCO_EsDesplegador($Usuario)
+	{
+		global $PCOVAR_Administradores;
+		$ArregloAdmins=explode(",",$PCOVAR_Administradores);
+
+		//Recorre el arreglo de super-usuarios
+		$Resultado = 0;
+		if ($Usuario!="")
+			foreach ($ArregloAdmins as $UsuarioAdmin)
+				{
+					if (trim($UsuarioAdmin)==$Usuario)
+						$Resultado = 1;
+				}
+		return $Resultado;
+	}
+
+
+########################################################################
+########################################################################
+/*
 	// Function: PCO_BackupObtenerDatosTabla
 	Recupera los datos en formato Insert asociados a una tabla
 
