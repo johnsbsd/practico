@@ -916,7 +916,7 @@ if ($PCO_Accion=="PCO_EditarInforme")
 		$registro_informe = $resultado_informe->fetch();
         //Si el informe usa una conexion externa busca su configuracion
         if($registro_informe["conexion_origen_datos"]!="")
-		    $registro_conexiones=PCO_EjecutarSQL("SELECT id,".$ListaCamposSinID_replicasbd." FROM ".$TablasCore."replicasbd WHERE nombre='".$registro_informe["conexion_origen_datos"]."' ")->fetch();
+		    $registro_conexiones=PCO_EjecutarSQL("SELECT * FROM ".$TablasCore."replicasbd WHERE nombre='".$registro_informe["conexion_origen_datos"]."' ")->fetch();
   ?>
 
             <!-- Modal Tablas del informe -->

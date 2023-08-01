@@ -17,6 +17,7 @@ ListaArchivos="
 index.php
 core/actualizacion.php
 core/comunes.php
+core/informes.php
 core/objetos.php
 core/doc_api.php
 core/marco_nav.php
@@ -55,6 +56,7 @@ LogCambios="
 * Enhan [CORE]: Acción de actualización del framework se asegura que sea llamada por un usuario administrador.
 * Added [CORE]: Creado parametro que permite definir usuarios desplegadores (deployers) de plataforma.  Estos usuarios tienen permitida la generacion de empaquetados, instalacion de empaquetados y ejecucion/regeneración de scripts y definiciones de elementos sobre /xml/*
 * Added [CORE]: Conexiones extra permiten definir si se requiere crear conexion en tiempo de ejecucion o no.
+* Enhan [CORE]: Eliminacion de la variable dependiente ListaCamposSinID_replicasbd en diferentes modulos.
 
 
 
