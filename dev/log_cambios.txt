@@ -21,6 +21,7 @@ core/objetos.php
 core/doc_api.php
 core/marco_nav.php
 core/marco_conf.php
+core/conexiones_extra.php
 
 
 xml/*
@@ -46,13 +47,16 @@ LogCambios="
 * Added [CORE]: Opción de conexiones extra y replicación permite ahora la definición de operaciones y tags para clusterización.
 * Fixed [CORE]: Ajustes de visibilidad y permisos para elementos internos que sólo deben ser permitidos a usuarios administradores evitando llamados manuales.
 * Enhan [PCODER]: Agregados indices a tablas de historiales para recuperación rápida de versiones previas de archivos.
-* Enhan [CORE]: Generado nuevo alias de usuario SQLog:scripts que permite hacer seguimiento y analítica a la ejecución de los diferentes scripts personalizados sobre el sistema.
+* Added [CORE]: Generado nuevo alias de usuario SQLog:scripts que permite hacer seguimiento y analítica a la ejecución de los diferentes scripts personalizados sobre el sistema.
 * Enhan [KANBAN]: Nuevos filtros disponibles por tablero para tareas por usuario que acepta las pruebas funcionales y usuario que acepta pruebas no funcionales.
 * Enhan [CORE]: Cambiado el nombre de campo interno con el codigo de los scripts personalizados de codigo_script a simplemente codigo para evitar problemas de filtro WAF en nombres de campo.
 * Enhan [CORE]: Controlada carga de archivos de perfil.  Unicamente se aceptan archivos en formato PNG y durante su carga el sistema renombrará de manera obligatoria la extensión de archivo para coincidir con tal formato.
 * Enhan [CORE]: Usuarios administradores/desarrolladores son ahora definidos desde la opcion de parámetros del sistema y no desde el archivo de configuración.
 * Enhan [CORE]: Acción de actualización del framework se asegura que sea llamada por un usuario administrador.
-* Enhan [CORE]: Creado parametro que permite definir usuarios desplegadores (deployers) de plataforma.  Estos usuarios tienen permitida la generacion de empaquetados, instalacion de empaquetados y ejecucion/regeneración de scripts y definiciones de elementos sobre /xml/*
+* Added [CORE]: Creado parametro que permite definir usuarios desplegadores (deployers) de plataforma.  Estos usuarios tienen permitida la generacion de empaquetados, instalacion de empaquetados y ejecucion/regeneración de scripts y definiciones de elementos sobre /xml/*
+* Added [CORE]: Conexiones extra permiten definir si se requiere crear conexion en tiempo de ejecucion o no.
+
+
 
 Nuevas opciones de Empaquetado y despliegue
 
