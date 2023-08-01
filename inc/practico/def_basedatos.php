@@ -66,7 +66,7 @@
 	$ListaCamposSinID_llaves_api='nombre,llave,secreto,uri,dominio_autorizado,ip_autorizada,funciones_autorizadas';
 	$ListaCamposSinID_chat='from,to,message,sent,recd';
 	$ListaCamposSinID_monitoreo='tipo,pagina,peso,nombre,host,puerto,tipo_ping,saltos,comando,ancho,alto,tamano_resultado,ocultar_titulos,path,correo_alerta,alerta_sonora,milisegundos_lectura,alerta_vibracion,ultimo_estado,valor_minimo,valor_maximo,conexion_origen_datos,modo_compacto';
-	$ListaCamposSinID_replicasbd='nombre,servidorbd,basedatos,usuariobd,passwordbd,motorbd,puertobd,tipo_replica';
+	$ListaCamposSinID_replicasbd='nombre,servidorbd,basedatos,usuariobd,passwordbd,motorbd,puertobd,tipo_replica,operaciones_cluster,verificar_siempre,identificador';
 	$ListaCamposSinID_tareascron='titulo,fecha_creacion,codigo_tarea,script_php,habilitado,historial_ejecucion';
 	$ListaCamposSinID_acortadorurls='url_larga,url_corta,usuario,fecha_creacion,hora_creacion,contador_uso';
 	$ListaCamposSinID_modulos_app='nombre,descripcion,desarrolladores';
