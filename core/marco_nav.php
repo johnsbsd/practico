@@ -175,6 +175,21 @@
 				</script>
 
     <?php
+    
+            //Genera opcion especial de configuracion unicamente para el administrador
+			$PCOVAR_OpcionConfigAdministrador="";
+			if (PCO_EsAdministrador(@$PCOSESS_LoginUsuario))
+			    {
+			        $PCOVAR_OpcionConfigAdministrador='
+						<li>
+							<a data-toggle="modal" href="#myModalCONFIGURACION">
+								<div>
+									<i class="fa fa-wrench fa-fw"></i> '.$MULTILANG_ConfiguracionGeneral.'
+								</div>
+							</a>
+						</li>';
+			    }
+
 			//Despliega opciones de configuracion
 			if (PCO_EsAdministrador(@$PCOSESS_LoginUsuario) || PCO_EsDesplegador(@$PCOSESS_LoginUsuario) || PCO_EsEmpaquetador(@$PCOSESS_LoginUsuario))
 			{
@@ -187,13 +202,7 @@
 					<ul class="dropdown-menu dropdown-alerts" >
 
                         <h6 class="dropdown-header"><?php echo ($MULTILANG_Configuracion); ?>:</h6>
-						<li>
-							<a data-toggle="modal" href="#myModalCONFIGURACION">
-								<div>
-									<i class="fa fa-wrench fa-fw"></i> <?php echo $MULTILANG_ConfiguracionGeneral; ?>
-								</div>
-							</a>
-						</li>
+                        <?php echo $PCOVAR_OpcionConfigAdministrador; ?>
 						<li>
 							<a href="javascript:document.PCO_EditarConfiguracionOAuth.submit();">
 								<div>
