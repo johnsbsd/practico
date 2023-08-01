@@ -57,6 +57,7 @@ LogCambios="
 * Added [CORE]: Creado parametro que permite definir usuarios desplegadores (deployers) de plataforma.  Estos usuarios tienen permitida la generacion de empaquetados, instalacion de empaquetados y ejecucion/regeneración de scripts y definiciones de elementos sobre /xml/*
 * Added [CORE]: Conexiones extra permiten definir si se requiere crear conexion en tiempo de ejecucion o no.
 * Enhan [CORE]: Eliminacion de la variable dependiente ListaCamposSinID_replicasbd en diferentes modulos.
+* Added [KANBAN]: Posibilidad de archivar de manera masiva todas las tareas de la última ventana de un tablero.
 
 
 

@@ -217,10 +217,26 @@
 */
 	if ($PCO_Accion=="ArchivarTareaKanban")
 		{
-			// Elimina los datos
-			PCO_EjecutarSQLUnaria("UPDATE ".$TablasCore."kanban SET archivado=1 WHERE id=?","$IdTareaKanban");
-			PCO_Auditar("Archiva tarea Kanban $IdTareaKanban");
-			PCO_RedireccionATableroKanban($ID_TableroKanban);
+			// Archiva tareas individuales
+			if ($ArchivadoMasivo=="0" || $ArchivadoMasivo=="")
+			    {
+        			PCO_EjecutarSQLUnaria("UPDATE ".$TablasCore."kanban SET archivado=1 WHERE id=?","$IdTareaKanban");
+        			PCO_Auditar("Archiva tarea Kanban $IdTareaKanban");
+        			PCO_RedireccionATableroKanban($ID_TableroKanban);
+			    }
+			
+			//Archiva tareas grupales por la ultima columna
+			if ($ArchivadoMasivo=="1")
+			    {
+                    $PCOVAR_TareasActivasUltimaColumna=PCO_EjecutarSQL("SELECT id FROM ".$TablasCore."kanban WHERE tablero='{$ID_TableroKanban}' AND archivado=0 AND columna>0 AND columna='{$ColumnaTablero}'");
+                    while ($PCOVAR_RegistroTarea=$PCOVAR_TareasActivasUltimaColumna->fetch())
+                        {
+                            $IdTareaKanban=$PCOVAR_RegistroTarea["id"];
+                			//PCO_EjecutarSQLUnaria("UPDATE ".$TablasCore."kanban SET archivado=1 WHERE id=?","$IdTareaKanban");
+                			PCO_Auditar("Archiva tarea Kanban $IdTareaKanban");
+                			PCO_RedireccionATableroKanban($ID_TableroKanban);
+                        }
+			    }
 		}
 
 
@@ -683,11 +699,14 @@ function PCO_PresentarTableroKanban($ID_TableroKanban)
                                 echo "<div class='{$CadenaColumnas}' ondrop='Soltar(event,$ConteoColumna)' ondragover='PermitirSoltar(event,$ConteoColumna)' id='MarcoBotonOcultar".$ConteoColumna."' style='border-left:1px solid; border-color:lightgray;' >";
                                     echo "<div data-toggle='tooltip' data-html='true' data-placement='top' title='".$MULTILANG_ArrastrarTarea."' class='btn pull-left' ><i class='fa-1x'><i class='fa fa-stack-overflow'></i> <b>".$NombreColumna."</b> <font color=red>{$PorcentajeTotalAvanceColumna}%</font></i></div>";
                                             //echo "<div data-toggle='tooltip' data-html='true'  data-placement='top' title='<b>".$MULTILANG_AgregarNuevaTarea.":</b> ".$NombreColumna."' class='btn text-primary btn-xs pull-right' onclick='$(\"#myModalActividadKanban$ID_TableroKanban\").modal(\"show\"); document.datosfield$ID_TableroKanban.columna.value=$ConteoColumna;'><i class='fa fa-plus fa-fw fa-2x'></i></div>";
-                                            echo "<div data-toggle='tooltip' data-html='true'  data-placement='top' title='<b>".$MULTILANG_AgregarNuevaTarea.":</b> ".$NombreColumna."' class='btn text-primary btn-xs pull-right' onclick='PCO_CargarPopUP($ID_TableroKanban,$ConteoColumna,0);'><i class='fa fa-plus fa-fw fa-2x'></i></div>";
-                                            echo "<br>";
+                                            echo "<div class='text-nowrap' data-toggle='tooltip' data-html='true'  data-placement='top' title='<b>".$MULTILANG_AgregarNuevaTarea.":</b> ".$NombreColumna."' class='btn text-primary btn-xs pull-right' onclick='PCO_CargarPopUP($ID_TableroKanban,$ConteoColumna,0);'><i class='fa fa-plus fa-fw fa-2x'></i></div>";
+
+                                            //Si es la ultima columna muestra opcion para archivar todo
+                                            if ($ConteoColumna==count($ArregloColumnasTablero))
+                                                echo "<div class='row'><div align=center class='col-xs-12 col-sm-12 col-md-12 col-lg-12'><a href='{$ArchivoCORE}?PCO_Accion=ArchivarTareaKanban&ArchivadoMasivo=1&ID_TableroKanban={$ID_TableroKanban}&ColumnaTablero={$ConteoColumna}' class='btn btn-xs btn-warning'><i class='fa fa-archive fa-fw'></i> Archivar todo</a></div></div>";
 
                                             echo "<div id='MarcoTareasColumna$ConteoColumna'>
-                                            <br><br><div id='ColumnaKanbanMarcoArrastre".$ConteoColumna."'></div>";
+                                            <br><div id='ColumnaKanbanMarcoArrastre".$ConteoColumna."'></div>";
                                             //Busca las tarjetas de la columna siempre y cuando no esten ya archivadas
                                             $ResultadoTareas=PCO_EjecutarSQL("SELECT * FROM ".$TablasCore."kanban WHERE archivado<>1 AND columna=$ConteoColumna AND tablero='$ID_TableroKanban' {$CadenaFiltradoTareasKanban} ORDER BY peso ASC, id ASC ");
                                             while ($RegistroTareas=$ResultadoTareas->fetch())

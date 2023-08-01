@@ -372,7 +372,7 @@
                     echo '
                             <div class="well well-sm" style="margin-left:40px; margin-top:15px;">
                             <i class="fa fa-rocket fa-fw"></i>  <b>Ejemplos de llamado al servicio:</b><br>
-                            
+
                             <details style="display:inlineXXX;">
                                 <summary class="btn btn-default btn-xs">URL Directa</summary>
                                 <br><i class="fa fa-globe fa-fw"></i>  <i> Debe completar con sus par&aacute;metros seg&uacute;n aplique</i>:
