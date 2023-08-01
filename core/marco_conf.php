@@ -506,16 +506,6 @@
 												</span>
 											</div>
 
-											<div class="form-group input-group">
-												<span class="input-group-addon">
-													<i class="fa fa-users fa-fw"></i> <?php echo $MULTILANG_UsuariosAdmin; ?>:
-												</span>
-												<input name="PCOVAR_AdministradoresNEW" value="<?php echo $PCOVAR_Administradores; ?>" type="text" class="form-control">
-												<span class="input-group-addon">
-													<a  href="#" data-toggle="tooltip" data-html="true"  title="<b><?php echo $MULTILANG_Ayuda; ?></b><br><?php echo $MULTILANG_UsuariosAdminDes; ?>"><i class="fa fa-question-circle fa-fw text-info"></i></a>
-												</span>
-											</div>
-
 										</div>
 										<div class="col-md-6">
 

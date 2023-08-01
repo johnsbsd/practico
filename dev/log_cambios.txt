@@ -20,6 +20,7 @@ core/comunes.php
 core/objetos.php
 core/doc_api.php
 core/marco_nav.php
+core/marco_conf.php
 
 
 xml/*
@@ -51,13 +52,13 @@ LogCambios="
 * Enhan [CORE]: Controlada carga de archivos de perfil.  Unicamente se aceptan archivos en formato PNG y durante su carga el sistema renombrará de manera obligatoria la extensión de archivo para coincidir con tal formato.
 * Enhan [CORE]: Usuarios administradores/desarrolladores son ahora definidos desde la opcion de parámetros del sistema y no desde el archivo de configuración.
 * Enhan [CORE]: Acción de actualización del framework se asegura que sea llamada por un usuario administrador.
+* Enhan [CORE]: Creado parametro que permite definir usuarios desplegadores (deployers) de plataforma.  Estos usuarios tienen permitida la generacion de empaquetados, instalacion de empaquetados y ejecucion/regeneración de scripts y definiciones de elementos sobre /xml/*
 
 Nuevas opciones de Empaquetado y despliegue
 
 * Enhan [CORE]: Mejorada visualizacion de ejemplos de salida en APIs
 
 
-* Enhan [CORE]: Creado parametro que permite definir usuarios desplegadores (deployers) de plataforma.  Estos usuarios tienen permitida la generacion de empaquetados, instalacion de empaquetados y ejecucion/regeneración de scripts y definiciones de elementos sobre /xml/*
 
 NOTA: Es normal que en la aplicacion incremetal de este parche de actualización o de su siguiente versión de framework usted vea errores de SQL asociados a creación de campos que ya existen.
 
