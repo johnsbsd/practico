@@ -232,7 +232,7 @@
                     while ($PCOVAR_RegistroTarea=$PCOVAR_TareasActivasUltimaColumna->fetch())
                         {
                             $IdTareaKanban=$PCOVAR_RegistroTarea["id"];
-                			//PCO_EjecutarSQLUnaria("UPDATE ".$TablasCore."kanban SET archivado=1 WHERE id=?","$IdTareaKanban");
+                			PCO_EjecutarSQLUnaria("UPDATE ".$TablasCore."kanban SET archivado=1 WHERE id=?","$IdTareaKanban");
                 			PCO_Auditar("Archiva tarea Kanban $IdTareaKanban");
                 			PCO_RedireccionATableroKanban($ID_TableroKanban);
                         }
@@ -522,7 +522,7 @@ function PCO_PresentarTableroKanban($ID_TableroKanban)
             global $MULTILANG_Historia1,$MULTILANG_Historia2,$MULTILANG_Historia3,$PCO_FechaOperacionGuiones,$MULTILANG_Columna;
             global $funciones_activacion_datepickers,$IdiomaPredeterminado,$MULTILANG_FrmEstilo,$MULTILANG_InfCategoria,$MULTILANG_Finalizado;
             global $MULTILANG_BtnEstiloPredeterminado,$MULTILANG_BtnEstiloPrimario,$MULTILANG_BtnEstiloFinalizado,$MULTILANG_BtnEstiloInformacion,$MULTILANG_BtnEstiloAdvertencia,$MULTILANG_BtnEstiloPeligro;
-            global $MULTILANG_AsignadoA,$MULTILANG_SeleccioneUno,$MULTILANG_AsignadoADes,$MULTILANG_Peso,$MULTILANG_Prioridad;
+            global $MULTILANG_AsignadoA,$MULTILANG_SeleccioneUno,$MULTILANG_AsignadoADes,$MULTILANG_Peso,$MULTILANG_Prioridad,$MULTILANG_ArchivarTareaAdv;
             global $CadenaTablerosDisponibles,$MULTILANG_Actualizar,$MULTILANG_InfDataTableRegTotal,$MULTILANG_Tareas,$MULTILANG_ListaCategorias;
             
             global $CadenaFiltradoTareasKanban;
@@ -703,7 +703,7 @@ function PCO_PresentarTableroKanban($ID_TableroKanban)
 
                                             //Si es la ultima columna muestra opcion para archivar todo
                                             if ($ConteoColumna==count($ArregloColumnasTablero))
-                                                echo "<div class='row'><div align=center class='col-xs-12 col-sm-12 col-md-12 col-lg-12'><a href='{$ArchivoCORE}?PCO_Accion=ArchivarTareaKanban&ArchivadoMasivo=1&ID_TableroKanban={$ID_TableroKanban}&ColumnaTablero={$ConteoColumna}' class='btn btn-xs btn-warning'><i class='fa fa-archive fa-fw'></i> Archivar todo</a></div></div>";
+                                                echo "<div class='row'><div align=center class='col-xs-12 col-sm-12 col-md-12 col-lg-12'><a onclick='return confirm(\"{$MULTILANG_ArchivarTareaAdv}\");' href='{$ArchivoCORE}?PCO_Accion=ArchivarTareaKanban&ArchivadoMasivo=1&ID_TableroKanban={$ID_TableroKanban}&ColumnaTablero={$ConteoColumna}' class='btn btn-xs btn-warning'><i class='fa fa-archive fa-fw'></i> Archivar TODO</a></div></div>";
 
                                             echo "<div id='MarcoTareasColumna$ConteoColumna'>
                                             <br><div id='ColumnaKanbanMarcoArrastre".$ConteoColumna."'></div>";
