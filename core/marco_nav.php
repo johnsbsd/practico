@@ -176,7 +176,7 @@
 
     <?php
 			//Despliega opciones de configuracion
-			if (PCO_EsAdministrador(@$PCOSESS_LoginUsuario) || PCO_EsDesplegador(@$PCOSESS_LoginUsuario))
+			if (PCO_EsAdministrador(@$PCOSESS_LoginUsuario) || PCO_EsDesplegador(@$PCOSESS_LoginUsuario) || PCO_EsEmpaquetador(@$PCOSESS_LoginUsuario))
 			{
     ?>
 

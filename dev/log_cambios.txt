@@ -120,6 +120,7 @@ ALTER TABLE core_pcoder_historial ADD INDEX archivo (archivo);
 ALTER TABLE core_parametros ADD htmlentities_flags varchar(255) NULL DEFAULT 'ENT_QUOTES';
 ALTER TABLE core_parametros ADD htmlentities_charsets varchar(255) NULL DEFAULT '';
 ALTER TABLE core_parametros ADD usuarios_desplegadores varchar(1024) NULL DEFAULT 'admin';
+ALTER TABLE core_parametros ADD usuarios_empaquetadores varchar(1024) NULL DEFAULT 'admin';
 
 DELETE FROM core_opcionlista WHERE identificador_lista='htmlentities_flags';
 DELETE FROM core_opcionlista WHERE identificador_lista='htmlentities_charsets';

@@ -3149,6 +3149,36 @@ function PCO_EsDesplegador($Usuario)
 ########################################################################
 ########################################################################
 /*
+	// Function: PCO_EsEmpaquetador
+	Determina si un login de usuario es empaquetador (packager) de plataforma o no
+
+	Variables de entrada:
+
+		Usuario - Login de usuario a verificar
+
+	Salida:
+		Cero (0) o uno (1) segun la pertenencia o no del usuario al grupo de deployers
+*/
+function PCO_EsEmpaquetador($Usuario)
+	{
+		$PCOVAR_ListaUsuarios=PCO_EjecutarSQL("SELECT usuarios_empaquetadores FROM core_parametros WHERE 1=1 LIMIT 0,1")->fetchColumn();
+		$ArregloUsuario=explode(",",$PCOVAR_ListaUsuarios);
+
+		//Recorre el arreglo de super-usuarios
+		$Resultado = 0;
+		if ($Usuario!="")
+			foreach ($ArregloUsuario as $UsuarioEvaluado)
+				{
+					if (trim($UsuarioEvaluado)==$Usuario)
+						$Resultado = 1;
+				}
+		return $Resultado;
+	}
+
+
+########################################################################
+########################################################################
+/*
 	// Function: PCO_BackupObtenerDatosTabla
 	Recupera los datos en formato Insert asociados a una tabla
 
