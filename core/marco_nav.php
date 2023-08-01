@@ -176,7 +176,7 @@
 
     <?php
 			//Despliega opciones de configuracion
-			if (PCO_EsAdministrador(@$PCOSESS_LoginUsuario))
+			if (PCO_EsAdministrador(@$PCOSESS_LoginUsuario) || PCO_EsDesplegador(@$PCOSESS_LoginUsuario))
 			{
     ?>
 
@@ -185,6 +185,7 @@
 						<i class="fa fa-cog fa-fw text-danger"></i> <i class="fa fa-caret-down text-danger"></i>
 					</a>
 					<ul class="dropdown-menu dropdown-alerts" >
+
                         <h6 class="dropdown-header"><?php echo ($MULTILANG_Configuracion); ?>:</h6>
 						<li>
 							<a data-toggle="modal" href="#myModalCONFIGURACION">
@@ -266,6 +267,25 @@
 								</div>
 							</a>
 						</li>
+						<li class="divider"></li>
+
+
+						<li>
+							<a href="javascript:document.PCO_Empaquetamiento.submit();">
+								<div>
+									<i class="fa fa-file-zip-o fa-fw"></i> Empaquetado / Packaging
+								</div>
+							</a>
+						</li>
+						<li>
+							<a href="javascript:document.PCO_AppDespliegue.submit();">
+								<div>
+									<i class="fa fa-rocket fa-fw"></i> Despliegue / Deployment
+								</div>
+							</a>
+						</li>
+
+						
 						<li class="divider"></li>
                         <h6 class="dropdown-header"><?php echo ($MULTILANG_Otros); ?>:</h6>
                         <?php

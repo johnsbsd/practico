@@ -15,6 +15,7 @@ ArchivoVersion=" inc/version_actual.txt "
 #[ListaArchivos] Separados por espacio o salto de linea, se puede usar notacion core/* para incluir por ejemplo subcarpetas
 ListaArchivos="
 index.php
+core/actualizacion.php
 core/comunes.php
 core/objetos.php
 core/doc_api.php
@@ -49,8 +50,9 @@ LogCambios="
 * Enhan [CORE]: Cambiado el nombre de campo interno con el codigo de los scripts personalizados de codigo_script a simplemente codigo para evitar problemas de filtro WAF en nombres de campo.
 * Enhan [CORE]: Controlada carga de archivos de perfil.  Unicamente se aceptan archivos en formato PNG y durante su carga el sistema renombrará de manera obligatoria la extensión de archivo para coincidir con tal formato.
 * Enhan [CORE]: Usuarios administradores/desarrolladores son ahora definidos desde la opcion de parámetros del sistema y no desde el archivo de configuración.
+* Enhan [CORE]: Acción de actualización del framework se asegura que sea llamada por un usuario administrador.
 
-
+Nuevas opciones de Empaquetado y despliegue
 
 * Enhan [CORE]: Mejorada visualizacion de ejemplos de salida en APIs
 
