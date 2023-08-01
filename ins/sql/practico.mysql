@@ -34,6 +34,7 @@ CREATE TABLE core_parametros (
   facialrec_precision DECIMAL(2,1) DEFAULT '0.5',
   htmlentities_flags varchar(255) NULL DEFAULT 'ENT_QUOTES',
   htmlentities_charsets varchar(255) NULL DEFAULT '',
+  usuarios_desplegadores varchar(1024) NULL DEFAULT 'admin',
   PRIMARY KEY  (id)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 

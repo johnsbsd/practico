@@ -258,8 +258,8 @@
                     if (trim($RegistroServicios["ejemplo_salida"])!="")
                     echo '
                         <div class="well well-sm" style="margin-left:40px; margin-top:15px;">
-                            <i class="fa fa-desktop fa-fw"></i>  <b>Ejemplo de salida:</b>
-                            <textarea readonly style="font-size:11px; font-family: terminal,console,monospace; width:100%; border-radius:10px; background-color:#2F2F47; color:white; margin-top:5px; height:150px;">'.$RegistroServicios["ejemplo_salida"].'</textarea>
+                            <i class="fa fa-desktop fa-fw"></i>  <b>Ejemplo de salida:</b><br>
+                            <textarea class="form-control" readonly style="width:70%; margin-left: 22px; margin-right: 80px; font-size:11px; font-family: terminal,console,monospace;  border-radius:10px; background-color:#2F2F47; color:white; margin-top:5px; height:150px;">'.$RegistroServicios["ejemplo_salida"].'</textarea>
                         </div>';
     
                         //Busca posibles parametros
@@ -324,14 +324,295 @@
                     if ($MensajeVerificacionAPI=="")
                         echo '<table style="margin-left:40px;"><tr><td><button class="btn btn-success btn-sm" type="submit"><i class="fa fa-cog fa-fw fa-spin"></i> Lanzar prueba de servicio!</button></td></tr></table>';
                                     
-
+    
+                    //CONSTRUYE LOS EJEMPLOS DE LLAMADO
                     $URLBaseSistemaEjemplo = $URLBaseSistema[0]."/?PCO_WSOn=1&PCO_WSKey=XXXXXXXX&PCO_WSSecret=YYYYYYY&PCO_WSId=".$RegistroServicios["nombre"];
+
+                    $Ejemplo_LLAMADO_php_cURL='
+                        $curl = curl_init();
+                        
+                        curl_setopt_array($curl, array(
+                          CURLOPT_URL => \'https://dev.practico.org/practico\',
+                          CURLOPT_RETURNTRANSFER => true,
+                          CURLOPT_ENCODING => \'\',
+                          CURLOPT_MAXREDIRS => 10,
+                          CURLOPT_TIMEOUT => 0,
+                          CURLOPT_FOLLOWLOCATION => true,
+                          CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                          CURLOPT_CUSTOMREQUEST => \'POST\',
+                          CURLOPT_POSTFIELDS => array(\'PCO_WSOn\' => \'1\',\'PCO_WSKey\' => \'XXXXXXXX\',\'PCO_WSSecret\' => \'YYYYYYY\',\'PCO_WSId\' => \'ListaSimple\'),
+                        ));
+                        
+                        $response = curl_exec($curl);
+                        
+                        curl_close($curl);
+                        echo $response;';
+                    $Ejemplo_LLAMADO_php_cURL=str_replace('      ',"",$Ejemplo_LLAMADO_php_cURL);
+
+                    $Ejemplo_LLAMADO_CS_HttpClient='';
+                    $Ejemplo_LLAMADO_CS_RestSharp='';
+                    $Ejemplo_LLAMADO_cURL='';
+                    $Ejemplo_LLAMADO_DartDio='';
+                    $Ejemplo_LLAMADO_DartHttp='';
+                    $Ejemplo_LLAMADO_GoNative='';
+                    $Ejemplo_LLAMADO_HTTP='';
+                    $Ejemplo_LLAMADO_JavaOkHttp='';
+                    $Ejemplo_LLAMADO_JavaUnirest='';
+                    $Ejemplo_LLAMADO_JavascriptFetch='';
+                    $Ejemplo_LLAMADO_JavascriptJQuery='';
+                    $Ejemplo_LLAMADO_JavascriptXHR='';
+                    $Ejemplo_LLAMADO_KotlinOkHttp='';
+                    $Ejemplo_LLAMADO_C_Libcurl='';
+                    $Ejemplo_LLAMADO_NodeJsAxios='';
+                    $Ejemplo_LLAMADO_NodeJsNative='';
+                    $Ejemplo_LLAMADO_NodeJsRequest='';
+                    $Ejemplo_LLAMADO_NodeJsUnirest='';
+
+                    //Presenta ejemplos de llamado
                     echo '
-                        <div class="well well-sm" style="margin-left:40px; margin-top:15px;">
-                            <i class="fa fa-globe fa-fw"></i>  <b>Ejemplo URL de llamado:</b> <font size=1><i>(complete con sus par&aacute;metros cuando aplique)</i></font>
-                            <br><font size=1><a href="'.$URLBaseSistemaEjemplo.'" target="_blank">'.$URLBaseSistemaEjemplo.'</a></font>
-                        </div>';
-                
+                            <div class="well well-sm" style="margin-left:40px; margin-top:15px;">
+                            <i class="fa fa-rocket fa-fw"></i>  <b>Ejemplos de llamado al servicio:</b><br>
+                            
+                            <details style="display:inlineXXX;">
+                                <summary class="btn btn-default btn-xs">URL Directa</summary>
+                                <br><i class="fa fa-globe fa-fw"></i>  <i> Debe completar con sus par&aacute;metros seg&uacute;n aplique</i>:
+                                <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font size=1><a href="'.$URLBaseSistemaEjemplo.'" target="_blank">'.$URLBaseSistemaEjemplo.'</a></font>
+                            </details>
+
+                            <details style="display:inlineXXX;">
+                                <summary class="btn btn-default btn-xs">C# - HttpClient</summary>
+                                <br><pre style="width:100%; font-size:11px; font-family: terminal,console,monospace;  border-radius:10px; background-color:#2F2F47; color:white; margin-top:5px;">'.$Ejemplo_LLAMADO_CS_HttpClient.'</pre>
+                            </details>
+
+                            <details style="display:inlineXXX;">
+                                <summary class="btn btn-default btn-xs">C# - RestSharp</summary>
+                                <br><pre style="width:100%; font-size:11px; font-family: terminal,console,monospace;  border-radius:10px; background-color:#2F2F47; color:white; margin-top:5px;">'.$Ejemplo_LLAMADO_CS_RestSharp.'</pre>
+                            </details>
+
+                            <details style="display:inlineXXX;">
+                                <summary class="btn btn-default btn-xs">cURL</summary>
+                                <br><pre style="width:100%; font-size:11px; font-family: terminal,console,monospace;  border-radius:10px; background-color:#2F2F47; color:white; margin-top:5px;">'.$Ejemplo_LLAMADO_cURL.'</pre>
+                            </details>
+                            
+                            <details style="display:inlineXXX;">
+                                <summary class="btn btn-default btn-xs">Dart - dio</summary>
+                                <br><pre style="width:100%; font-size:11px; font-family: terminal,console,monospace;  border-radius:10px; background-color:#2F2F47; color:white; margin-top:5px;">'.$Ejemplo_LLAMADO_DartDio.'</pre>
+                            </details>
+                            
+                            <details style="display:inlineXXX;">
+                                <summary class="btn btn-default btn-xs">Dart - http</summary>
+                                <br><pre style="width:100%; font-size:11px; font-family: terminal,console,monospace;  border-radius:10px; background-color:#2F2F47; color:white; margin-top:5px;">'.$Ejemplo_LLAMADO_DartHttp.'</pre>
+                            </details>
+                            
+                            <details style="display:inlineXXX;">
+                                <summary class="btn btn-default btn-xs">Go - Native</summary>
+                                <br><pre style="width:100%; font-size:11px; font-family: terminal,console,monospace;  border-radius:10px; background-color:#2F2F47; color:white; margin-top:5px;">'.$Ejemplo_LLAMADO_GoNative.'</pre>
+                            </details>
+                            
+                            <details style="display:inlineXXX;">
+                                <summary class="btn btn-default btn-xs">HTTP</summary>
+                                <br><pre style="width:100%; font-size:11px; font-family: terminal,console,monospace;  border-radius:10px; background-color:#2F2F47; color:white; margin-top:5px;">'.$Ejemplo_LLAMADO_HTTP.'</pre>
+                            </details>
+                            
+                            <details style="display:inlineXXX;">
+                                <summary class="btn btn-default btn-xs">Java - OkHttp</summary>
+                                <br><pre style="width:100%; font-size:11px; font-family: terminal,console,monospace;  border-radius:10px; background-color:#2F2F47; color:white; margin-top:5px;">'.$Ejemplo_LLAMADO_JavaOkHttp.'</pre>
+                            </details>
+                            
+                            <details style="display:inlineXXX;">
+                                <summary class="btn btn-default btn-xs">Java - Unirest</summary>
+                                <br><pre style="width:100%; font-size:11px; font-family: terminal,console,monospace;  border-radius:10px; background-color:#2F2F47; color:white; margin-top:5px;">'.$Ejemplo_LLAMADO_JavaUnirest.'</pre>
+                            </details>
+
+                            <details style="display:inlineXXX;">
+                                <summary class="btn btn-default btn-xs">Javascript - Fetch</summary>
+                                <br><pre style="width:100%; font-size:11px; font-family: terminal,console,monospace;  border-radius:10px; background-color:#2F2F47; color:white; margin-top:5px;">'.$Ejemplo_LLAMADO_JavascriptFetch.'</pre>
+                            </details>
+                            
+                            <details style="display:inlineXXX;">
+                                <summary class="btn btn-default btn-xs">JavaScript - JQuery</summary>
+                                <br><pre style="width:100%; font-size:11px; font-family: terminal,console,monospace;  border-radius:10px; background-color:#2F2F47; color:white; margin-top:5px;">'.$Ejemplo_LLAMADO_JavascriptJQuery.'</pre>
+                            </details>
+                            
+                            <details style="display:inlineXXX;">
+                                <summary class="btn btn-default btn-xs">JavaScript - XHR</summary>
+                                <br><pre style="width:100%; font-size:11px; font-family: terminal,console,monospace;  border-radius:10px; background-color:#2F2F47; color:white; margin-top:5px;">'.$Ejemplo_LLAMADO_JavascriptXHR.'</pre>
+                            </details>
+                            
+                            <details style="display:inlineXXX;">
+                                <summary class="btn btn-default btn-xs">Kotlin - Okhttp</summary>
+                                <br><pre style="width:100%; font-size:11px; font-family: terminal,console,monospace;  border-radius:10px; background-color:#2F2F47; color:white; margin-top:5px;">'.$Ejemplo_LLAMADO_KotlinOkHttp.'</pre>
+                            </details>
+                            
+                            <details style="display:inlineXXX;">
+                                <summary class="btn btn-default btn-xs">C - Libcurl</summary>
+                                <br><pre style="width:100%; font-size:11px; font-family: terminal,console,monospace;  border-radius:10px; background-color:#2F2F47; color:white; margin-top:5px;">'.$Ejemplo_LLAMADO_C_Libcurl.'</pre>
+                            </details>
+                            
+                            <details style="display:inlineXXX;">
+                                <summary class="btn btn-default btn-xs">NodeJS - Axios</summary>
+                                <br><pre style="width:100%; font-size:11px; font-family: terminal,console,monospace;  border-radius:10px; background-color:#2F2F47; color:white; margin-top:5px;">'.$Ejemplo_LLAMADO_NodeJsAxios.'</pre>
+                            </details>
+                            
+                            <details style="display:inlineXXX;">
+                                <summary class="btn btn-default btn-xs">NodeJS - Native</summary>
+                                <br><pre style="width:100%; font-size:11px; font-family: terminal,console,monospace;  border-radius:10px; background-color:#2F2F47; color:white; margin-top:5px;">'.$Ejemplo_LLAMADO_NodeJsNative.'</pre>
+                            </details>
+                            
+                            <details style="display:inlineXXX;">
+                                <summary class="btn btn-default btn-xs">NodeJS - Request</summary>
+                                <br><pre style="width:100%; font-size:11px; font-family: terminal,console,monospace;  border-radius:10px; background-color:#2F2F47; color:white; margin-top:5px;">'.$Ejemplo_LLAMADO_NodeJsRequest.'</pre>
+                            </details>
+                            
+                            <details style="display:inlineXXX;">
+                                <summary class="btn btn-default btn-xs">NodeJS - Unirest</summary>
+                                <br><pre style="width:100%; font-size:11px; font-family: terminal,console,monospace;  border-radius:10px; background-color:#2F2F47; color:white; margin-top:5px;">'.$Ejemplo_LLAMADO_NodeJsUnirest.'</pre>
+                            </details>
+
+
+
+
+
+
+
+                            
+                            <details style="display:inlineXXX;">
+                                <summary class="btn btn-default btn-xs">PHP - cURL</summary>
+                                <br><pre style="width:100%; font-size:11px; font-family: terminal,console,monospace;  border-radius:10px; background-color:#2F2F47; color:white; margin-top:5px;">'.$Ejemplo_LLAMADO_php_cURL.'</pre>
+                            </details>
+                            
+                            <details style="display:inlineXXX;">
+                                <summary class="btn btn-default btn-xs">PHP - cURL</summary>
+                                <br><pre style="width:100%; font-size:11px; font-family: terminal,console,monospace;  border-radius:10px; background-color:#2F2F47; color:white; margin-top:5px;">'.$Ejemplo_LLAMADO_php_cURL.'</pre>
+                            </details>
+
+                            <details style="display:inlineXXX;">
+                                <summary class="btn btn-default btn-xs">PHP - cURL</summary>
+                                <br><pre style="width:100%; font-size:11px; font-family: terminal,console,monospace;  border-radius:10px; background-color:#2F2F47; color:white; margin-top:5px;">'.$Ejemplo_LLAMADO_php_cURL.'</pre>
+                            </details>
+
+                            <details style="display:inlineXXX;">
+                                <summary class="btn btn-default btn-xs">PHP - cURL</summary>
+                                <br><pre style="width:100%; font-size:11px; font-family: terminal,console,monospace;  border-radius:10px; background-color:#2F2F47; color:white; margin-top:5px;">'.$Ejemplo_LLAMADO_php_cURL.'</pre>
+                            </details>
+
+                            <details style="display:inlineXXX;">
+                                <summary class="btn btn-default btn-xs">PHP - cURL</summary>
+                                <br><pre style="width:100%; font-size:11px; font-family: terminal,console,monospace;  border-radius:10px; background-color:#2F2F47; color:white; margin-top:5px;">'.$Ejemplo_LLAMADO_php_cURL.'</pre>
+                            </details>
+
+                            <details style="display:inlineXXX;">
+                                <summary class="btn btn-default btn-xs">PHP - cURL</summary>
+                                <br><pre style="width:100%; font-size:11px; font-family: terminal,console,monospace;  border-radius:10px; background-color:#2F2F47; color:white; margin-top:5px;">'.$Ejemplo_LLAMADO_php_cURL.'</pre>
+                            </details>
+
+                            <details style="display:inlineXXX;">
+                                <summary class="btn btn-default btn-xs">PHP - cURL</summary>
+                                <br><pre style="width:100%; font-size:11px; font-family: terminal,console,monospace;  border-radius:10px; background-color:#2F2F47; color:white; margin-top:5px;">'.$Ejemplo_LLAMADO_php_cURL.'</pre>
+                            </details>
+
+                            <details style="display:inlineXXX;">
+                                <summary class="btn btn-default btn-xs">PHP - cURL</summary>
+                                <br><pre style="width:100%; font-size:11px; font-family: terminal,console,monospace;  border-radius:10px; background-color:#2F2F47; color:white; margin-top:5px;">'.$Ejemplo_LLAMADO_php_cURL.'</pre>
+                            </details>
+
+                            <details style="display:inlineXXX;">
+                                <summary class="btn btn-default btn-xs">PHP - cURL</summary>
+                                <br><pre style="width:100%; font-size:11px; font-family: terminal,console,monospace;  border-radius:10px; background-color:#2F2F47; color:white; margin-top:5px;">'.$Ejemplo_LLAMADO_php_cURL.'</pre>
+                            </details>
+
+                            <details style="display:inlineXXX;">
+                                <summary class="btn btn-default btn-xs">PHP - cURL</summary>
+                                <br><pre style="width:100%; font-size:11px; font-family: terminal,console,monospace;  border-radius:10px; background-color:#2F2F47; color:white; margin-top:5px;">'.$Ejemplo_LLAMADO_php_cURL.'</pre>
+                            </details>
+
+                            <details style="display:inlineXXX;">
+                                <summary class="btn btn-default btn-xs">PHP - cURL</summary>
+                                <br><pre style="width:100%; font-size:11px; font-family: terminal,console,monospace;  border-radius:10px; background-color:#2F2F47; color:white; margin-top:5px;">'.$Ejemplo_LLAMADO_php_cURL.'</pre>
+                            </details>
+
+                            <details style="display:inlineXXX;">
+                                <summary class="btn btn-default btn-xs">PHP - cURL</summary>
+                                <br><pre style="width:100%; font-size:11px; font-family: terminal,console,monospace;  border-radius:10px; background-color:#2F2F47; color:white; margin-top:5px;">'.$Ejemplo_LLAMADO_php_cURL.'</pre>
+                            </details>
+
+                            <details style="display:inlineXXX;">
+                                <summary class="btn btn-default btn-xs">PHP - cURL</summary>
+                                <br><pre style="width:100%; font-size:11px; font-family: terminal,console,monospace;  border-radius:10px; background-color:#2F2F47; color:white; margin-top:5px;">'.$Ejemplo_LLAMADO_php_cURL.'</pre>
+                            </details>
+
+                            <details style="display:inlineXXX;">
+                                <summary class="btn btn-default btn-xs">PHP - cURL</summary>
+                                <br><pre style="width:100%; font-size:11px; font-family: terminal,console,monospace;  border-radius:10px; background-color:#2F2F47; color:white; margin-top:5px;">'.$Ejemplo_LLAMADO_php_cURL.'</pre>
+                            </details>
+
+                            <details style="display:inlineXXX;">
+                                <summary class="btn btn-default btn-xs">PHP - cURL</summary>
+                                <br><pre style="width:100%; font-size:11px; font-family: terminal,console,monospace;  border-radius:10px; background-color:#2F2F47; color:white; margin-top:5px;">'.$Ejemplo_LLAMADO_php_cURL.'</pre>
+                            </details>
+
+                            <details style="display:inlineXXX;">
+                                <summary class="btn btn-default btn-xs">PHP - cURL</summary>
+                                <br><pre style="width:100%; font-size:11px; font-family: terminal,console,monospace;  border-radius:10px; background-color:#2F2F47; color:white; margin-top:5px;">'.$Ejemplo_LLAMADO_php_cURL.'</pre>
+                            </details>
+
+                            <details style="display:inlineXXX;">
+                                <summary class="btn btn-default btn-xs">PHP - cURL</summary>
+                                <br><pre style="width:100%; font-size:11px; font-family: terminal,console,monospace;  border-radius:10px; background-color:#2F2F47; color:white; margin-top:5px;">'.$Ejemplo_LLAMADO_php_cURL.'</pre>
+                            </details>
+
+                            <details style="display:inlineXXX;">
+                                <summary class="btn btn-default btn-xs">PHP - cURL</summary>
+                                <br><pre style="width:100%; font-size:11px; font-family: terminal,console,monospace;  border-radius:10px; background-color:#2F2F47; color:white; margin-top:5px;">'.$Ejemplo_LLAMADO_php_cURL.'</pre>
+                            </details>
+
+                            <details style="display:inlineXXX;">
+                                <summary class="btn btn-default btn-xs">PHP - cURL</summary>
+                                <br><pre style="width:100%; font-size:11px; font-family: terminal,console,monospace;  border-radius:10px; background-color:#2F2F47; color:white; margin-top:5px;">'.$Ejemplo_LLAMADO_php_cURL.'</pre>
+                            </details>
+
+                            <details style="display:inlineXXX;">
+                                <summary class="btn btn-default btn-xs">PHP - cURL</summary>
+                                <br><pre style="width:100%; font-size:11px; font-family: terminal,console,monospace;  border-radius:10px; background-color:#2F2F47; color:white; margin-top:5px;">'.$Ejemplo_LLAMADO_php_cURL.'</pre>
+                            </details>
+
+                            <details style="display:inlineXXX;">
+                                <summary class="btn btn-default btn-xs">PHP - cURL</summary>
+                                <br><pre style="width:100%; font-size:11px; font-family: terminal,console,monospace;  border-radius:10px; background-color:#2F2F47; color:white; margin-top:5px;">'.$Ejemplo_LLAMADO_php_cURL.'</pre>
+                            </details>
+
+                            <details style="display:inlineXXX;">
+                                <summary class="btn btn-default btn-xs">PHP - cURL</summary>
+                                <br><pre style="width:100%; font-size:11px; font-family: terminal,console,monospace;  border-radius:10px; background-color:#2F2F47; color:white; margin-top:5px;">'.$Ejemplo_LLAMADO_php_cURL.'</pre>
+                            </details>
+
+                            <details style="display:inlineXXX;">
+                                <summary class="btn btn-default btn-xs">PHP - cURL</summary>
+                                <br><pre style="width:100%; font-size:11px; font-family: terminal,console,monospace;  border-radius:10px; background-color:#2F2F47; color:white; margin-top:5px;">'.$Ejemplo_LLAMADO_php_cURL.'</pre>
+                            </details>
+
+                            <details style="display:inlineXXX;">
+                                <summary class="btn btn-default btn-xs">PHP - cURL</summary>
+                                <br><pre style="width:100%; font-size:11px; font-family: terminal,console,monospace;  border-radius:10px; background-color:#2F2F47; color:white; margin-top:5px;">'.$Ejemplo_LLAMADO_php_cURL.'</pre>
+                            </details>
+
+                            <details style="display:inlineXXX;">
+                                <summary class="btn btn-default btn-xs">PHP - cURL</summary>
+                                <br><pre style="width:100%; font-size:11px; font-family: terminal,console,monospace;  border-radius:10px; background-color:#2F2F47; color:white; margin-top:5px;">'.$Ejemplo_LLAMADO_php_cURL.'</pre>
+                            </details>
+
+                            <details style="display:inlineXXX;">
+                                <summary class="btn btn-default btn-xs">PHP - cURL</summary>
+                                <br><pre style="width:100%; font-size:11px; font-family: terminal,console,monospace;  border-radius:10px; background-color:#2F2F47; color:white; margin-top:5px;">'.$Ejemplo_LLAMADO_php_cURL.'</pre>
+                            </details>
+
+
+
+
+                        </dziv>
+                        ';
+
+
                 //Cierra formulario de pruebas cuando hay llaves activas
                 if ($MensajeVerificacionAPI=="")
                     echo '</form>';

@@ -3096,7 +3096,13 @@ function PCO_EsUsuarioInterno($Usuario)
 function PCO_EsAdministrador($Usuario)
 	{
 		global $PCOVAR_Administradores;
-		$ArregloAdmins=explode(",",$PCOVAR_Administradores);
+		$ListaAdministradores=$PCOVAR_Administradores;
+
+		$PCOVAR_ListaUsuarios=PCO_EjecutarSQL("SELECT usuarios_desarroladores FROM core_parametros WHERE 1=1 LIMIT 0,1")->fetchColumn();
+		if ($PCOVAR_ListaUsuarios!="")
+		    $ListaAdministradores=$ListaAdministradores.",".$PCOVAR_ListaUsuarios;
+
+		$ArregloAdmins=explode(",",$ListaAdministradores);
 
 		//Recorre el arreglo de super-usuarios
 		$Resultado = 0;
@@ -3125,15 +3131,15 @@ function PCO_EsAdministrador($Usuario)
 */
 function PCO_EsDesplegador($Usuario)
 	{
-		global $PCOVAR_Administradores;
-		$ArregloAdmins=explode(",",$PCOVAR_Administradores);
+		$PCOVAR_ListaUsuarios=PCO_EjecutarSQL("SELECT usuarios_desplegadores FROM core_parametros WHERE 1=1 LIMIT 0,1")->fetchColumn();
+		$ArregloUsuario=explode(",",$PCOVAR_ListaUsuarios);
 
 		//Recorre el arreglo de super-usuarios
 		$Resultado = 0;
 		if ($Usuario!="")
-			foreach ($ArregloAdmins as $UsuarioAdmin)
+			foreach ($ArregloUsuario as $UsuarioEvaluado)
 				{
-					if (trim($UsuarioAdmin)==$Usuario)
+					if (trim($UsuarioEvaluado)==$Usuario)
 						$Resultado = 1;
 				}
 		return $Resultado;

@@ -48,6 +48,10 @@ LogCambios="
 * Enhan [KANBAN]: Nuevos filtros disponibles por tablero para tareas por usuario que acepta las pruebas funcionales y usuario que acepta pruebas no funcionales.
 * Enhan [CORE]: Cambiado el nombre de campo interno con el codigo de los scripts personalizados de codigo_script a simplemente codigo para evitar problemas de filtro WAF en nombres de campo.
 * Enhan [CORE]: Controlada carga de archivos de perfil.  Unicamente se aceptan archivos en formato PNG y durante su carga el sistema renombrará de manera obligatoria la extensión de archivo para coincidir con tal formato.
+* Enhan [CORE]: Usuarios administradores/desarrolladores son ahora definidos desde la opcion de parámetros del sistema y no desde el archivo de configuración.
+
+
+
 * Enhan [CORE]: Mejorada visualizacion de ejemplos de salida en APIs
 
 
@@ -113,6 +117,7 @@ ALTER TABLE core_pcoder_historial ADD INDEX archivo (archivo);
 
 ALTER TABLE core_parametros ADD htmlentities_flags varchar(255) NULL DEFAULT 'ENT_QUOTES';
 ALTER TABLE core_parametros ADD htmlentities_charsets varchar(255) NULL DEFAULT '';
+ALTER TABLE core_parametros ADD usuarios_desplegadores varchar(1024) NULL DEFAULT 'admin';
 
 DELETE FROM core_opcionlista WHERE identificador_lista='htmlentities_flags';
 DELETE FROM core_opcionlista WHERE identificador_lista='htmlentities_charsets';
