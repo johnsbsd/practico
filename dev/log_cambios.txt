@@ -58,6 +58,7 @@ LogCambios="
 * Added [CORE]: Conexiones extra permiten definir si se requiere crear conexion en tiempo de ejecucion o no.
 * Enhan [CORE]: Eliminacion de la variable dependiente ListaCamposSinID_replicasbd en diferentes modulos.
 * Added [KANBAN]: Posibilidad de archivar de manera masiva todas las tareas de la última ventana de un tablero.
+* Fixed [INFORMES]: @jaimeaba3 Creación de registros de caché para conexiones remotas sobre la conexión local del framework.
 
 
 

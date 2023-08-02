@@ -10250,7 +10250,7 @@ function PCO_CargarInforme($informe,$en_ventana=1,$formato="htm",$estilo="Inform
 
                     //Lleva informe a la cache siempre y cuando no sea un informe interno del framework
                     $IdCacheInformes=0;
-                    PCO_EjecutarSQLUnaria("INSERT INTO {$TablasCore}informe_cache (informe,usuario,conexion,script_sql,columnas) VALUES('{$informe}','{$PCOSESS_LoginUsuario}','{$NombreConexionExtra}',?,'{$ListaColumnasInforme}') ","{$consulta}");
+                    PCO_EjecutarSQLUnaria("INSERT INTO {$TablasCore}informe_cache (informe,usuario,conexion,script_sql,columnas) VALUES('{$informe}','{$PCOSESS_LoginUsuario}','',?,'{$ListaColumnasInforme}') ","{$consulta}");
                     $IdCacheInformes=PCO_ObtenerUltimoIDInsertado();
 
                     //Ahora que se tiene una cache, determina si se requiere boton de exportacion CSV por AJAX y lo agrega
