@@ -59,6 +59,7 @@ LogCambios="
 * Enhan [CORE]: Eliminacion de la variable dependiente ListaCamposSinID_replicasbd en diferentes modulos.
 * Added [KANBAN]: Posibilidad de archivar de manera masiva todas las tareas de la última ventana de un tablero.
 * Fixed [INFORMES]: @jaimeaba3 Creación de registros de caché para conexiones remotas sobre la conexión local del framework.
+* Added [CRON]: @jaimeaba3 Campo para documentación general por cada tarea programable (cron)
 
 
 
@@ -159,6 +160,8 @@ INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ord
 INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('htmlentities_charsets', 'Shift_JIS', 'Shift_JIS (SJIS, SJIS-win, cp932, 932) Japones', '12');
 INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('htmlentities_charsets', 'EUC-JP', 'EUC-JP (EUCJP, eucJP-win) Japones', '13');
 INSERT INTO core_opcionlista (identificador_lista,valor_interno,valor_visual,ordenamiento) VALUES ('htmlentities_charsets', 'MacRoman', 'MacRoman: Juego de caracteres que fue utilizado por Mac OS.', '14');
+
+ALTER TABLE core_tareascron ADD documentacion mediumtext COLLATE 'utf8_general_ci' NULL;
 
 UPDATE core_scripts SET ejecuciones=0 WHERE ejecuciones=NULL;
 

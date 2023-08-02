@@ -1009,6 +1009,7 @@ CREATE TABLE core_tareascron (
   script_php text,
   habilitado int(1),
   historial_ejecucion text,
+  documentacion mediumtext COLLATE 'utf8_general_ci' NULL,
   PRIMARY KEY (id)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
