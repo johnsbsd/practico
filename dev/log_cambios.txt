@@ -63,6 +63,7 @@ LogCambios="
 * Added [CRON]: @jaimeaba3 Informe de tareas cron presenta su estado de habilitado/deshabilitado
 * Enhan [APIS]: Mejorada visualizacion de ejemplos de salida en APIs soporta ahora códigos XML y HTML.
 * Added [APIS]: Documentador automático de APIs (Endpoints/Webservices) presenta ahora ejemplos de programación para la conexión de un método desde diferentes lenguajes de programación.
+* Added [PCODER]: Nueva herramienta permite buscar trozos de código en diferentes partes del sistema como archivos, formularios, informes, tareas cron, Javascript y secciones PRE y POS con el fin de ayudar al desarrollador a ubicar determinada función dentro de su aplicación.
 
 
 Nuevas opciones de Empaquetado y despliegue
