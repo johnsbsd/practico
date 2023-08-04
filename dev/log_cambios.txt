@@ -60,12 +60,14 @@ LogCambios="
 * Added [KANBAN]: Posibilidad de archivar de manera masiva todas las tareas de la última ventana de un tablero.
 * Fixed [INFORMES]: @jaimeaba3 Creación de registros de caché para conexiones remotas sobre la conexión local del framework.
 * Added [CRON]: @jaimeaba3 Campo para documentación general por cada tarea programable (cron)
-
+* Added [CRON]: @jaimeaba3 Informe de tareas cron presenta su estado de habilitado/deshabilitado
+* Enhan [APIS]: Mejorada visualizacion de ejemplos de salida en APIs soporta ahora códigos XML y HTML.
+* Added [APIS]: Documentador automático de APIs (Endpoints/Webservices) presenta ahora ejemplos de programación para la conexión de un método desde diferentes lenguajes de programación.
 
 
 Nuevas opciones de Empaquetado y despliegue
 
-* Enhan [CORE]: Mejorada visualizacion de ejemplos de salida en APIs
+
 
 
 
