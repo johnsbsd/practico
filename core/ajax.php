@@ -583,7 +583,10 @@ if ($PCO_Accion=="PCO_ObtenerOpcionesComboBox")
                 $origen_lista_tablas=base64_decode($origen_lista_tablas);
                 $origen_lista_opciones=base64_decode($origen_lista_opciones);
                 $origen_lista_valores=base64_decode($origen_lista_valores);
-                $complemento_condicion_filtrado=base64_decode($complemento_condicion_filtrado);
+                $condicion_filtrado_listas=base64_decode($condicion_filtrado_listas);
+                $PCO_Prefijo=base64_decode($PCO_Prefijo);
+                $PCO_Infijo=base64_decode($PCO_Infijo);
+                $PCO_Posfijo=base64_decode($PCO_Posfijo);
             }
 
         //Pendiente proteger tablas o campos CORE
@@ -600,13 +603,11 @@ if ($PCO_Accion=="PCO_ObtenerOpcionesComboBox")
 					$PCO_SalidaCombos.=$PCO_Prefijo.$registro_opciones_combo['valor'].$PCO_Infijo.$registro_opciones_combo['opcion'].$PCO_Posfijo;
             }
 
-        //echo '<select class="selectpicker show-tick">';
         //Retorna el resultado final
         if ($PCO_MensajeError!="")
             echo $PCO_MensajeError;
         else
             echo $PCO_SalidaCombos;
-        //echo "</select>";
     }
 
 
