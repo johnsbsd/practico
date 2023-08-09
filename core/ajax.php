@@ -547,7 +547,7 @@ if ($PCO_Accion=="PCO_RecuperarRecordsetJSON_DataTable" )
 ########################################################################
 ########################################################################
 /*
-	Function: opciones_combo_box
+	Function: PCO_ObtenerOpcionesComboBox
 	Hace una consulta a la base de datos y retorna las opciones a desplegar en una lista de seleccion o combobox
 
 	Variables de entrada:
@@ -564,8 +564,8 @@ if ($PCO_Accion=="PCO_RecuperarRecordsetJSON_DataTable" )
 		Lista de elementos < option > usados en el combo
 
 */
-if ($PCO_Accion=="opciones_combo_box") 
-    {           
+if ($PCO_Accion=="PCO_ObtenerOpcionesComboBox") 
+    {
         $PCO_MensajeError="";
         $PCO_SalidaCombos="";
         //Valida variables minimas para la consulta

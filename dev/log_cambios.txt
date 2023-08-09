@@ -15,6 +15,7 @@ ArchivoVersion=" inc/version_actual.txt "
 #[ListaArchivos] Separados por espacio o salto de linea, se puede usar notacion core/* para incluir por ejemplo subcarpetas
 ListaArchivos="
 index.php
+core/ajax.php
 core/actualizacion.php
 core/comunes.php
 core/informes.php
@@ -42,6 +43,7 @@ ArchivosFijos=" tmp/par_cambios.txt tmp/par_sql.txt tmp/par_compat.txt tmp/leame
 #TOMAR CONTENIDO DESDE EL README
 #Agregar un texto para parches sin version que al menos recomiende la minima:  SE RECOMIENDA APLICAR A UNA VERSION MINIMA DE xx.xx
 LogCambios="
+* Enhan [CORE]: La accion interna "opciones_combo_box" ha sido cambiada/renombrada a "PCO_ObtenerOpcionesComboBox".  Se recomienda en caso que usted haga uso MANUAL de la función anterior, debería renombrar hacia la función nueva.  Puede usar el nuevo buscador de código de PCoder para examinar sobre todo su código de aplicación los puntos donde haya hecho este tipo de llamado manual.
 * Added [CORE]: Parametrizacion de aplicacion permite definir los tipos de escapado de cadenas cuando se recuperan campos tipo texto corto, valores manuales de listas de selección y contraseñas desde el servidor.  Esto aumenta compatibilidad con sets de caracteres adicionales soportados por sistemas operativos anteriores.
 * Enhan [CORE]: Ejecución de scripts personalizados tipo PHP no se hace mediante la salida al sistema operativo, sino directamente sobre el script en tiempo de ejecución para permitir el uso del framework en todas sus funciones y contextos.
 * Added [CORE]: Documentador de APIs y servicios web agrega la posibilidad de ingresar una API Key y API Secret para realizar pruebas en línea de los servicios autorizados.
