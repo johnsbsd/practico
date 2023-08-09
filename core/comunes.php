@@ -5012,6 +5012,29 @@ function PCO_ConsultarColumnas($tabla,$ConexionAlterna="",$MotorAlterno="",$Base
 ########################################################################
 ########################################################################
 /*
+	Function: PCO_ExisteTablaBD
+	Determina si una tabla existe dentro de una base de datos
+
+	Variables de entrada:
+
+		tabla - Nombre de la tabla a chequear
+
+	Salida:
+		verdadero o falso dependiendo de si existe o no la tabla
+*/
+function PCO_ExisteTablaBD($tabla)
+	{
+        $ResultadoConsulta=PCO_EjecutarSQL("SHOW TABLES LIKE '{$tabla}'")->fetchColumn();
+        if ($ResultadoConsulta!="" && trim($ResultadoConsulta)==$tabla)
+            return true;
+        else
+            return false;
+	}
+	
+	
+########################################################################
+########################################################################
+/*
 	Function: PCO_ExisteCampoTabla
 	Determina si un campo dado existe dentro de una tabla especifica
 
@@ -7090,6 +7113,12 @@ function PCO_CargarObjetoListaSeleccion($registro_campos,$registro_datos_formula
             //Genera Script Ajax y DIV para cambio de opciones en caliente
             $nombre_tabla_opciones = explode(".", $registro_campos["origen_lista_opciones"]);
             $nombre_tabla_opciones = $nombre_tabla_opciones[0];
+            //Verifica si la tabla obtenida desde la lista de opciones existe, si no es asi intenta generarla desde la lista de valores|
+            // if (!PCO_ExisteTablaBD($nombre_tabla_opciones))
+            //     {
+            //         $nombre_tabla_opciones = explode(".", $registro_campos["origen_lista_valores"]);
+            //         $nombre_tabla_opciones = $nombre_tabla_opciones[0];
+            //     }
 
             //Define algunas variables de construccion de la cadena final
             $PCO_Prefijo='';
@@ -7161,6 +7190,7 @@ function PCO_CargarObjetoListaSeleccion($registro_campos,$registro_datos_formula
                             //enviamos las variables al archivo get_combo2.php
                             //xmlhttp.send();
                             xmlhttp.send("PCO_Accion=opciones_combo_box&Presentar_FullScreen=1&origen_lista_tablas='.$nombre_tabla_opciones.'&origen_lista_opciones='.$registro_campos["origen_lista_opciones"].'&origen_lista_valores='.$registro_campos["origen_lista_valores"].'&condicion_filtrado_listas='.str_replace('"','\"',$registro_campos["condicion_filtrado_listas"]).'&PCO_Prefijo='.$PCO_Prefijo.'&PCO_Infijo='.$PCO_Infijo.'&PCO_Posfijo='.$PCO_Posfijo.'");
+                            //xmlhttp.send("PCO_Accion=opciones_combo_box&Presentar_FullScreen=1&PCO_UsandoBase64=1&origen_lista_tablas='.base64_encode($nombre_tabla_opciones).'&origen_lista_opciones='.base64_encode($registro_campos["origen_lista_opciones"]).'&origen_lista_valores='.base64_encode($registro_campos["origen_lista_valores"]).'&condicion_filtrado_listas='.base64_encode(str_replace('"','\"',$registro_campos["condicion_filtrado_listas"])).'&PCO_Prefijo='.$PCO_Prefijo.'&PCO_Infijo='.$PCO_Infijo.'&PCO_Posfijo='.$PCO_Posfijo.'");
                         }
                 </script>
 

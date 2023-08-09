@@ -62,6 +62,7 @@ LogCambios="
 * Added [CRON]: @jaimeaba3 Campo para documentación general por cada tarea programable (cron)
 * Added [CRON]: @jaimeaba3 Informe de tareas cron presenta su estado de habilitado/deshabilitado
 * Enhan [APIS]: Mejorada visualizacion de ejemplos de salida en APIs soporta ahora códigos XML y HTML.
+* Fixed [CORE]: Extension de archivo para el avatar de usuario es forzada a tipo PNG para evitar carga de archivos con extensión diferente que puedan repercutir en ejecución de scripts del lado del servidor.
 * Added [APIS]: Documentador automático de APIs (Endpoints/Webservices) presenta ahora ejemplos de programación para la conexión de un método desde diferentes lenguajes de programación.
 * Added [PCODER]: Nueva herramienta permite buscar trozos de código en diferentes partes del sistema como archivos, formularios, informes, tareas cron, Javascript y secciones PRE y POS con el fin de ayudar al desarrollador a ubicar determinada función dentro de su aplicación.
 

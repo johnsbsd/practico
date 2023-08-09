@@ -577,6 +577,15 @@ if ($PCO_Accion=="opciones_combo_box")
                 if (@$origen_lista_valores=="") $PCO_MensajeError.='<option>[Causa] Falta origen_lista_valores</option>';
             }
 
+        //Decodifica variables si aplica
+        if ($PCO_UsandoBase64==1)
+            {
+                $origen_lista_tablas=base64_decode($origen_lista_tablas);
+                $origen_lista_opciones=base64_decode($origen_lista_opciones);
+                $origen_lista_valores=base64_decode($origen_lista_valores);
+                $complemento_condicion_filtrado=base64_decode($complemento_condicion_filtrado);
+            }
+
         //Pendiente proteger tablas o campos CORE
         // ******************** //
 
