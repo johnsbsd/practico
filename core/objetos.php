@@ -51,7 +51,7 @@
 
 /* ################################################################## */
 /* ################################################################## */
-	if ($PCO_Accion=="cargar_objeto" || $PCO_Accion=="PCO_CargarObjeto")
+	if ($PCO_Accion=="PCO_CargarObjeto")
 		{
 			/*
 				Function: PCO_CargarObjeto

@@ -3853,7 +3853,6 @@ function PCO_PermisoHeredadoAccion($PCO_Accion)
 		if ($PCO_Accion== "Mensaje_cierre_sesion")				$retorno = 1;
 		// Funciones en core/objetos.php
 		if ($PCO_Accion== "PCO_CargarObjeto")					$retorno = 1;
-		if ($PCO_Accion== "cargar_objeto")						$retorno = 1; //Eliminar despues de version 18.9
 		// Funciones en core/actualizacion.php
 		if ($PCO_Accion== "cargar_archivo")						$retorno = PCO_PermisoAgregadoAccion("actualizar_practico");
 		if ($PCO_Accion== "analizar_parche")					$retorno = PCO_PermisoAgregadoAccion("actualizar_practico");
