@@ -60,6 +60,8 @@ LogCambios="
 * Added [CORE]: Conexiones extra permiten definir si se requiere crear conexion en tiempo de ejecucion o no.
 * Enhan [CORE]: Eliminacion de la variable dependiente ListaCamposSinID_replicasbd en diferentes modulos.
 * Added [KANBAN]: Posibilidad de archivar de manera masiva todas las tareas de la última ventana de un tablero.
+* Enhan [KANBAN]: Etiqueta en formato de tareas kanban de "Fecha de vencimiento" cambia a "Fecha de fin estimada"
+* Enhan [KANBAN]: Agregado nuevo campo de cierre real.  Util para comparativos entre estimaciones vs ejecución real de un proyecto.  Por defecto su valor será siempre el valor de fecha de de fin estimada a menos que el usuario la cambie posteriormente.
 * Fixed [INFORMES]: @jaimeaba3 Creación de registros de caché para conexiones remotas sobre la conexión local del framework.
 * Added [CRON]: @jaimeaba3 Campo para documentación general por cada tarea programable (cron)
 * Added [CRON]: @jaimeaba3 Informe de tareas cron presenta su estado de habilitado/deshabilitado
@@ -67,7 +69,7 @@ LogCambios="
 * Fixed [CORE]: Extension de archivo para el avatar de usuario es forzada a tipo PNG para evitar carga de archivos con extensión diferente que puedan repercutir en ejecución de scripts del lado del servidor.
 * Added [APIS]: Documentador automático de APIs (Endpoints/Webservices) presenta ahora ejemplos de programación para la conexión de un método desde diferentes lenguajes de programación.
 * Added [PCODER]: Nueva herramienta permite buscar trozos de código en diferentes partes del sistema como archivos, formularios, informes, tareas cron, Javascript y secciones PRE y POS con el fin de ayudar al desarrollador a ubicar determinada función dentro de su aplicación.
-* Enhan [CORE]: Los chequeos de instalacion de extensiones posix se realizan sólo para sistemas BSD y Linux, ya que el windows y su powershell no cumple el estander IEEE asociado y PHP no cuenta una extensión oficial para POSIX.
+* Enhan [CORE]: @lgiron14 Los chequeos de instalacion de extensiones posix se realizan sólo para sistemas BSD y Linux, ya que el windows y su powershell no cumple el estander IEEE asociado y PHP no cuenta una extensión oficial para POSIX.
 * Enhan [CORE]: @OscarCalderinG IMPORTANTE: Las listas de selección con soporte AJAX harán un TRIM automático de los datos devueltos con el fin de evitar malformaciones del JSON derivadas de datos con espacios, saltos de línea o tabuladores al inicio o fin de la cadena retornada como respuesta.  Esto puede tener cambios significativos en sus listas cuando por algún motivo los datos de entrada no han sido sanitizados y presentan este tipo de caracteres que posteriormente deben ser comparados frente a la cadena saneada.
 
 
@@ -175,6 +177,9 @@ ALTER TABLE core_tareascron ADD documentacion mediumtext COLLATE 'utf8_general_c
 UPDATE core_scripts SET ejecuciones=0 WHERE ejecuciones=NULL;
 
 ALTER TABLE core_scripts CHANGE codigo_script codigo varchar(255) COLLATE 'utf8_general_ci';
+
+ALTER TABLE core_kanban ADD fecha_real_cierre date NULL;
+UPDATE core_kanban SET fecha_real_cierre=fecha;
 
 UPDATE core_opcionlista SET valor_visual = REPLACE(valor_visual, '{ $ ', '{$');
 UPDATE core_opcionlista SET valor_interno = REPLACE(valor_interno, '{ $ ', '{$');

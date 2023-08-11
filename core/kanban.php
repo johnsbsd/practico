@@ -708,7 +708,7 @@ function PCO_PresentarTableroKanban($ID_TableroKanban)
                                             echo "<div id='MarcoTareasColumna$ConteoColumna'>
                                             <br><div id='ColumnaKanbanMarcoArrastre".$ConteoColumna."'></div>";
                                             //Busca las tarjetas de la columna siempre y cuando no esten ya archivadas
-                                            $ResultadoTareas=PCO_EjecutarSQL("SELECT * FROM ".$TablasCore."kanban WHERE archivado<>1 AND columna=$ConteoColumna AND tablero='$ID_TableroKanban' {$CadenaFiltradoTareasKanban} ORDER BY peso ASC, id ASC ");
+                                            $ResultadoTareas=PCO_EjecutarSQL("SELECT * FROM ".$TablasCore."kanban WHERE columna=$ConteoColumna AND tablero='$ID_TableroKanban' {$CadenaFiltradoTareasKanban} ORDER BY peso ASC, id ASC ");
                                             while ($RegistroTareas=$ResultadoTareas->fetch())
                                                 echo PCO_PresentarTareaKanban($RegistroTareas,$ColumnasDisponibles,$ID_TableroKanban,$ResultadoColumnas);
                                     echo "</div>";

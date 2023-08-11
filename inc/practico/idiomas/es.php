@@ -1356,7 +1356,7 @@
     $MULTILANG_DesTarea='Descripci&oacute;n general de la tarea o actividad que ser&aacute; agregada al tablero Kanban.   Puede incluso utilizar otras t&eacute;cnicas de descripci&oacute;n como historias de usuario o cualquier otra metodolog&iacute;a que desee para documentar la actividad.';
     $MULTILANG_AsignadoA='Asignada a';
     $MULTILANG_AsignadoADes='Usuario registrado en el sistema que es responsable por la finalizaci&oacute;n de esta tarea o actividad (si aplica)';
-    $MULTILANG_FechaLimite='Fecha de vencimiento';
+    $MULTILANG_FechaLimite='Fecha de fin estimada';
     $MULTILANG_DelKanban='Usted va a eliminar una tarea del tablero y esta accion no se puede deshacer posteriormente.  Esta seguro que desea continuar?';
     $MULTILANG_Historia1='Historia de usuario minima: [Rol,Funcionalidad,Finalidad]';
     $MULTILANG_Historia1Des='Como ________ Se necesita ___________ con el fin de ________.';
