@@ -67,6 +67,9 @@ LogCambios="
 * Fixed [CORE]: Extension de archivo para el avatar de usuario es forzada a tipo PNG para evitar carga de archivos con extensión diferente que puedan repercutir en ejecución de scripts del lado del servidor.
 * Added [APIS]: Documentador automático de APIs (Endpoints/Webservices) presenta ahora ejemplos de programación para la conexión de un método desde diferentes lenguajes de programación.
 * Added [PCODER]: Nueva herramienta permite buscar trozos de código en diferentes partes del sistema como archivos, formularios, informes, tareas cron, Javascript y secciones PRE y POS con el fin de ayudar al desarrollador a ubicar determinada función dentro de su aplicación.
+* Enhan [CORE]: Los chequeos de instalacion de extensiones posix se realizan sólo para sistemas BSD y Linux, ya que el windows y su powershell no cumple el estander IEEE asociado y PHP no cuenta una extensión oficial para POSIX.
+* Enhan [CORE]: @OscarCalderinG IMPORTANTE: Las listas de selección con soporte AJAX harán un TRIM automático de los datos devueltos con el fin de evitar malformaciones del JSON derivadas de datos con espacios, saltos de línea o tabuladores al inicio o fin de la cadena retornada como respuesta.  Esto puede tener cambios significativos en sus listas cuando por algún motivo los datos de entrada no han sido sanitizados y presentan este tipo de caracteres que posteriormente deben ser comparados frente a la cadena saneada.
+
 
 
 Nuevas opciones de Empaquetado y despliegue

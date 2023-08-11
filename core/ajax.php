@@ -751,10 +751,10 @@ if (@$PCO_Accion=="PCO_ObtenerOpcionesAjaxSelect")
                     {
                         $Resultados.='
                             {
-                                "V": "'.$Registro[0].'",
-                                "T": "'.$Registro[1].'",
-                                "S": "'.$Registro[2].'",
-                                "I": "'.$Registro[3].'"
+                                "V": "'.trim($Registro[0]).'",
+                                "T": "'.trim($Registro[1]).'",
+                                "S": "'.trim($Registro[2]).'",
+                                "I": "'.trim($Registro[3]).'"
                             },';
                         $HayResultados=1;
                     }
