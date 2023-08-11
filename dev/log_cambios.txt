@@ -62,6 +62,9 @@ LogCambios="
 * Added [KANBAN]: Posibilidad de archivar de manera masiva todas las tareas de la última ventana de un tablero.
 * Enhan [KANBAN]: Etiqueta en formato de tareas kanban de "Fecha de vencimiento" cambia a "Fecha de fin estimada"
 * Enhan [KANBAN]: Agregado nuevo campo de cierre real.  Util para comparativos entre estimaciones vs ejecución real de un proyecto.  Por defecto su valor será siempre el valor de fecha de de fin estimada a menos que el usuario la cambie posteriormente.
+* Enhan [KANBAN]: Agregadas opciones de filtro en tableros por rangos de fecha y rangos comunes.
+* Enhan [KANBAN]: Informe descargable de tareas incluye la columna con fecha real de cierre y una columna calculada con la diferencia en dias entre la fecha estimada y la fecha real de cierre.
+* Enhan [KANBAN]: Informe descargable de tareas incluye ahora la columna de estado de archivado o no de la tarea.
 * Fixed [INFORMES]: @jaimeaba3 Creación de registros de caché para conexiones remotas sobre la conexión local del framework.
 * Added [CRON]: @jaimeaba3 Campo para documentación general por cada tarea programable (cron)
 * Added [CRON]: @jaimeaba3 Informe de tareas cron presenta su estado de habilitado/deshabilitado
@@ -73,7 +76,7 @@ LogCambios="
 * Enhan [CORE]: @OscarCalderinG IMPORTANTE: Las listas de selección con soporte AJAX harán un TRIM automático de los datos devueltos con el fin de evitar malformaciones del JSON derivadas de datos con espacios, saltos de línea o tabuladores al inicio o fin de la cadena retornada como respuesta.  Esto puede tener cambios significativos en sus listas cuando por algún motivo los datos de entrada no han sido sanitizados y presentan este tipo de caracteres que posteriormente deben ser comparados frente a la cadena saneada.
 
 
-
+Reisar bug de auto selecion de opciones cluster que está apareciendo en todos los formularios
 Nuevas opciones de Empaquetado y despliegue
 
 
@@ -179,7 +182,7 @@ UPDATE core_scripts SET ejecuciones=0 WHERE ejecuciones=NULL;
 ALTER TABLE core_scripts CHANGE codigo_script codigo varchar(255) COLLATE 'utf8_general_ci';
 
 ALTER TABLE core_kanban ADD fecha_real_cierre date NULL;
-UPDATE core_kanban SET fecha_real_cierre=fecha;
+UPDATE core_kanban SET fecha_real_cierre=fecha WHERE 1=1;
 
 UPDATE core_opcionlista SET valor_visual = REPLACE(valor_visual, '{ $ ', '{$');
 UPDATE core_opcionlista SET valor_interno = REPLACE(valor_interno, '{ $ ', '{$');
