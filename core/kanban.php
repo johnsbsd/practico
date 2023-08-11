@@ -580,7 +580,7 @@ function PCO_PresentarTableroKanban($ID_TableroKanban)
                                                 </div>";
 
                 $ComplementoHerramientasSINArchivar="<div class='pull-left'>
-                                                    <a class='btn btn-default btn-xs' href='".$ArchivoCORE."?PCO_Accion=PCO_CargarObjeto&PCO_Objeto=inf:-50:1&ID_TableroKanban=$ID_TableroKanban'>
+                                                    <a class='btn btn-default btn-xs' href='".$ArchivoCORE."?PCO_Accion=PCO_CargarObjeto&PCO_Objeto=inf:-50:1&ID_TableroKanban={$ID_TableroKanban}&PCOVAR_InformeEmbebido=1'>
                                                         <i class='fa fa-file-excel-o fa-fw fa-1x'></i> $MULTILANG_Descargar
                                                     </a>
                                                 </div>";

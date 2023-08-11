@@ -10043,7 +10043,7 @@ function PCO_CargarInforme($informe,$en_ventana=1,$formato="htm",$estilo="Inform
         global $PCO_InformesListaColumnasDT,$PCO_InformesRecuperacionAJAX,$PCO_InformesIdCache,$PCO_InformesDataTable,$PCO_InformesDataTablePaginaciones,$PCO_InformesDataTableTotales,$PCO_InformesDataTableFormatoTotales,$PCO_InformesDataTableExrpotaCLP,$PCO_InformesDataTableExrpotaCSV,$PCO_InformesDataTableExrpotaXLS,$PCO_InformesDataTableExrpotaPDF,$PCO_InformesDataTableDefineCOLS,$PCO_InformesDataTable_pane_activado,$PCO_InformesDataTable_pane_cascada,$PCO_InformesDataTable_pane_colapsado,$PCO_InformesDataTable_pane_columnas,$PCO_InformesDataTable_pane_subtotalesrelativos,$PCO_InformesDataTable_pane_conteos,$PCO_InformesDataTable_pane_controles,$PCO_InformesDataTable_pane_control_colapsar,$PCO_InformesDataTable_pane_control_ordenar;
         global $ModoDepuracion,$ModoDesarrolladorPractico;
         global $PCO_InformesGraficosSinDatos,$PCOVAR_ConteoRegistrosUltimoInforme;
-        global $PCO_FuncionesJSInternasFORM;
+        global $PCO_FuncionesJSInternasFORM,$PCOVAR_InformeEmbebido;
         
         //Determina si el usuario es un disenador de aplicacion para mostrar el ID de objeto a manera informativa y un boton de salto a edicion
         $BotonSaltoEdicion='
@@ -10157,7 +10157,7 @@ function PCO_CargarInforme($informe,$en_ventana=1,$formato="htm",$estilo="Inform
 				if ($en_ventana)
 					{
 						//Cuando es embebido (=1) no imprime el boton de retorno pues se asume dentro de un formulario
-						if (!$embebido)
+						if (!$embebido && !$PCOVAR_InformeEmbebido)
 							echo '<div align=center id="PCOContenedor_BotonEscritorio"><button type="Button" onclick="document.PCO_FormVerMenu.submit()" class="btn btn-warning"><i class="fa fa-home fa-fw"></i> '.$MULTILANG_IrEscritorio.'</button></div><br>';
 
 						$TituloVentanaInforme=PCO_ReemplazarVariablesPHPEnCadena($registro_informe["titulo"]);
@@ -10196,7 +10196,7 @@ function PCO_CargarInforme($informe,$en_ventana=1,$formato="htm",$estilo="Inform
 					echo '<DIV style="DISPLAY: block; OVERFLOW: auto; POSITION: relative; WIDTH: '.$registro_informe["ancho"].' !important; HEIGHT: '.$registro_informe["alto"].' !important">';
 
 				//Genera enlaces a las opciones de descarga
-				if (($registro_informe["genera_pdf"]=='S' || $registro_informe["genera_pdf"]=='A')  && $embebido!=1)
+				if (($registro_informe["genera_pdf"]=='S' || $registro_informe["genera_pdf"]=='A')  && ($embebido!=1 && $PCOVAR_InformeEmbebido!=1))
 					include_once("core/marco_export.php");
 
 					//DEPRECATED echo '	<html>		<body leftmargin="0" topmargin="0" rightmargin="0" bottommargin="0" marginwidth="0" marginheight="0" style="font-size: 12px; font-family: Arial, Verdana, Tahoma;">';
