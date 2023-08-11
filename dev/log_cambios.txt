@@ -61,10 +61,11 @@ LogCambios="
 * Enhan [CORE]: Eliminacion de la variable dependiente ListaCamposSinID_replicasbd en diferentes modulos.
 * Added [KANBAN]: Posibilidad de archivar de manera masiva todas las tareas de la última ventana de un tablero.
 * Enhan [KANBAN]: Etiqueta en formato de tareas kanban de "Fecha de vencimiento" cambia a "Fecha de fin estimada"
-* Enhan [KANBAN]: Agregado nuevo campo de cierre real.  Util para comparativos entre estimaciones vs ejecución real de un proyecto.  Por defecto su valor será siempre el valor de fecha de de fin estimada a menos que el usuario la cambie posteriormente.
-* Enhan [KANBAN]: Agregadas opciones de filtro en tableros por rangos de fecha y rangos comunes.
-* Enhan [KANBAN]: Informe descargable de tareas incluye la columna con fecha real de cierre y una columna calculada con la diferencia en dias entre la fecha estimada y la fecha real de cierre.
-* Enhan [KANBAN]: Informe descargable de tareas incluye ahora la columna de estado de archivado o no de la tarea.
+* Added [KANBAN]: Agregado nuevo campo de cierre real.  Util para comparativos entre estimaciones vs ejecución real de un proyecto.  Por defecto su valor será siempre el valor de fecha de de fin estimada a menos que el usuario la cambie posteriormente.
+* Added [KANBAN]: Agregadas opciones de filtro en tableros por rangos de fecha y rangos comunes.
+* Added [KANBAN]: Informe descargable de tareas incluye la columna con fecha real de cierre y una columna calculada con la diferencia en dias entre la fecha estimada y la fecha real de cierre.
+* Added [KANBAN]: Informe descargable de tareas incluye ahora la columna de estado de archivado o no de la tarea.
+* Enhan [KANBAN]: Código asociado a funcion VerTareasActivas de vista de tareas de un tablero se elimina y en su lugar se usa objeto interno.
 * Fixed [INFORMES]: @jaimeaba3 Creación de registros de caché para conexiones remotas sobre la conexión local del framework.
 * Added [CRON]: @jaimeaba3 Campo para documentación general por cada tarea programable (cron)
 * Added [CRON]: @jaimeaba3 Informe de tareas cron presenta su estado de habilitado/deshabilitado

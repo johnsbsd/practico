@@ -315,27 +315,6 @@
 /* ################################################################## */
 /* ################################################################## */
 /*
-	Function: VerTareasActivas
-	Presenta una lista de todas las tareas activas sobre un tablero kanban
-
-	Salida:
-		Reporte ID -3
-
-	Ver tambien:
-		<PCO_ExplorarTablerosKanban>
-*/
-	if ($PCO_Accion=="VerTareasActivas")
-		{
-		    $BotonRetorno = '<a class="btn btn-info" data-toggle="tooltip" data-html="true" href=\''.$ArchivoCORE.'?PCO_Accion=PCO_ExplorarTablerosKanban&ID_TableroKanban='.$ID_TableroKanban.'\'><i class="fa fa-arrow-left"></i> '.$MULTILANG_TablerosKanban.'</a><br><br>';
-		    echo $BotonRetorno;
-		    PCO_CargarInforme(-50,1,"","",1);
-		    echo $BotonRetorno;
-		}
-
-
-/* ################################################################## */
-/* ################################################################## */
-/*
 	Function: PCO_AgregarFuncionesEdicionTarea
 	Genera el codigo HTML y CSS correspondiente los botones y demas elementos para la edicion en caliente de un objeto
 
@@ -601,7 +580,7 @@ function PCO_PresentarTableroKanban($ID_TableroKanban)
                                                 </div>";
 
                 $ComplementoHerramientasSINArchivar="<div class='pull-left'>
-                                                    <a class='btn btn-default btn-xs' href='".$ArchivoCORE."?PCO_Accion=VerTareasActivas&ID_TableroKanban=$ID_TableroKanban'>
+                                                    <a class='btn btn-default btn-xs' href='".$ArchivoCORE."?PCO_Accion=PCO_CargarObjeto&PCO_Objeto=inf:-50:1&ID_TableroKanban=$ID_TableroKanban'>
                                                         <i class='fa fa-file-excel-o fa-fw fa-1x'></i> $MULTILANG_Descargar
                                                     </a>
                                                 </div>";
