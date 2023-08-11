@@ -294,27 +294,6 @@
 /* ################################################################## */
 /* ################################################################## */
 /*
-	Function: VerTareasArchivadas
-	Presenta una lista de todas las tareas archivadas sobre un tablero kanban
-
-	Salida:
-		Reporte ID -3
-
-	Ver tambien:
-		<PCO_ExplorarTablerosKanban>
-*/
-	if ($PCO_Accion=="VerTareasArchivadas")
-		{
-		    $BotonRetorno = '<a class="btn btn-info" data-toggle="tooltip" data-html="true" href=\''.$ArchivoCORE.'?PCO_Accion=PCO_ExplorarTablerosKanban&ID_TableroKanban='.$ID_TableroKanban.'\'><i class="fa fa-arrow-left"></i> '.$MULTILANG_TablerosKanban.'</a><br><br>';
-		    echo $BotonRetorno;
-		    PCO_CargarInforme(-3,1,"","",1);
-		    echo $BotonRetorno;
-		}
-
-
-/* ################################################################## */
-/* ################################################################## */
-/*
 	Function: PCO_AgregarFuncionesEdicionTarea
 	Genera el codigo HTML y CSS correspondiente los botones y demas elementos para la edicion en caliente de un objeto
 
@@ -574,7 +553,7 @@ function PCO_PresentarTableroKanban($ID_TableroKanban)
         if ($ID_TableroKanban!="")
             {
                 $ComplementoHerramientasArchivadas="<div class='pull-left'>
-                                                    <a class='btn btn-default btn-xs' href='".$ArchivoCORE."?PCO_Accion=VerTareasArchivadas&ID_TableroKanban=$ID_TableroKanban'>
+                                                    <a class='btn btn-default btn-xs' href='".$ArchivoCORE."?PCO_Accion=PCO_CargarObjeto&PCO_Objeto=inf:-3:1&ID_TableroKanban={$ID_TableroKanban}&PCOVAR_InformeEmbebido=1'>
                                                         <i class='fa fa-archive fa-fw fa-1x'></i> $MULTILANG_TareasArchivadas <b>($CantidadTareasArchivadas $MULTILANG_InfDataTableRegTotal)</b>
                                                     </a>
                                                 </div>";
@@ -765,7 +744,7 @@ if (@$PCO_Accion=="PCO_ExplorarTablerosGantt")
         if ($PCO_Valor!="")
             {
                 $ComplementoHerramientasArchivadas="<div class='pull-left'>
-                                                    <a class='btn btn-default btn-xs' href='".$ArchivoCORE."?PCO_Accion=VerTareasArchivadas&ID_TableroKanban=$PCO_Valor'>
+                                                    <a class='btn btn-default btn-xs' href='".$ArchivoCORE."?PCO_Accion=PCO_CargarObjeto&PCO_Objeto=inf:-3:1&ID_TableroKanban={$PCO_Valor}&PCOVAR_InformeEmbebido=1'>
                                                         <i class='fa fa-archive fa-fw fa-1x'></i> $MULTILANG_TareasArchivadas <b>($CantidadTareasArchivadas $MULTILANG_InfDataTableRegTotal)</b>
                                                     </a>
                                                 </div>";

@@ -65,7 +65,7 @@ LogCambios="
 * Added [KANBAN]: Agregadas opciones de filtro en tableros por rangos de fecha y rangos comunes.
 * Added [KANBAN]: Informe descargable de tareas incluye la columna con fecha real de cierre y una columna calculada con la diferencia en dias entre la fecha estimada y la fecha real de cierre.
 * Added [KANBAN]: Informe descargable de tareas incluye ahora la columna de estado de archivado o no de la tarea.
-* Enhan [KANBAN]: Código asociado a funcion VerTareasActivas de vista de tareas de un tablero se elimina y en su lugar se usa objeto interno.
+* Enhan [KANBAN]: Código asociado a funciones de VerTareasArchivadas y VerTareasActivas de vista de tareas de un tablero se elimina y en su lugar se usa objeto interno.
 * Fixed [INFORMES]: @jaimeaba3 Creación de registros de caché para conexiones remotas sobre la conexión local del framework.
 * Added [INFORMES]: Nueva variable de contexto $ PCOVAR_InformeEmbebido permite indicar si los informes a presentar se encuentran embebidos o no.
 * Added [CRON]: @jaimeaba3 Campo para documentación general por cada tarea programable (cron)
@@ -81,6 +81,7 @@ LogCambios="
 Reisar bug de auto selecion de opciones cluster que está apareciendo en todos los formularios
 Nuevas opciones de Empaquetado y despliegue
 
+validar que informes -50 y -3 permita ingresar solamente si el usuario tiene permisos para ese tablero kanban
 
 
 
